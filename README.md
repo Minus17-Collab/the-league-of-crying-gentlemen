@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fantasy Football League Platform
+
+A league history and scoring platform that mirrors an ESPN league in 2026
+and replaces it in 2027. See `AGENTS.md` for architecture invariants and
+`ROADMAP.md` for the phased build plan.
+
+## Stack
+
+- Next.js 15+ (App Router), TypeScript strict mode
+- Supabase (Postgres + Auth + RLS)
+- Vercel (hosting + cron)
+- Tailwind CSS
+- Vitest for unit tests, Playwright for e2e
 
 ## Getting Started
 
-First, run the development server:
+1. Copy `.env.example` to `.env.local` and fill in Supabase credentials.
+2. Install dependencies and run the dev server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev            # local dev server
+pnpm build          # production build — must pass before any PR
+pnpm test           # unit tests (Vitest)
+pnpm test:e2e       # Playwright
+pnpm lint           # eslint, zero warnings allowed
+pnpm typecheck      # tsc --noEmit
+pnpm db:migrate     # apply migrations to Supabase (requires `supabase link`)
+pnpm db:types       # regenerate TS types from schema — run after every migration
+```
 
-## Learn More
+Before finishing any task: `pnpm typecheck && pnpm lint && pnpm test && pnpm build` must all pass.
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `schema.sql` — schema of record, migrated into `supabase/migrations/` in Phase 0.2.
+- `src/lib/supabase/` — browser, server, and service-role Supabase clients.
+- `src/lib/providers/` — swappable stat provider implementations (ESPN, Sleeper, Tank01), added in Phase 2.
+- `src/lib/scoring/engine.ts` — the one scoring function (Phase 1.1).
+- `e2e/` — Playwright specs.
