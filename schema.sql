@@ -1,6 +1,11 @@
 -- ============================================================
 -- FANTASY LEAGUE PLATFORM — CORE SCHEMA (Postgres / Supabase)
 -- ============================================================
+-- Reference copy only. The schema of record is supabase/migrations/
+-- (see AGENTS.md "Database"). This file documents design intent in
+-- one place; when the two diverge, migrations win. Update both when
+-- changing the schema.
+-- ============================================================
 -- Design goals:
 --   1. Scoring, roster slots, and records are DATA, not code.
 --   2. Stat data is provider-agnostic, so ESPN -> Sleeper -> Tank01
@@ -23,15 +28,32 @@ create table leagues (
 -- A franchise is the PERSISTENT identity. "Team Kyle" may be
 -- named something different every year, but it's one franchise
 -- across all of league history. All-time records hang off this.
+--
+-- Manager lifecycle fields (status, og_manager, espn_owner_ids) are the
+-- database equivalent of the hand-maintained managers.json described in
+-- the Fantasy League HQ spec. They are commissioner-edited, not synced
+-- from ESPN automatically — a manager rejoining under a new ESPN account
+-- means appending to espn_owner_ids, not creating a new franchise row.
 create table franchises (
-  id            uuid primary key default gen_random_uuid(),
-  league_id     uuid not null references leagues(id) on delete cascade,
-  display_name  text not null,          -- canonical name for history pages
-  owner_user_id uuid references auth.users(id),  -- null until they sign up
-  founded_year  int,
-  is_active     boolean not null default true,
-  created_at    timestamptz not null default now()
+  id              uuid primary key default gen_random_uuid(),
+  league_id       uuid not null references leagues(id) on delete cascade,
+  display_name    text not null,          -- canonical name for history pages
+  owner_user_id   uuid references auth.users(id),  -- null until they sign up
+  founded_year    int,
+  is_active       boolean not null default true,
+  status          text not null default 'active',  -- 'active' | 'retired'
+  og_manager      boolean not null default false,   -- founding-member badge
+  espn_owner_ids  text[] not null default '{}',     -- GUIDs; array supports rejoin-under-new-account merges
+  retired_season  int,                                -- last season played, if retired
+  notes           text,
+  created_at      timestamptz not null default now(),
+  constraint franchises_status_check check (status in ('active', 'retired'))
 );
+
+-- Ingest looks up a franchise by ESPN owner GUID on every sync; any GUID
+-- found in ESPN data but absent here is a hard error, not a silent pass
+-- (see AGENTS.md "When requirements are ambiguous").
+create index franchises_espn_owner_ids_idx on franchises using gin (espn_owner_ids);
 
 -- One row per league per year. Settings live here because they
 -- change: scoring tweaks, expansion from 10 to 12 teams, etc.
@@ -229,6 +251,59 @@ create table awards (
   franchise_id  uuid references franchises(id),
   title         text not null,
   note          text
+);
+
+
+-- ------------------------------------------------------------
+-- GRADING  (draft grades, trade grades)
+-- ------------------------------------------------------------
+-- Written by scheduled jobs (compute.ts equivalent), never computed
+-- in a page request. Recomputing overwrites prior rows for that
+-- season/pick — these are derived data, not source of truth.
+
+-- Draft Night Grade (curved, computed at pick time using ADP) and
+-- End-of-Season Regrade (uncurved, VOE-based) share a row per pick;
+-- the regrade columns are null until the season is complete.
+create table draft_pick_grades (
+  id                  uuid primary key default gen_random_uuid(),
+  draft_pick_id       uuid not null references draft_picks(id) on delete cascade,
+  adp_at_pick         numeric(6,1),          -- preseason ADP, or substitute (see data_gaps)
+  reach_value         numeric(6,1),          -- pick_overall - adp_at_pick
+  draft_night_grade   text,                  -- 'A+'..'F', curved within draft class
+  season_points       numeric(8,2),          -- actual full-season points, this league's scoring
+  expected_points     numeric(8,2),          -- from pooled pick-slot decay curve
+  voe                 numeric(8,2),          -- season_points - expected_points
+  regrade_grade       text,                  -- 'A+'..'F', fixed VOE bands, not curved
+  regrade_rank        int,                   -- rank within season by VOE
+  computed_at         timestamptz not null default now(),
+  unique (draft_pick_id)
+);
+
+-- One row per side of a trade. A 3-way trade produces 3 rows sharing
+-- transactions.details->>'trade_id'.
+create table trade_grades (
+  id                  uuid primary key default gen_random_uuid(),
+  season_id           uuid not null references seasons(id) on delete cascade,
+  trade_id            text not null,         -- matches transactions.details->>'trade_id'
+  team_id             uuid not null references teams(id),
+  started_points      numeric(8,2) not null, -- points from received players, started only
+  total_points        numeric(8,2) not null, -- points from received players, started or not
+  evaluation_window    text not null,         -- e.g. 'trade week 6 -> end of regular season'
+  verdict             text,                  -- 'neutral' | 'slight_edge' | 'won' | 'fleeced'
+  computed_at         timestamptz not null default now(),
+  unique (trade_id, team_id)
+);
+
+-- Every place ESPN data was missing, ambiguous, or substituted, and
+-- what assumption was made. Surfaced in the site's data-gaps report,
+-- never silently papered over (see AGENTS.md "ambiguous requirements").
+create table data_gaps (
+  id            uuid primary key default gen_random_uuid(),
+  season_id     uuid references seasons(id),
+  scope         text not null,          -- 'draft','trade','roster','settings'
+  description   text not null,
+  assumption    text not null,
+  created_at    timestamptz not null default now()
 );
 
 

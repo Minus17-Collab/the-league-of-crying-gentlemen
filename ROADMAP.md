@@ -18,6 +18,9 @@ Supabase client setup (browser + server + service-role variants).
 Convert `schema.sql` into ordered Supabase migrations. Add RLS policies:
 default deny; public read on `leagues`, `seasons`, `teams`, `franchises`,
 `matchups`; authenticated read elsewhere; writes service-role only for now.
+- Status: migration files written (`supabase/migrations/`), including
+  manager-lifecycle fields on `franchises` and the grading tables from
+  Phase 3.5. Not yet applied — no Supabase project exists yet to link.
 - Done when: migrations apply cleanly to a fresh database and `pnpm db:types` emits valid types.
 
 **0.3 Seed data**
@@ -35,6 +38,7 @@ by the league owner — do not invent them.
 Implement `lib/scoring/engine.ts`. Handles per-unit points, flat bonuses,
 min/max thresholds, and position filters. Pure function, no I/O, no database
 calls.
+- Status: done. `src/lib/scoring/engine.ts` + `src/lib/scoring/engine.test.ts` (37 tests, all passing).
 - Done when: 30+ unit tests cover per-unit scoring, threshold bonuses, position filters, negative points, and empty-input edge cases.
 
 **1.2 Golden-file regression tests**
@@ -49,6 +53,11 @@ This is the safety net for every future change.
 **2.1 Provider interface + ESPN adapter**
 Implement `StatProvider` and the ESPN implementation. Handles private-league
 cookie auth (`SWID`, `espn_s2`). Zod-validate all responses.
+- Status: scaffolded (`src/lib/providers/`). Endpoint calls, cookie auth,
+  zod schemas, and normalization are implemented but UNVERIFIED against a
+  real ESPN response — `ESPN_STAT_ID_TO_KEY` in `espn/mappings.ts` is
+  intentionally empty until cross-checked against this league's real
+  `mSettings`. Requires `ESPN_SWID`/`ESPN_S2` to test.
 - Done when: fetching a real league returns normalized players, rosters, matchups, and stat lines.
 
 **2.2 Player identity resolution**
@@ -60,6 +69,9 @@ collisions and mid-season team changes without creating duplicate players.
 Vercel cron route handlers. Full sync (daily), live sync (every 5 min during
 game windows). Every run writes a `sync_runs` row. Failures are logged and
 retried, never silent.
+- Status: skeleton route handler at `src/app/api/cron/sync/route.ts` +
+  `vercel.json` cron schedule (Tuesdays). Checks ESPN credentials and logs
+  to `sync_runs`; does not yet upsert gameplay data (depends on 2.2).
 - Done when: a scheduled run populates a week of data end to end and is visible in `sync_runs`.
 
 ---
@@ -79,6 +91,40 @@ Adding a record is an INSERT plus a view — no page changes.
 **3.3 Weekly scoreboard**
 Matchup list per week, box scores, starters vs bench, points left on bench.
 - Done when: scores match ESPN exactly for a completed week.
+
+---
+
+## Phase 3.5 — Derived stats & grading
+
+Added per the Fantasy League HQ hybrid plan (see
+`.windsurf/plans/fantasy-league-hq-hybrid-6c3632.md`). Depends on Phase 2's
+full-history backfill being complete for every discovered season.
+
+**3.5.1 Derived stats**
+All-play record, expected wins/luck, median record, optimal-lineup
+efficiency (assignment solver respecting each season's real roster_slots),
+head-to-head matrix, career manager stats. Computed by a scheduled job
+into SQL views or dedicated tables, never in a page request or in the
+browser.
+- Done when: all-play wins across the league sum to the mathematically
+  required total each week; optimal lineup >= actual lineup for every
+  manager-week; luck ratings sum to ~0 each season.
+
+**3.5.2 Draft grading**
+Draft Night Grade (curved, ADP-based reach value) computed at ingest time;
+End-of-Season Regrade (uncurved, VOE against a pooled pick-slot decay
+curve) computed once a season is `is_locked`. Both write to
+`draft_pick_grades`.
+- Done when: every pick has a reach value and, once the season is locked,
+  a VOE and regrade grade; math is reproducible from `stat_lines` +
+  `scoring_rules` + `draft_picks`.
+
+**3.5.3 Trade grading**
+Started-points and total-points valuation per side, from trade week
+through end of regular season (or end of playoffs if traded during the
+postseason). Writes to `trade_grades` with a verdict band. Future draft
+picks in trades are excluded from valuation and logged to `data_gaps`.
+- Done when: every trade has a verdict and a stated evaluation window.
 
 ---
 
@@ -115,9 +161,20 @@ moment. Build it with a manual-entry fallback path from day one.
 
 ## Open questions — answer before Phase 0.3
 
-- ESPN league ID, and whether the league is public or private
-- Exact scoring settings (export from ESPN league settings page)
+- ESPN league ID: `771894515` (confirmed). League is currently private —
+  will be flipped to public once the site is filled out.
+- Exact scoring settings (export from ESPN league settings page, or pull
+  via `mSettings` once `ESPN_SWID`/`ESPN_S2` are provided)
 - Roster configuration: starting slots, bench size, IR slots
 - Number of seasons of history available on ESPN
 - Playoff format: teams, weeks, byes, seeding rules
-- Keeper or dynasty rules, if any
+- Keeper or dynasty rules: none confirmed (redraft only, snake draft only)
+- Manager list: names, active/retired status, OG-founder flags, and any
+  ESPN account changes (rejoin under a new GUID)
+
+## Infra setup (blocks Phase 0.2 apply / Phase 2 testing)
+
+- Supabase account + project: not yet created.
+- GitHub repo: not yet created (local git repo exists, not yet pushed).
+- `ESPN_SWID` / `ESPN_S2`: not yet provided (needed to test the Phase 2.1 ESPN adapter against real data).
+- Hosting: Vercel, free tier / default subdomain (per `.windsurf/plans/fantasy-league-hq-hybrid-6c3632.md`).

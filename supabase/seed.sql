@@ -1,0 +1,8 @@
+-- Local dev seed data only. Real stat_categories / scoring_rules /
+-- roster_slots values come from the league owner (see ROADMAP.md
+-- "Open questions — answer before Phase 0.3") and are inserted via a
+-- reviewed migration or an operator-run script, never hardcoded here
+-- with invented numbers (see AGENTS.md "Never do this").
+--
+-- This file intentionally starts empty. `supabase db reset` runs it
+-- automatically after migrations.
