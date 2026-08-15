@@ -1,0 +1,420 @@
+{
+  "2023_to_2024": [
+    {
+      "2023": {
+        "points": 0.07,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 0.04,
+        "pointsOverrides": {}
+      },
+      "statId": "3"
+    },
+    {
+      "2023": {
+        "points": 3,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 4,
+        "pointsOverrides": {}
+      },
+      "statId": "4"
+    },
+    {
+      "2023": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "15"
+    },
+    {
+      "2023": {
+        "points": 1.5,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "16"
+    },
+    {
+      "2023": {
+        "points": 4,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "17"
+    },
+    {
+      "2023": {
+        "points": 6,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "18"
+    },
+    {
+      "2023": {
+        "points": -3,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": -2,
+        "pointsOverrides": {}
+      },
+      "statId": "20"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 0.1,
+          "2": 0.15,
+          "3": 0.1,
+          "4": 0.1,
+          "15": 0.1
+        }
+      },
+      "2024": {
+        "points": 0.1,
+        "pointsOverrides": {}
+      },
+      "statId": "24"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 3,
+          "2": 6,
+          "3": 6,
+          "4": 6,
+          "15": 3
+        }
+      },
+      "2024": {
+        "points": 6,
+        "pointsOverrides": {}
+      },
+      "statId": "25"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 2,
+          "2": 2,
+          "3": 2,
+          "4": 2,
+          "15": 2
+        }
+      },
+      "2024": {
+        "points": 2,
+        "pointsOverrides": {}
+      },
+      "statId": "26"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "15": 1
+        }
+      },
+      "2024": null,
+      "statId": "35"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 1.5,
+          "2": 1.5,
+          "3": 1.5,
+          "4": 1.5,
+          "15": 1.5
+        }
+      },
+      "2024": null,
+      "statId": "36"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 2,
+          "2": 2,
+          "3": 2,
+          "4": 2,
+          "15": 2
+        }
+      },
+      "2024": null,
+      "statId": "37"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "1": 5,
+          "2": 5,
+          "3": 5,
+          "4": 5,
+          "15": 5
+        }
+      },
+      "2024": null,
+      "statId": "38"
+    },
+    {
+      "2023": {
+        "points": 4,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 6,
+        "pointsOverrides": {}
+      },
+      "statId": "43"
+    },
+    {
+      "2023": {
+        "points": 0.5,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "45"
+    },
+    {
+      "2023": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "46"
+    },
+    {
+      "2023": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "56"
+    },
+    {
+      "2023": {
+        "points": 2,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "57"
+    },
+    {
+      "2023": {
+        "points": 0.05,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "58"
+    },
+    {
+      "2023": {
+        "points": -0.5,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "64"
+    },
+    {
+      "2023": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 4,
+        "pointsOverrides": {}
+      },
+      "statId": "77"
+    },
+    {
+      "2023": {
+        "points": 0.5,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 3,
+        "pointsOverrides": {}
+      },
+      "statId": "80"
+    },
+    {
+      "2023": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "83"
+    },
+    {
+      "2023": {
+        "points": 0.5,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 1,
+        "pointsOverrides": {}
+      },
+      "statId": "86"
+    },
+    {
+      "2023": {
+        "points": -1,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "88"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": 0.05
+        }
+      },
+      "2024": null,
+      "statId": "109"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": 0.1
+        }
+      },
+      "2024": null,
+      "statId": "114"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": 0.1
+        }
+      },
+      "2024": null,
+      "statId": "115"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": 1.5
+        }
+      },
+      "2024": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": 2
+        }
+      },
+      "statId": "130"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -2
+        }
+      },
+      "2024": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -3
+        }
+      },
+      "statId": "133"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -3
+        }
+      },
+      "2024": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -5
+        }
+      },
+      "statId": "134"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -4
+        }
+      },
+      "2024": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -6
+        }
+      },
+      "statId": "135"
+    },
+    {
+      "2023": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -5
+        }
+      },
+      "2024": {
+        "points": 0,
+        "pointsOverrides": {
+          "16": -7
+        }
+      },
+      "statId": "136"
+    },
+    {
+      "2023": {
+        "points": 1.5,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 5,
+        "pointsOverrides": {}
+      },
+      "statId": "198"
+    },
+    {
+      "2023": {
+        "points": 2.5,
+        "pointsOverrides": {}
+      },
+      "2024": {
+        "points": 6,
+        "pointsOverrides": {}
+      },
+      "statId": "201"
+    },
+    {
+      "2023": {
+        "points": 0.01,
+        "pointsOverrides": {}
+      },
+      "2024": null,
+      "statId": "214"
+    }
+  ],
+  "2024_to_2025": []
+}

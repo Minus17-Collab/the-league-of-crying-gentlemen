@@ -1,0 +1,2159 @@
+{
+  "2023": [
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 158.24,
+      "awayTeamId": 8,
+      "awayScore": 108.04,
+      "winner": "home"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 179.67,
+      "awayTeamId": 5,
+      "awayScore": 95.94,
+      "winner": "home"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 148.96,
+      "awayTeamId": 2,
+      "awayScore": 97.27,
+      "winner": "home"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 127.6,
+      "awayTeamId": 4,
+      "awayScore": 128.56,
+      "winner": "away"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 135.38,
+      "awayTeamId": 5,
+      "awayScore": 134.34,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 157.27,
+      "awayTeamId": 7,
+      "awayScore": 130.18,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 120.83,
+      "awayTeamId": 4,
+      "awayScore": 105.49,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 158.61,
+      "awayTeamId": 3,
+      "awayScore": 153.3,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 136.16,
+      "awayTeamId": 8,
+      "awayScore": 137.2,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 141.68,
+      "awayTeamId": 7,
+      "awayScore": 174.55,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 253.21,
+      "awayTeamId": 2,
+      "awayScore": 131.26,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 119.69,
+      "awayTeamId": 3,
+      "awayScore": 135.87,
+      "winner": "away"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 176.45,
+      "awayTeamId": 2,
+      "awayScore": 153.38,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 157.73,
+      "awayTeamId": 3,
+      "awayScore": 142.81,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 96.82,
+      "awayTeamId": 4,
+      "awayScore": 106.3,
+      "winner": "away"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 124.79,
+      "awayTeamId": 6,
+      "awayScore": 149.6,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 154.29,
+      "awayTeamId": 7,
+      "awayScore": 147.11,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 97.21,
+      "awayTeamId": 5,
+      "awayScore": 108.64,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 143.5,
+      "awayTeamId": 1,
+      "awayScore": 164.63,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 191.07,
+      "awayTeamId": 8,
+      "awayScore": 155.07,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 115.3,
+      "awayTeamId": 2,
+      "awayScore": 105.58,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 117.87,
+      "awayTeamId": 3,
+      "awayScore": 119.67,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 145.26,
+      "awayTeamId": 4,
+      "awayScore": 124.79,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 141.65,
+      "awayTeamId": 6,
+      "awayScore": 163.21,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 124.89,
+      "awayTeamId": 1,
+      "awayScore": 126.95,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 167.02,
+      "awayTeamId": 8,
+      "awayScore": 128.43,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 121,
+      "awayTeamId": 7,
+      "awayScore": 131.08,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 141.68,
+      "awayTeamId": 5,
+      "awayScore": 132.91,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 161.73,
+      "awayTeamId": 7,
+      "awayScore": 185.58,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 121.7,
+      "awayTeamId": 1,
+      "awayScore": 144.45,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 118.79,
+      "awayTeamId": 3,
+      "awayScore": 138.48,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 116.63,
+      "awayTeamId": 6,
+      "awayScore": 156.7,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 102.43,
+      "awayTeamId": 8,
+      "awayScore": 142.19,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 102.22,
+      "awayTeamId": 1,
+      "awayScore": 177.9,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 163.38,
+      "awayTeamId": 2,
+      "awayScore": 133.41,
+      "winner": "home"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 131.37,
+      "awayTeamId": 6,
+      "awayScore": 111.31,
+      "winner": "home"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 115.73,
+      "awayTeamId": 1,
+      "awayScore": 158.99,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 147.51,
+      "awayTeamId": 5,
+      "awayScore": 122.46,
+      "winner": "home"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 148.82,
+      "awayTeamId": 6,
+      "awayScore": 169.58,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 154.17,
+      "awayTeamId": 4,
+      "awayScore": 188.9,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 153.85,
+      "awayTeamId": 8,
+      "awayScore": 87.05,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 178.19,
+      "awayTeamId": 7,
+      "awayScore": 148.57,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 135.05,
+      "awayTeamId": 5,
+      "awayScore": 92.97,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 151.12,
+      "awayTeamId": 1,
+      "awayScore": 117.11,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 149.26,
+      "awayTeamId": 2,
+      "awayScore": 201.72,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 108.31,
+      "awayTeamId": 3,
+      "awayScore": 134.95,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 133.53,
+      "awayTeamId": 4,
+      "awayScore": 157.57,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 140.23,
+      "awayTeamId": 6,
+      "awayScore": 153.84,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 146.11,
+      "awayTeamId": 5,
+      "awayScore": 90.44,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 134.36,
+      "awayTeamId": 1,
+      "awayScore": 158.52,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 141.79,
+      "awayTeamId": 8,
+      "awayScore": 122.16,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 151.94,
+      "awayTeamId": 7,
+      "awayScore": 216.81,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 134.07,
+      "awayTeamId": 2,
+      "awayScore": 124.42,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 123.99,
+      "awayTeamId": 3,
+      "awayScore": 106.58,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 165.24,
+      "awayTeamId": 4,
+      "awayScore": 160.38,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 138.56,
+      "awayTeamId": 6,
+      "awayScore": 131.88,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 6,
+      "homeScore": 129.74,
+      "awayTeamId": null,
+      "awayScore": null,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 3,
+      "homeScore": 115.32,
+      "awayTeamId": 4,
+      "awayScore": 103.61,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 7,
+      "homeScore": 142.03,
+      "awayTeamId": 8,
+      "awayScore": 75.78,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 127.09,
+      "awayTeamId": null,
+      "awayScore": null,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 152.8,
+      "awayTeamId": 5,
+      "awayScore": 136.01,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 6,
+      "homeScore": 117.36,
+      "awayTeamId": 3,
+      "awayScore": 130.4,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 186.45,
+      "awayTeamId": 7,
+      "awayScore": 138.1,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 4,
+      "homeScore": 179.36,
+      "awayTeamId": 8,
+      "awayScore": 116.6,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 97.95,
+      "awayTeamId": 5,
+      "awayScore": 147.24,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 133.71,
+      "awayTeamId": 3,
+      "awayScore": 149.62,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 6,
+      "homeScore": 173.62,
+      "awayTeamId": 7,
+      "awayScore": 154.91,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 4,
+      "homeScore": 150.6,
+      "awayTeamId": 8,
+      "awayScore": 117.15,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 143.01,
+      "awayTeamId": 5,
+      "awayScore": 154.45,
+      "winner": "away"
+    }
+  ],
+  "2024": [
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 152.02,
+      "awayTeamId": 11,
+      "awayScore": 79.94,
+      "winner": "home"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 81.06,
+      "awayTeamId": 6,
+      "awayScore": 141.86,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 114.98,
+      "awayTeamId": 8,
+      "awayScore": 143.98,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 96.26,
+      "awayTeamId": 2,
+      "awayScore": 138.26,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 69.58,
+      "awayTeamId": 7,
+      "awayScore": 97.62,
+      "winner": "away"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 126.14,
+      "awayTeamId": 6,
+      "awayScore": 103.7,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 123.26,
+      "awayTeamId": 5,
+      "awayScore": 110.18,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 137.22,
+      "awayTeamId": 4,
+      "awayScore": 123.72,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 80.4,
+      "awayTeamId": 10,
+      "awayScore": 96.06,
+      "winner": "away"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 157.76,
+      "awayTeamId": 1,
+      "awayScore": 136.8,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 94.62,
+      "awayTeamId": 11,
+      "awayScore": 122.28,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 87,
+      "awayTeamId": 2,
+      "awayScore": 94.48,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 119.18,
+      "awayTeamId": 7,
+      "awayScore": 140.16,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 94.44,
+      "awayTeamId": 3,
+      "awayScore": 102.88,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 125.88,
+      "awayTeamId": 1,
+      "awayScore": 88.12,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 104.3,
+      "awayTeamId": 2,
+      "awayScore": 105.32,
+      "winner": "away"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 142.2,
+      "awayTeamId": 8,
+      "awayScore": 104.2,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 120.12,
+      "awayTeamId": 6,
+      "awayScore": 108,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 125.24,
+      "awayTeamId": 5,
+      "awayScore": 109.84,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 90.58,
+      "awayTeamId": 4,
+      "awayScore": 134.72,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 149.46,
+      "awayTeamId": 11,
+      "awayScore": 94.44,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 154.22,
+      "awayTeamId": 3,
+      "awayScore": 80.96,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 104.24,
+      "awayTeamId": 1,
+      "awayScore": 117.96,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 142.64,
+      "awayTeamId": 10,
+      "awayScore": 101.5,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 142.42,
+      "awayTeamId": 4,
+      "awayScore": 111.48,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 97.6,
+      "awayTeamId": 3,
+      "awayScore": 146.3,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 114.82,
+      "awayTeamId": 7,
+      "awayScore": 153.2,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 120.16,
+      "awayTeamId": 2,
+      "awayScore": 126.16,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 96.56,
+      "awayTeamId": 8,
+      "awayScore": 72.1,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 118.02,
+      "awayTeamId": 6,
+      "awayScore": 80.48,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 123.3,
+      "awayTeamId": 11,
+      "awayScore": 91.28,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 105.48,
+      "awayTeamId": 10,
+      "awayScore": 118,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 141.04,
+      "awayTeamId": 4,
+      "awayScore": 115.46,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 116.04,
+      "awayTeamId": 5,
+      "awayScore": 128.74,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 58.12,
+      "awayTeamId": 6,
+      "awayScore": 102.74,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 132.64,
+      "awayTeamId": 10,
+      "awayScore": 122.98,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 126.34,
+      "awayTeamId": 1,
+      "awayScore": 105.04,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 126.86,
+      "awayTeamId": 3,
+      "awayScore": 120.4,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 124.1,
+      "awayTeamId": 7,
+      "awayScore": 121.16,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 140.32,
+      "awayTeamId": 2,
+      "awayScore": 120,
+      "winner": "home"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 114.4,
+      "awayTeamId": 11,
+      "awayScore": 104.98,
+      "winner": "home"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 122.12,
+      "awayTeamId": 5,
+      "awayScore": 176.08,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 122.9,
+      "awayTeamId": 6,
+      "awayScore": 102.04,
+      "winner": "home"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 115,
+      "awayTeamId": 8,
+      "awayScore": 127.4,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 126.6,
+      "awayTeamId": 2,
+      "awayScore": 141.76,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 99.64,
+      "awayTeamId": 5,
+      "awayScore": 133.8,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 98.18,
+      "awayTeamId": 4,
+      "awayScore": 151.28,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 77.1,
+      "awayTeamId": 10,
+      "awayScore": 110.4,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 106.08,
+      "awayTeamId": 1,
+      "awayScore": 108.64,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 137.14,
+      "awayTeamId": 3,
+      "awayScore": 96.22,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 60.78,
+      "awayTeamId": 11,
+      "awayScore": 106.64,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 150.88,
+      "awayTeamId": 8,
+      "awayScore": 99.68,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 77.84,
+      "awayTeamId": 2,
+      "awayScore": 139.56,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 143.38,
+      "awayTeamId": 7,
+      "awayScore": 110.8,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 120.56,
+      "awayTeamId": 3,
+      "awayScore": 123.36,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 120.86,
+      "awayTeamId": 8,
+      "awayScore": 108.7,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 126.92,
+      "awayTeamId": 6,
+      "awayScore": 97.38,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 115.12,
+      "awayTeamId": 5,
+      "awayScore": 128.08,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 102.16,
+      "awayTeamId": 4,
+      "awayScore": 84.36,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 104.86,
+      "awayTeamId": 10,
+      "awayScore": 128.72,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 154.04,
+      "awayTeamId": 11,
+      "awayScore": 113.44,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 122.42,
+      "awayTeamId": 7,
+      "awayScore": 175,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 131.2,
+      "awayTeamId": 3,
+      "awayScore": 115.84,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 126.18,
+      "awayTeamId": 1,
+      "awayScore": 109.2,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 98.02,
+      "awayTeamId": 10,
+      "awayScore": 100.96,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 118.3,
+      "awayTeamId": 7,
+      "awayScore": 138.18,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 128.72,
+      "awayTeamId": 2,
+      "awayScore": 124.32,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 130.1,
+      "awayTeamId": 8,
+      "awayScore": 130.68,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 157.26,
+      "awayTeamId": 6,
+      "awayScore": 82.24,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 145.32,
+      "awayTeamId": 5,
+      "awayScore": 130.22,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 5,
+      "homeScore": 105.4,
+      "awayTeamId": 6,
+      "awayScore": 148.54,
+      "winner": "away"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 4,
+      "homeScore": 88.44,
+      "awayTeamId": 10,
+      "awayScore": 111.26,
+      "winner": "away"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 7,
+      "homeScore": 109.94,
+      "awayTeamId": 11,
+      "awayScore": 127.96,
+      "winner": "away"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 159.14,
+      "awayTeamId": 3,
+      "awayScore": 124.58,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 151.82,
+      "awayTeamId": 8,
+      "awayScore": 115.48,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 157.52,
+      "awayTeamId": 6,
+      "awayScore": 155.04,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 10,
+      "homeScore": 127.88,
+      "awayTeamId": 11,
+      "awayScore": 167.4,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 5,
+      "homeScore": 125.88,
+      "awayTeamId": 7,
+      "awayScore": 162.54,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 3,
+      "homeScore": 110.42,
+      "awayTeamId": 4,
+      "awayScore": 143.98,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 76.32,
+      "awayTeamId": 8,
+      "awayScore": 75.46,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 165.48,
+      "awayTeamId": 11,
+      "awayScore": 112.3,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 10,
+      "homeScore": 109.56,
+      "awayTeamId": 6,
+      "awayScore": 154.88,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 7,
+      "homeScore": 142.48,
+      "awayTeamId": 4,
+      "awayScore": 162.38,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 5,
+      "homeScore": 105.32,
+      "awayTeamId": 3,
+      "awayScore": 90.68,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 1,
+      "homeScore": 106.06,
+      "awayTeamId": 8,
+      "awayScore": 94.28,
+      "winner": "home"
+    }
+  ],
+  "2025": [
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 112.58,
+      "awayTeamId": 10,
+      "awayScore": 105.52,
+      "winner": "home"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 105.72,
+      "awayTeamId": 4,
+      "awayScore": 108.84,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 112.82,
+      "awayTeamId": 3,
+      "awayScore": 117.46,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 110.88,
+      "awayTeamId": 8,
+      "awayScore": 120.02,
+      "winner": "away"
+    },
+    {
+      "week": 1,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 147.56,
+      "awayTeamId": 1,
+      "awayScore": 85.08,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 77.82,
+      "awayTeamId": 10,
+      "awayScore": 114.88,
+      "winner": "away"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 111.24,
+      "awayTeamId": 11,
+      "awayScore": 106.9,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 141.6,
+      "awayTeamId": 6,
+      "awayScore": 126.3,
+      "winner": "home"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 74.54,
+      "awayTeamId": 2,
+      "awayScore": 154.52,
+      "winner": "away"
+    },
+    {
+      "week": 2,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 157.38,
+      "awayTeamId": 5,
+      "awayScore": 136.3,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 84.62,
+      "awayTeamId": 11,
+      "awayScore": 142.42,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 130.32,
+      "awayTeamId": 3,
+      "awayScore": 92.72,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 101.76,
+      "awayTeamId": 4,
+      "awayScore": 122.04,
+      "winner": "away"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 118.96,
+      "awayTeamId": 8,
+      "awayScore": 109.78,
+      "winner": "home"
+    },
+    {
+      "week": 3,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 129.32,
+      "awayTeamId": 7,
+      "awayScore": 120.74,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 128.82,
+      "awayTeamId": 5,
+      "awayScore": 105.8,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 113.78,
+      "awayTeamId": 10,
+      "awayScore": 152.5,
+      "winner": "away"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 128.9,
+      "awayTeamId": 2,
+      "awayScore": 137.26,
+      "winner": "away"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 145.36,
+      "awayTeamId": 11,
+      "awayScore": 123.16,
+      "winner": "home"
+    },
+    {
+      "week": 4,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 110.88,
+      "awayTeamId": 6,
+      "awayScore": 128.38,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 146.16,
+      "awayTeamId": 3,
+      "awayScore": 96.48,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 121.72,
+      "awayTeamId": 1,
+      "awayScore": 124.1,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 108.94,
+      "awayTeamId": 8,
+      "awayScore": 144.72,
+      "winner": "away"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 137.9,
+      "awayTeamId": 7,
+      "awayScore": 133.7,
+      "winner": "home"
+    },
+    {
+      "week": 5,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 140.82,
+      "awayTeamId": 4,
+      "awayScore": 134.08,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 88.64,
+      "awayTeamId": 2,
+      "awayScore": 125.3,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 89.5,
+      "awayTeamId": 7,
+      "awayScore": 127.82,
+      "winner": "away"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 147.24,
+      "awayTeamId": 10,
+      "awayScore": 137.08,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 113.74,
+      "awayTeamId": 5,
+      "awayScore": 103.44,
+      "winner": "home"
+    },
+    {
+      "week": 6,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 64.66,
+      "awayTeamId": 4,
+      "awayScore": 103.94,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 102.16,
+      "awayTeamId": 8,
+      "awayScore": 112.54,
+      "winner": "away"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 134.72,
+      "awayTeamId": 3,
+      "awayScore": 103.32,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 143.74,
+      "awayTeamId": 1,
+      "awayScore": 121.86,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 130.98,
+      "awayTeamId": 11,
+      "awayScore": 97.12,
+      "winner": "home"
+    },
+    {
+      "week": 7,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 134.58,
+      "awayTeamId": 10,
+      "awayScore": 141.54,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 155.9,
+      "awayTeamId": 3,
+      "awayScore": 166.22,
+      "winner": "away"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 102,
+      "awayTeamId": 7,
+      "awayScore": 100.36,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 97.06,
+      "awayTeamId": 6,
+      "awayScore": 73.46,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 145.08,
+      "awayTeamId": 2,
+      "awayScore": 126.22,
+      "winner": "home"
+    },
+    {
+      "week": 8,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 116.58,
+      "awayTeamId": 4,
+      "awayScore": 101.92,
+      "winner": "home"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 70.12,
+      "awayTeamId": 8,
+      "awayScore": 129.26,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 107.26,
+      "awayTeamId": 4,
+      "awayScore": 119.8,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 126.7,
+      "awayTeamId": 2,
+      "awayScore": 150.62,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 112.58,
+      "awayTeamId": 5,
+      "awayScore": 132.24,
+      "winner": "away"
+    },
+    {
+      "week": 9,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 80.4,
+      "awayTeamId": 6,
+      "awayScore": 132.5,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 68.22,
+      "awayTeamId": 7,
+      "awayScore": 118.62,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 128.3,
+      "awayTeamId": 10,
+      "awayScore": 133.8,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 107.44,
+      "awayTeamId": 2,
+      "awayScore": 161.84,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 106.72,
+      "awayTeamId": 11,
+      "awayScore": 138.52,
+      "winner": "away"
+    },
+    {
+      "week": 10,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 91.34,
+      "awayTeamId": 5,
+      "awayScore": 119.6,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 101.02,
+      "awayTeamId": 8,
+      "awayScore": 117.62,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 81.5,
+      "awayTeamId": 6,
+      "awayScore": 99.66,
+      "winner": "away"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 123.78,
+      "awayTeamId": 7,
+      "awayScore": 117.2,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 10,
+      "homeScore": 113.34,
+      "awayTeamId": 11,
+      "awayScore": 88.42,
+      "winner": "home"
+    },
+    {
+      "week": 11,
+      "isPlayoff": false,
+      "homeTeamId": 1,
+      "homeScore": 98.76,
+      "awayTeamId": 4,
+      "awayScore": 86.42,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 135.86,
+      "awayTeamId": 3,
+      "awayScore": 103.32,
+      "winner": "home"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 104.76,
+      "awayTeamId": 10,
+      "awayScore": 149.38,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 11,
+      "homeScore": 53.64,
+      "awayTeamId": 1,
+      "awayScore": 97.36,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 125.72,
+      "awayTeamId": 5,
+      "awayScore": 129.22,
+      "winner": "away"
+    },
+    {
+      "week": 12,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 94.56,
+      "awayTeamId": 7,
+      "awayScore": 108.16,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 3,
+      "homeScore": 92.64,
+      "awayTeamId": 10,
+      "awayScore": 85.54,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 6,
+      "homeScore": 110.62,
+      "awayTeamId": 2,
+      "awayScore": 115.92,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 109.9,
+      "awayTeamId": 8,
+      "awayScore": 127.74,
+      "winner": "away"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 126.12,
+      "awayTeamId": 11,
+      "awayScore": 81.96,
+      "winner": "home"
+    },
+    {
+      "week": 13,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 96.4,
+      "awayTeamId": 1,
+      "awayScore": 121.26,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 7,
+      "homeScore": 84.3,
+      "awayTeamId": 10,
+      "awayScore": 120.2,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 4,
+      "homeScore": 114.24,
+      "awayTeamId": 6,
+      "awayScore": 121.66,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 5,
+      "homeScore": 102.14,
+      "awayTeamId": 3,
+      "awayScore": 81.36,
+      "winner": "home"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 8,
+      "homeScore": 110.76,
+      "awayTeamId": 11,
+      "awayScore": 122.18,
+      "winner": "away"
+    },
+    {
+      "week": 14,
+      "isPlayoff": false,
+      "homeTeamId": 2,
+      "homeScore": 165.94,
+      "awayTeamId": 1,
+      "awayScore": 105.36,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 154.22,
+      "awayTeamId": 1,
+      "awayScore": 105.1,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 7,
+      "homeScore": 115.4,
+      "awayTeamId": 5,
+      "awayScore": 135.72,
+      "winner": "away"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 10,
+      "homeScore": 96.06,
+      "awayTeamId": 6,
+      "awayScore": 125.44,
+      "winner": "away"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 8,
+      "homeScore": 156.32,
+      "awayTeamId": 4,
+      "awayScore": 90.26,
+      "winner": "home"
+    },
+    {
+      "week": 15,
+      "isPlayoff": true,
+      "homeTeamId": 3,
+      "homeScore": 123.3,
+      "awayTeamId": 11,
+      "awayScore": 101.18,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 110.7,
+      "awayTeamId": 6,
+      "awayScore": 111.52,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 8,
+      "homeScore": 137.16,
+      "awayTeamId": 5,
+      "awayScore": 156.78,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 10,
+      "homeScore": 143.1,
+      "awayTeamId": 7,
+      "awayScore": 116.1,
+      "winner": "home"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 4,
+      "homeScore": 89.86,
+      "awayTeamId": 1,
+      "awayScore": 111.5,
+      "winner": "away"
+    },
+    {
+      "week": 16,
+      "isPlayoff": true,
+      "homeTeamId": 3,
+      "homeScore": 100.94,
+      "awayTeamId": 11,
+      "awayScore": 114.5,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 5,
+      "homeScore": 108.66,
+      "awayTeamId": 6,
+      "awayScore": 108.78,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 2,
+      "homeScore": 153.64,
+      "awayTeamId": 8,
+      "awayScore": 121.98,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 10,
+      "homeScore": 76.94,
+      "awayTeamId": 1,
+      "awayScore": 105.12,
+      "winner": "away"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 7,
+      "homeScore": 116.5,
+      "awayTeamId": 4,
+      "awayScore": 90.98,
+      "winner": "home"
+    },
+    {
+      "week": 17,
+      "isPlayoff": true,
+      "homeTeamId": 3,
+      "homeScore": 66.6,
+      "awayTeamId": 11,
+      "awayScore": 84.74,
+      "winner": "away"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "2023": {
+    "teamCount": 8,
+    "matchupPeriodCount": 14,
+    "playoffTeamCount": 6,
+    "divisions": [
+      {
+        "name": "Try Hards",
+        "size": 4
+      },
+      {
+        "name": "Sweats",
+        "size": 4
+      }
+    ],
+    "playoffMatchupPeriodLength": 1,
+    "draftType": "SNAKE",
+    "keeperCount": 0
+  },
+  "2024": {
+    "teamCount": 10,
+    "matchupPeriodCount": 14,
+    "playoffTeamCount": 8,
+    "divisions": [
+      {
+        "name": "Try Hards",
+        "size": 5
+      },
+      {
+        "name": "Sweats",
+        "size": 5
+      }
+    ],
+    "playoffMatchupPeriodLength": 1,
+    "draftType": "SNAKE",
+    "keeperCount": 0
+  },
+  "2025": {
+    "teamCount": 10,
+    "matchupPeriodCount": 14,
+    "playoffTeamCount": 8,
+    "divisions": [
+      {
+        "name": "Try Hards",
+        "size": 5
+      },
+      {
+        "name": "Sweats",
+        "size": 5
+      }
+    ],
+    "playoffMatchupPeriodLength": 1,
+    "draftType": "AUTOPICK",
+    "keeperCount": 0
+  }
+}

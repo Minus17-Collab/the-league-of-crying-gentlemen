@@ -161,20 +161,58 @@ moment. Build it with a manual-entry fallback path from day one.
 
 ## Open questions — answer before Phase 0.3
 
-- ESPN league ID: `771894515` (confirmed). League is currently private —
-  will be flipped to public once the site is filled out.
-- Exact scoring settings (export from ESPN league settings page, or pull
-  via `mSettings` once `ESPN_SWID`/`ESPN_S2` are provided)
-- Roster configuration: starting slots, bench size, IR slots
-- Number of seasons of history available on ESPN
-- Playoff format: teams, weeks, byes, seeding rules
-- Keeper or dynasty rules: none confirmed (redraft only, snake draft only)
-- Manager list: names, active/retired status, OG-founder flags, and any
-  ESPN account changes (rejoin under a new GUID)
+Most of these are now answered by the 2023-2025 historical pull — see
+`data/history/SUMMARY.md` for full detail and sourcing. Remaining
+open items are marked accordingly.
+
+- ESPN league ID: `771894515` (confirmed). League "Association of Try Hard
+  Gamers" is **publicly readable for the current (2026) season** via ESPN's
+  API with no cookies; 2023-2025 required `ESPN_SWID`/`ESPN_S2` (obtained,
+  see `RUNBOOK.md`).
+- Scoring settings: confirmed for all of 2023, 2024, 2025 (2026 identical
+  to 2024/2025). Full statId->points map and year-over-year diffs in
+  `data/history/scoring-by-season.json` / `scoring-diffs.json`. **Two
+  statIds (198, 209) remain unmapped** — not in any public ESPN reference,
+  intentionally left unmapped in `src/lib/providers/espn/mappings.ts`
+  rather than guessed.
+- Roster configuration: confirmed via live `mSettings` — 1 QB, 2 RB, 2 WR,
+  1 TE, 1 FLEX, 1 D/ST, 1 K, 8 BE, 1 IR (2026 settings; same shape
+  2024-2025, see `data/history/format-by-season.json` for prior years).
+- Number of seasons of history available: 4 (2023, 2024, 2025, 2026) per
+  ESPN's `previousSeasons`.
+- Playoff format: 2023 was 8 teams/6 playoff spots; 2024 onward is 10
+  teams/8 playoff spots, 2 divisions ("Try Hards"/"Sweats"). 14 regular
+  season weeks + 3 playoff weeks (weeks 15-17) every season.
+- Keeper or dynasty rules: confirmed none — 0 keepers every season,
+  redraft only. Draft type was SNAKE in 2023-2024 but **AUTOPICK in
+  2025** — still needs a commissioner answer on whether that was
+  intentional (see `data/history/SUMMARY.md` "Known gaps").
+- Manager list: confirmed for 2023-2025 in `data/history/managers.json`.
+  8 managers in 2023, growing to 10 from 2024 on. Jacob Grant left after
+  2023; Leah Faison played only 2024. **Still needs commissioner
+  confirmation**: whether a new owner inheriting an old `teamId` slot
+  (e.g. Bradly Major taking over Jacob Grant's slot 5 in 2024) should be
+  modeled as the same `franchises` row or a new one — ESPN's `teamId` is
+  a recycled slot, not a stable identity, and this decision is exactly
+  the kind of league-specific rule this file says not to guess at.
 
 ## Infra setup (blocks Phase 0.2 apply / Phase 2 testing)
 
-- Supabase account + project: not yet created.
+- Supabase account + project: not yet created. **Still blocking** —
+  nothing in `data/history/` has been inserted into a database yet.
 - GitHub repo: not yet created (local git repo exists, not yet pushed).
-- `ESPN_SWID` / `ESPN_S2`: not yet provided (needed to test the Phase 2.1 ESPN adapter against real data).
+- `ESPN_SWID` / `ESPN_S2`: obtained and verified working 2026-08-15 for
+  all 4 seasons (2023-2026). See `RUNBOOK.md` for refresh instructions —
+  cookie export showed a short (~6 day) expiry window.
 - Hosting: Vercel, free tier / default subdomain (per `.windsurf/plans/fantasy-league-hq-hybrid-6c3632.md`).
+
+## Historical data pull (2023-2025)
+
+Done as a one-time manual pull, not yet wired into the app or database.
+Raw ESPN dumps in `data/espn-raw/`, normalized JSON in `data/history/`,
+full findings in `data/history/SUMMARY.md`. Covers: scoring settings +
+diffs, managers + inferred retirements, team records, full matchup
+schedule with computed winners, weekly rosters for all 17 weeks x 3
+seasons, and roster-count aggregation for all 329 unique players
+rostered at least once. This is source material for Phase 0.3 seed
+data and Phase 2 sync-job design — it does not replace either phase.

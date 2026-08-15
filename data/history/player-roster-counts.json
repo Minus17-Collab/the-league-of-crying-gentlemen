@@ -1,0 +1,4277 @@
+[
+  {
+    "playerId": 4361370,
+    "name": "Chris Olave",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4241478,
+    "name": "DeVonta Smith",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3054850,
+    "name": "Alvin Kamara",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4379399,
+    "name": "James Cook",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4362628,
+    "name": "Ja'Marr Chase",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4047365,
+    "name": "Josh Jacobs",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3918298,
+    "name": "Josh Allen",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4427366,
+    "name": "Breece Hall",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4262921,
+    "name": "Justin Jefferson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4374302,
+    "name": "Amon-Ra St. Brown",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 15847,
+    "name": "Travis Kelce",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4241463,
+    "name": "Jerry Jeudy",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4361741,
+    "name": "Brock Purdy",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3139477,
+    "name": "Patrick Mahomes",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3043078,
+    "name": "Derrick Henry",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4241389,
+    "name": "CeeDee Lamb",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4569173,
+    "name": "Rhamondre Stevenson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3040151,
+    "name": "George Kittle",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4697815,
+    "name": "Rachaad White",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4569618,
+    "name": "Garrett Wilson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4242335,
+    "name": "Jonathan Taylor",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4047650,
+    "name": "DK Metcalf",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4567048,
+    "name": "Kenneth Walker III",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4429615,
+    "name": "Zay Flowers",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 16800,
+    "name": "Davante Adams",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4239996,
+    "name": "Travis Etienne Jr.",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3916387,
+    "name": "Lamar Jackson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 15818,
+    "name": "Keenan Allen",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4361579,
+    "name": "Javonte Williams",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3929630,
+    "name": "Saquon Barkley",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3126486,
+    "name": "Deebo Samuel",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4429795,
+    "name": "Jahmyr Gibbs",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4426354,
+    "name": "George Pickens",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 3121023,
+    "name": "Dallas Goedert",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4430807,
+    "name": "Bijan Robinson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4047646,
+    "name": "A.J. Brown",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4040715,
+    "name": "Jalen Hurts",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4259545,
+    "name": "D'Andre Swift",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 51
+  },
+  {
+    "playerId": 4372016,
+    "name": "Jaylen Waddle",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 16,
+      "2025": 17
+    },
+    "totalWeeksRostered": 50
+  },
+  {
+    "playerId": 4430737,
+    "name": "Kyren Williams",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 16,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 50
+  },
+  {
+    "playerId": 4426515,
+    "name": "Puka Nacua",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 16,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 50
+  },
+  {
+    "playerId": 4035687,
+    "name": "Michael Pittman Jr.",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 15,
+      "2025": 17
+    },
+    "totalWeeksRostered": 49
+  },
+  {
+    "playerId": 4036133,
+    "name": "T.J. Hockenson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 15,
+      "2025": 17
+    },
+    "totalWeeksRostered": 49
+  },
+  {
+    "playerId": 4385690,
+    "name": "Dalton Kincaid",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 49
+  },
+  {
+    "playerId": 3121422,
+    "name": "Terry McLaurin",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 15
+    },
+    "totalWeeksRostered": 49
+  },
+  {
+    "playerId": 4258173,
+    "name": "Nico Collins",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 49
+  },
+  {
+    "playerId": 3042519,
+    "name": "Aaron Jones",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 3915416,
+    "name": "DJ Moore",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 4239993,
+    "name": "Tee Higgins",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 4426502,
+    "name": "Drake London",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 4035538,
+    "name": "David Montgomery",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 15,
+      "2025": 16
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 3128429,
+    "name": "Courtland Sutton",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 14,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 4361529,
+    "name": "Isiah Pacheco",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 14
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 3046779,
+    "name": "Jared Goff",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 16,
+      "2024": 15,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 4429160,
+    "name": "De'Von Achane",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 48
+  },
+  {
+    "playerId": 16737,
+    "name": "Mike Evans",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 13
+    },
+    "totalWeeksRostered": 47
+  },
+  {
+    "playerId": 2977187,
+    "name": "Cooper Kupp",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 13
+    },
+    "totalWeeksRostered": 47
+  },
+  {
+    "playerId": 3916148,
+    "name": "Tony Pollard",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 13
+    },
+    "totalWeeksRostered": 47
+  },
+  {
+    "playerId": 3117251,
+    "name": "Christian McCaffrey",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 13,
+      "2025": 17
+    },
+    "totalWeeksRostered": 47
+  },
+  {
+    "playerId": 3055899,
+    "name": "Harrison Butker",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 12,
+      "2025": 17
+    },
+    "totalWeeksRostered": 46
+  },
+  {
+    "playerId": 4429205,
+    "name": "Jordan Addison",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 12
+    },
+    "totalWeeksRostered": 46
+  },
+  {
+    "playerId": 3953687,
+    "name": "Brandon Aubrey",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 16,
+      "2025": 17
+    },
+    "totalWeeksRostered": 46
+  },
+  {
+    "playerId": 3116365,
+    "name": "Mark Andrews",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 11,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 45
+  },
+  {
+    "playerId": 3045147,
+    "name": "James Conner",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 11
+    },
+    "totalWeeksRostered": 45
+  },
+  {
+    "playerId": 4242355,
+    "name": "Jake Ferguson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 15,
+      "2025": 17
+    },
+    "totalWeeksRostered": 45
+  },
+  {
+    "playerId": 3117256,
+    "name": "Dalton Schultz",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 10
+    },
+    "totalWeeksRostered": 44
+  },
+  {
+    "playerId": 4430027,
+    "name": "Sam LaPorta",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 17,
+      "2025": 13
+    },
+    "totalWeeksRostered": 44
+  },
+  {
+    "playerId": 3123076,
+    "name": "David Njoku",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 43
+  },
+  {
+    "playerId": 4360248,
+    "name": "Kyle Pitts",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 10,
+      "2024": 16,
+      "2025": 17
+    },
+    "totalWeeksRostered": 43
+  },
+  {
+    "playerId": 4036378,
+    "name": "Jordan Love",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 43
+  },
+  {
+    "playerId": 4430878,
+    "name": "Jaxon Smith-Njigba",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 42
+  },
+  {
+    "playerId": 2976212,
+    "name": "Stefon Diggs",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 8,
+      "2025": 17
+    },
+    "totalWeeksRostered": 42
+  },
+  {
+    "playerId": 3116165,
+    "name": "Chris Godwin",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 7,
+      "2025": 17
+    },
+    "totalWeeksRostered": 41
+  },
+  {
+    "playerId": 3916433,
+    "name": "Jakobi Meyers",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15,
+      "2024": 11,
+      "2025": 15
+    },
+    "totalWeeksRostered": 41
+  },
+  {
+    "playerId": 3052587,
+    "name": "Baker Mayfield",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 16,
+      "2025": 17
+    },
+    "totalWeeksRostered": 41
+  },
+  {
+    "playerId": 4361307,
+    "name": "Trey McBride",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 41
+  },
+  {
+    "playerId": 3915511,
+    "name": "Joe Burrow",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 11,
+      "2024": 17,
+      "2025": 12
+    },
+    "totalWeeksRostered": 40
+  },
+  {
+    "playerId": 4569987,
+    "name": "Jaylen Warren",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 6,
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 40
+  },
+  {
+    "playerId": 4432577,
+    "name": "C.J. Stroud",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 12,
+      "2024": 13,
+      "2025": 15
+    },
+    "totalWeeksRostered": 40
+  },
+  {
+    "playerId": 4241474,
+    "name": "Brian Robinson Jr.",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 5
+    },
+    "totalWeeksRostered": 39
+  },
+  {
+    "playerId": 4038941,
+    "name": "Justin Herbert",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 4,
+      "2025": 17
+    },
+    "totalWeeksRostered": 38
+  },
+  {
+    "playerId": 3116406,
+    "name": "Tyreek Hill",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 4
+    },
+    "totalWeeksRostered": 38
+  },
+  {
+    "playerId": 4362081,
+    "name": "Cameron Dicker",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 10,
+      "2024": 11,
+      "2025": 17
+    },
+    "totalWeeksRostered": 38
+  },
+  {
+    "playerId": 3917315,
+    "name": "Kyler Murray",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 17,
+      "2025": 13
+    },
+    "totalWeeksRostered": 38
+  },
+  {
+    "playerId": 2577417,
+    "name": "Dak Prescott",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 7,
+      "2025": 17
+    },
+    "totalWeeksRostered": 37
+  },
+  {
+    "playerId": 4372019,
+    "name": "Jerome Ford",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 15,
+      "2025": 8
+    },
+    "totalWeeksRostered": 37
+  },
+  {
+    "playerId": 3068267,
+    "name": "Austin Ekeler",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17,
+      "2025": 2
+    },
+    "totalWeeksRostered": 36
+  },
+  {
+    "playerId": 3925357,
+    "name": "Calvin Ridley",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 12,
+      "2025": 7
+    },
+    "totalWeeksRostered": 36
+  },
+  {
+    "playerId": 4428331,
+    "name": "Rashee Rice",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 11,
+      "2024": 8,
+      "2025": 17
+    },
+    "totalWeeksRostered": 36
+  },
+  {
+    "playerId": 4241416,
+    "name": "Chuba Hubbard",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7,
+      "2024": 15,
+      "2025": 14
+    },
+    "totalWeeksRostered": 36
+  },
+  {
+    "playerId": 3051876,
+    "name": "Evan Engram",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 15,
+      "2025": 3
+    },
+    "totalWeeksRostered": 35
+  },
+  {
+    "playerId": 12483,
+    "name": "Matthew Stafford",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 9,
+      "2025": 17
+    },
+    "totalWeeksRostered": 35
+  },
+  {
+    "playerId": 4362238,
+    "name": "Chase Brown",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 15,
+      "2025": 17
+    },
+    "totalWeeksRostered": 35
+  },
+  {
+    "playerId": 4241457,
+    "name": "Najee Harris",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 15683,
+    "name": "Justin Tucker",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 3116385,
+    "name": "Joe Mixon",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4683062,
+    "name": "Xavier Worthy",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4432708,
+    "name": "Marvin Harrison Jr.",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4635008,
+    "name": "Keon Coleman",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4373678,
+    "name": "Khalil Shakir",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4432773,
+    "name": "Brian Thomas Jr.",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4432665,
+    "name": "Brock Bowers",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4426388,
+    "name": "Jameson Williams",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4431299,
+    "name": "Rome Odunze",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 17
+    },
+    "totalWeeksRostered": 34
+  },
+  {
+    "playerId": 4360635,
+    "name": "Chigoziem Okonkwo",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2025": 16
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 2576414,
+    "name": "Raheem Mostert",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 16
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 3050478,
+    "name": "Jake Elliott",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15,
+      "2024": 8,
+      "2025": 10
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 2976499,
+    "name": "Amari Cooper",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 16
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 2577327,
+    "name": "Tyler Lockett",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 16,
+      "2024": 17
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 15835,
+    "name": "Zach Ertz",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4,
+      "2024": 15,
+      "2025": 14
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 4612826,
+    "name": "Ladd McConkey",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 16,
+      "2025": 17
+    },
+    "totalWeeksRostered": 33
+  },
+  {
+    "playerId": 4426348,
+    "name": "Jayden Daniels",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 15
+    },
+    "totalWeeksRostered": 32
+  },
+  {
+    "playerId": 3128720,
+    "name": "Nick Chubb",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 14,
+      "2025": 15
+    },
+    "totalWeeksRostered": 31
+  },
+  {
+    "playerId": 15795,
+    "name": "DeAndre Hopkins",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 14
+    },
+    "totalWeeksRostered": 31
+  },
+  {
+    "playerId": 4596448,
+    "name": "Bucky Irving",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14,
+      "2025": 17
+    },
+    "totalWeeksRostered": 31
+  },
+  {
+    "playerId": 3886598,
+    "name": "Jauan Jennings",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14,
+      "2025": 17
+    },
+    "totalWeeksRostered": 31
+  },
+  {
+    "playerId": 4360310,
+    "name": "Trevor Lawrence",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 12,
+      "2025": 5
+    },
+    "totalWeeksRostered": 30
+  },
+  {
+    "playerId": 4360438,
+    "name": "Brandon Aiyuk",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 7,
+      "2025": 5
+    },
+    "totalWeeksRostered": 29
+  },
+  {
+    "playerId": 2576925,
+    "name": "Darren Waller",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2025": 12
+    },
+    "totalWeeksRostered": 29
+  },
+  {
+    "playerId": 4431611,
+    "name": "Caleb Williams",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 12
+    },
+    "totalWeeksRostered": 29
+  },
+  {
+    "playerId": 3150744,
+    "name": "Chase McLaughlin",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 12,
+      "2025": 17
+    },
+    "totalWeeksRostered": 29
+  },
+  {
+    "playerId": 4241372,
+    "name": "Marquise Brown",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 12,
+      "2024": 3,
+      "2025": 13
+    },
+    "totalWeeksRostered": 28
+  },
+  {
+    "playerId": 4241479,
+    "name": "Tua Tagovailoa",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 9,
+      "2025": 2
+    },
+    "totalWeeksRostered": 28
+  },
+  {
+    "playerId": 4688813,
+    "name": "Josh Downs",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 13,
+      "2025": 13
+    },
+    "totalWeeksRostered": 28
+  },
+  {
+    "playerId": 4426385,
+    "name": "Zach Charbonnet",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 9,
+      "2025": 16
+    },
+    "totalWeeksRostered": 28
+  },
+  {
+    "playerId": 17372,
+    "name": "Chris Boswell",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 13,
+      "2025": 15
+    },
+    "totalWeeksRostered": 28
+  },
+  {
+    "playerId": 4038815,
+    "name": "Rico Dowdle",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14,
+      "2025": 13
+    },
+    "totalWeeksRostered": 27
+  },
+  {
+    "playerId": 4258595,
+    "name": "Cole Kmet",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 9
+    },
+    "totalWeeksRostered": 26
+  },
+  {
+    "playerId": 4241985,
+    "name": "J.K. Dobbins",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 13,
+      "2025": 12
+    },
+    "totalWeeksRostered": 26
+  },
+  {
+    "playerId": 4248528,
+    "name": "Christian Watson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 11,
+      "2025": 13
+    },
+    "totalWeeksRostered": 26
+  },
+  {
+    "playerId": 4040761,
+    "name": "Devin Singletary",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 9,
+      "2025": 8
+    },
+    "totalWeeksRostered": 26
+  },
+  {
+    "playerId": 3046439,
+    "name": "Hunter Henry",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 10,
+      "2025": 16
+    },
+    "totalWeeksRostered": 26
+  },
+  {
+    "playerId": 3895856,
+    "name": "Christian Kirk",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 12
+    },
+    "totalWeeksRostered": 25
+  },
+  {
+    "playerId": 4569587,
+    "name": "Wan'Dale Robinson",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 10,
+      "2025": 15
+    },
+    "totalWeeksRostered": 25
+  },
+  {
+    "playerId": 4689936,
+    "name": "Jake Bates",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 9,
+      "2025": 16
+    },
+    "totalWeeksRostered": 25
+  },
+  {
+    "playerId": 14880,
+    "name": "Kirk Cousins",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 16
+    },
+    "totalWeeksRostered": 24
+  },
+  {
+    "playerId": 4429025,
+    "name": "Quentin Johnston",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 11,
+      "2025": 12
+    },
+    "totalWeeksRostered": 24
+  },
+  {
+    "playerId": 4362249,
+    "name": "Jayden Reed",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 17,
+      "2025": 4
+    },
+    "totalWeeksRostered": 24
+  },
+  {
+    "playerId": 8439,
+    "name": "Aaron Rodgers",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 11,
+      "2025": 11
+    },
+    "totalWeeksRostered": 23
+  },
+  {
+    "playerId": 15864,
+    "name": "Geno Smith",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 14
+    },
+    "totalWeeksRostered": 23
+  },
+  {
+    "playerId": 16460,
+    "name": "Adam Thielen",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 8,
+      "2025": 1
+    },
+    "totalWeeksRostered": 23
+  },
+  {
+    "playerId": 3912547,
+    "name": "Sam Darnold",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14,
+      "2025": 9
+    },
+    "totalWeeksRostered": 23
+  },
+  {
+    "playerId": 4426338,
+    "name": "Bo Nix",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 10,
+      "2025": 13
+    },
+    "totalWeeksRostered": 23
+  },
+  {
+    "playerId": 3059915,
+    "name": "Kareem Hunt",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 12,
+      "2025": 8
+    },
+    "totalWeeksRostered": 22
+  },
+  {
+    "playerId": 2971573,
+    "name": "Ka'imi Fairbairn",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 5
+    },
+    "totalWeeksRostered": 22
+  },
+  {
+    "playerId": 4032473,
+    "name": "Rashid Shaheed",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 5,
+      "2025": 17
+    },
+    "totalWeeksRostered": 22
+  },
+  {
+    "playerId": 4572680,
+    "name": "Tucker Kraft",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 13,
+      "2025": 9
+    },
+    "totalWeeksRostered": 22
+  },
+  {
+    "playerId": 4360516,
+    "name": "Tyrone Tracy Jr.",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 12,
+      "2025": 10
+    },
+    "totalWeeksRostered": 22
+  },
+  {
+    "playerId": 4361411,
+    "name": "Pat Freiermuth",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 12
+    },
+    "totalWeeksRostered": 21
+  },
+  {
+    "playerId": 3932905,
+    "name": "Diontae Johnson",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 10,
+      "2024": 11
+    },
+    "totalWeeksRostered": 21
+  },
+  {
+    "playerId": 4035676,
+    "name": "Zack Moss",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15,
+      "2024": 6
+    },
+    "totalWeeksRostered": 21
+  },
+  {
+    "playerId": 4366031,
+    "name": "Tank Dell",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4,
+      "2024": 17
+    },
+    "totalWeeksRostered": 21
+  },
+  {
+    "playerId": 4595348,
+    "name": "Malik Nabers",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 4
+    },
+    "totalWeeksRostered": 21
+  },
+  {
+    "playerId": 4243537,
+    "name": "Gabe Davis",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17,
+      "2024": 3
+    },
+    "totalWeeksRostered": 20
+  },
+  {
+    "playerId": 4372066,
+    "name": "Jake Moody",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 12
+    },
+    "totalWeeksRostered": 20
+  },
+  {
+    "playerId": 4242431,
+    "name": "Ty Chandler",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7,
+      "2024": 13
+    },
+    "totalWeeksRostered": 20
+  },
+  {
+    "playerId": 4240021,
+    "name": "Cam Akers",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 5,
+      "2024": 14
+    },
+    "totalWeeksRostered": 19
+  },
+  {
+    "playerId": 4048244,
+    "name": "Alexander Mattison",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 14,
+      "2024": 5
+    },
+    "totalWeeksRostered": 19
+  },
+  {
+    "playerId": 3929645,
+    "name": "Juwan Johnson",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 6,
+      "2025": 13
+    },
+    "totalWeeksRostered": 19
+  },
+  {
+    "playerId": 4362887,
+    "name": "Justin Fields",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 10,
+      "2024": 1,
+      "2025": 7
+    },
+    "totalWeeksRostered": 18
+  },
+  {
+    "playerId": 3051926,
+    "name": "Gus Edwards",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 13,
+      "2024": 5
+    },
+    "totalWeeksRostered": 18
+  },
+  {
+    "playerId": 4361432,
+    "name": "Romeo Doubs",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 6,
+      "2025": 11
+    },
+    "totalWeeksRostered": 18
+  },
+  {
+    "playerId": 4428557,
+    "name": "Tyjae Spears",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 9,
+      "2025": 8
+    },
+    "totalWeeksRostered": 18
+  },
+  {
+    "playerId": 4430034,
+    "name": "Xavier Legette",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17,
+      "2025": 1
+    },
+    "totalWeeksRostered": 18
+  },
+  {
+    "playerId": 3917792,
+    "name": "Daniel Jones",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4,
+      "2024": 1,
+      "2025": 12
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4361409,
+    "name": "Jahan Dotson",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4360234,
+    "name": "Evan McPherson",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 6,
+      "2024": 11
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 3116164,
+    "name": "Mike Gesicki",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 14
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4040655,
+    "name": "Darnell Mooney",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4360569,
+    "name": "Jordan Mason",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 7,
+      "2025": 10
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4243331,
+    "name": "Cade Otton",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 11,
+      "2025": 6
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4568490,
+    "name": "RJ Harvey",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4685472,
+    "name": "Tetairoa McMillan",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4567750,
+    "name": "Emeka Egbuka",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4890973,
+    "name": "Ashton Jeanty",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4432710,
+    "name": "TreVeyon Henderson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4686361,
+    "name": "Cam Little",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4431459,
+    "name": "Tyler Warren",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4685702,
+    "name": "Quinshon Judkins",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4685382,
+    "name": "Omarion Hampton",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4701936,
+    "name": "Matthew Golden",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 17
+    },
+    "totalWeeksRostered": 17
+  },
+  {
+    "playerId": 4697745,
+    "name": "Tyler Loop",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 16
+    },
+    "totalWeeksRostered": 16
+  },
+  {
+    "playerId": 4429022,
+    "name": "Kayshon Boutte",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 16
+    },
+    "totalWeeksRostered": 16
+  },
+  {
+    "playerId": 4360238,
+    "name": "Dameon Pierce",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 15
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 3054212,
+    "name": "Jonnu Smith",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 8,
+      "2025": 5
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 4430539,
+    "name": "Brenton Strange",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2,
+      "2025": 13
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 4431452,
+    "name": "Drake Maye",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 15
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 5083076,
+    "name": "Harold Fannin Jr.",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 15
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 4371733,
+    "name": "Kenneth Gainwell",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 15
+    },
+    "totalWeeksRostered": 15
+  },
+  {
+    "playerId": 4427095,
+    "name": "DeMario Douglas",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14
+    },
+    "totalWeeksRostered": 14
+  },
+  {
+    "playerId": 4360078,
+    "name": "Alec Pierce",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 8,
+      "2025": 6
+    },
+    "totalWeeksRostered": 14
+  },
+  {
+    "playerId": 4259619,
+    "name": "Blake Grupe",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14
+    },
+    "totalWeeksRostered": 14
+  },
+  {
+    "playerId": 3128390,
+    "name": "Allen Lazard",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 14
+    },
+    "totalWeeksRostered": 14
+  },
+  {
+    "playerId": 4429275,
+    "name": "Trey Benson",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 3,
+      "2025": 10
+    },
+    "totalWeeksRostered": 13
+  },
+  {
+    "playerId": 4689114,
+    "name": "Jaxson Dart",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 13
+    },
+    "totalWeeksRostered": 13
+  },
+  {
+    "playerId": 4360294,
+    "name": "Antonio Gibson",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 3
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 16339,
+    "name": "Brandon McManus",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2025": 3
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 2468609,
+    "name": "Taysom Hill",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4,
+      "2024": 7,
+      "2025": 1
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 2473037,
+    "name": "Jason Myers",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2025": 11
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 4361050,
+    "name": "Isaiah Likely",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 7,
+      "2025": 2
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 3821683,
+    "name": "Austin Seibert",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 12
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 4428209,
+    "name": "Ricky Pearsall",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 12
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 4575131,
+    "name": "Jacory Croskey-Merritt",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 12
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 4429059,
+    "name": "Woody Marks",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 12
+    },
+    "totalWeeksRostered": 12
+  },
+  {
+    "playerId": 3917232,
+    "name": "Tyler Bass",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 6,
+      "2024": 3,
+      "2025": 2
+    },
+    "totalWeeksRostered": 11
+  },
+  {
+    "playerId": 3124679,
+    "name": "Jason Sanders",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 5,
+      "2024": 6
+    },
+    "totalWeeksRostered": 11
+  },
+  {
+    "playerId": 4430968,
+    "name": "Kimani Vidal",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4,
+      "2025": 7
+    },
+    "totalWeeksRostered": 11
+  },
+  {
+    "playerId": 4045163,
+    "name": "Miles Sanders",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 10
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 3045138,
+    "name": "Mike Williams",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 7
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 4685720,
+    "name": "Bryce Young",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8,
+      "2024": 2
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 16757,
+    "name": "Derek Carr",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9,
+      "2024": 1
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 4685415,
+    "name": "Travis Hunter",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 10
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 4431280,
+    "name": "Troy Franklin",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 10
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 4595342,
+    "name": "Oronde Gadsden",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 10
+    },
+    "totalWeeksRostered": 10
+  },
+  {
+    "playerId": 3139925,
+    "name": "Rashaad Penny",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 2573401,
+    "name": "Tyler Higbee",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 6,
+      "2025": 3
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 2976316,
+    "name": "Michael Thomas",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 15965,
+    "name": "Dustin Hopkins",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 14993,
+    "name": "Greg Zuerlein",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 4429148,
+    "name": "Theo Johnson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 4569923,
+    "name": "Andy Borregales",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 9
+    },
+    "totalWeeksRostered": 9
+  },
+  {
+    "playerId": 4249087,
+    "name": "Matt Gay",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 16733,
+    "name": "Odell Beckham Jr.",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4426875,
+    "name": "Sam Howell",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 3125116,
+    "name": "D'Onta Foreman",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 11252,
+    "name": "Joe Flacco",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2025": 6
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 17427,
+    "name": "Cairo Santos",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 1,
+      "2025": 5
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4429084,
+    "name": "Anthony Richardson",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4429013,
+    "name": "Tank Bigsby",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 6,
+      "2025": 2
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4240657,
+    "name": "Michael Carter",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1,
+      "2025": 7
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4696981,
+    "name": "Cam Skattebo",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 4608686,
+    "name": "Kyle Monangai",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 8
+    },
+    "totalWeeksRostered": 8
+  },
+  {
+    "playerId": 3116389,
+    "name": "Samaje Perine",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 3122840,
+    "name": "Deshaun Watson",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 3051392,
+    "name": "Ezekiel Elliott",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 4
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 3051909,
+    "name": "Daniel Carlson",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 7
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 4242433,
+    "name": "Joshua Palmer",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 6,
+      "2024": 1
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 4686472,
+    "name": "Marvin Mims Jr.",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 7
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 4574716,
+    "name": "Harrison Mevis",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 7
+    },
+    "totalWeeksRostered": 7
+  },
+  {
+    "playerId": 4035886,
+    "name": "Khalil Herbert",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 5,
+      "2024": 1
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 4034949,
+    "name": "Eddy Pineiro",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4,
+      "2025": 2
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 4361777,
+    "name": "Zamir White",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 4
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 3051738,
+    "name": "Marquez Valdes-Scantling",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 6
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 3123052,
+    "name": "Michael Badgley",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 6
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 4360761,
+    "name": "Michael Wilson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 6
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 4430871,
+    "name": "Sean Tucker",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 6
+    },
+    "totalWeeksRostered": 6
+  },
+  {
+    "playerId": 4373626,
+    "name": "Tyler Allgeier",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 3
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 14881,
+    "name": "Russell Wilson",
+    "seasonsRostered": [
+      2023,
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2024": 2,
+      "2025": 2
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 3045523,
+    "name": "Kendrick Bourne",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2025": 4
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 3049899,
+    "name": "Younghoe Koo",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 5
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 4678008,
+    "name": "Jonathon Brooks",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 5
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 4249417,
+    "name": "Jalen Tolbert",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4,
+      "2025": 1
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 4360939,
+    "name": "Rashod Bateman",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 5
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 4369863,
+    "name": "Cedric Tillman",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4,
+      "2025": 1
+    },
+    "totalWeeksRostered": 5
+  },
+  {
+    "playerId": 16731,
+    "name": "Brandin Cooks",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3,
+      "2024": 1
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4360797,
+    "name": "Tutu Atwell",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 13982,
+    "name": "Julio Jones",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 10621,
+    "name": "Nick Folk",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4682745,
+    "name": "Jaylen Wright",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1,
+      "2025": 3
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4430834,
+    "name": "Jalen McMillan",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 3043116,
+    "name": "Demarcus Robinson",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 3929785,
+    "name": "Nick Westbrook-Ikhine",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4372561,
+    "name": "Isaac Guerendo",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4372414,
+    "name": "Elijah Moore",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4685247,
+    "name": "Braelon Allen",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 3,
+      "2025": 1
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 5081397,
+    "name": "Dylan Sampson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 11122,
+    "name": "Matt Prater",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4427728,
+    "name": "Bam Knight",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4568263,
+    "name": "Ryan Fitzgerald",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 4887558,
+    "name": "Emanuel Wilson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 4
+    },
+    "totalWeeksRostered": 4
+  },
+  {
+    "playerId": 3116593,
+    "name": "Dalvin Cook",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 3910544,
+    "name": "Joshua Kelley",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4421446,
+    "name": "Craig Reynolds",
+    "seasonsRostered": [
+      2023,
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2,
+      "2024": 1
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 3045144,
+    "name": "Tyler Boyd",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 16886,
+    "name": "Martavis Bryant",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4430637,
+    "name": "Ja'Lynn Polk",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4426339,
+    "name": "Spencer Rattler",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2,
+      "2025": 1
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4360423,
+    "name": "Michael Penix Jr.",
+    "seasonsRostered": [
+      2024,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1,
+      "2025": 2
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4882093,
+    "name": "Bhayshul Tuten",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4685278,
+    "name": "Luther Burden III",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4428718,
+    "name": "Tre Tucker",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 2985659,
+    "name": "Wil Lutz",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4608810,
+    "name": "Tez Johnson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4682652,
+    "name": "Devin Neal",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4429096,
+    "name": "Blake Corum",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 3
+    },
+    "totalWeeksRostered": 3
+  },
+  {
+    "playerId": 4239934,
+    "name": "AJ Dillon",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 12460,
+    "name": "Graham Gano",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2025": 1
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4426386,
+    "name": "Roschon Johnson",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4362478,
+    "name": "Emari Demercado",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2025": 1
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4243371,
+    "name": "Riley Patterson",
+    "seasonsRostered": [
+      2023,
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1,
+      "2025": 1
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 3044720,
+    "name": "Joshua Dobbs",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 3121409,
+    "name": "Noah Brown",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4597500,
+    "name": "Adonai Mitchell",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4714365,
+    "name": "Carson Steele",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4038441,
+    "name": "Justice Hill",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4571557,
+    "name": "Spencer Shrader",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4429202,
+    "name": "Israel Abanikanda",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4877706,
+    "name": "Jayden Higgins",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4723086,
+    "name": "Colston Loveland",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4429023,
+    "name": "MarShawn Lloyd",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 3886812,
+    "name": "Jake Browning",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 3916945,
+    "name": "Darius Slayton",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4599739,
+    "name": "Kendre Miller",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4433970,
+    "name": "J.J. McCarthy",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 3930086,
+    "name": "Dawson Knox",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4242557,
+    "name": "Colby Parkinson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 2578570,
+    "name": "Jacoby Brissett",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 2
+    },
+    "totalWeeksRostered": 2
+  },
+  {
+    "playerId": 4240455,
+    "name": "Deon Jackson",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 2980453,
+    "name": "Jamaal Williams",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 16486,
+    "name": "Brett Maher",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4685035,
+    "name": "Zach Evans",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4039359,
+    "name": "Darrell Henderson Jr.",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4361418,
+    "name": "Will Levis",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 16813,
+    "name": "Logan Thomas",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4596334,
+    "name": "Keaton Mitchell",
+    "seasonsRostered": [
+      2023
+    ],
+    "weeksRosteredBySeason": {
+      "2023": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 3121427,
+    "name": "Curtis Samuel",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 3915486,
+    "name": "Tyler Conklin",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4566192,
+    "name": "Joshua Karty",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 3127586,
+    "name": "Jeremy McNichols",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4430104,
+    "name": "Sincere McCormick",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4039358,
+    "name": "Patrick Taylor Jr.",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4242214,
+    "name": "Clyde Edwards-Helaire",
+    "seasonsRostered": [
+      2024
+    ],
+    "weeksRosteredBySeason": {
+      "2024": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4819231,
+    "name": "Kaleb Johnson",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4362921,
+    "name": "Tyquan Thornton",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4372071,
+    "name": "Hassan Haskins",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 2976592,
+    "name": "Sterling Shepard",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 2573079,
+    "name": "Carson Wentz",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4035222,
+    "name": "Trayveon Williams",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  },
+  {
+    "playerId": 4576297,
+    "name": "AJ Barner",
+    "seasonsRostered": [
+      2025
+    ],
+    "weeksRosteredBySeason": {
+      "2025": 1
+    },
+    "totalWeeksRostered": 1
+  }
+]

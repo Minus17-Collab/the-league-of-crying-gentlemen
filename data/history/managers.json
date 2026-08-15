@@ -1,0 +1,114 @@
+[
+  {
+    "espnOwnerId": "{0BC41A66-9D09-440C-9766-1850C1389EFF}",
+    "name": "Zack Gallman",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{2F5AC437-45AA-4F71-9AC4-3745AA3F71A5}",
+    "name": "Bryan Morgan",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{40C828D8-0404-4874-9CF2-1AD45A0E47C2}",
+    "name": "jacob  grant",
+    "seasonsActive": [
+      2023
+    ],
+    "inferredRetiredAfterSeason": 2023
+  },
+  {
+    "espnOwnerId": "{689F32C9-BCEA-40AC-BB2B-FB208313AEA2}",
+    "name": "Trevon Benjamin",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{7C1CA1C7-9D27-4906-A2C6-97643382E537}",
+    "name": "Brent Morgan",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{B4EE459B-2E23-469C-80DC-068C1FF39C6E}",
+    "name": "Lucas Grant",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{C4006CAE-7E2E-4E4F-806C-AE7E2EFE4FC2}",
+    "name": "Marcus Faison",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{F40B9A44-B5BA-43D5-821A-A5C207A8A230}",
+    "name": "Kendall Arnold",
+    "seasonsActive": [
+      2023,
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{4D6B0C1F-1D62-4E39-9B4C-2BDCF4614C99}",
+    "name": "Trent Cassell",
+    "seasonsActive": [
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{A0DECBB9-7315-4BBE-BABB-94D9C5FD8200}",
+    "name": "Leah Faison",
+    "seasonsActive": [
+      2024
+    ],
+    "inferredRetiredAfterSeason": 2024
+  },
+  {
+    "espnOwnerId": "{C08D9D6E-D66E-4BE7-BC5E-D37A0B7D11A2}",
+    "name": "Bradly Major",
+    "seasonsActive": [
+      2024,
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  },
+  {
+    "espnOwnerId": "{1E868887-DACC-49D8-8BC1-832CA0D1B496}",
+    "name": "Josh Wiles",
+    "seasonsActive": [
+      2025
+    ],
+    "inferredRetiredAfterSeason": null
+  }
+]
