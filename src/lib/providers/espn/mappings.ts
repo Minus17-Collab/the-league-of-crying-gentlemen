@@ -43,19 +43,80 @@ export function mapEspnLineupSlot(slotId: number): string | null {
 /**
  * ESPN scoringItems statId -> this league's stat_categories.key.
  *
- * Intentionally starts EMPTY. Populate it by fetching this league's
- * real mSettings response (scripts/check-credentials or an ad-hoc
- * fetch), comparing each scoringItems[].statId + its points value
- * against the league's known scoring rules exported from the ESPN
- * UI, and adding confirmed entries one at a time.
+ * Populated from this league's real `mSettings` response (see
+ * data/history/scoring-by-season.json, pulled 2026-08-15) and
+ * cross-checked against public ESPN API stat-ID references
+ * (cwendt94/espn-api, nntrn/espn-wiki) — never guessed.
  *
- * Any statId encountered during normalization that is NOT in this
- * map is reported via `unmappedStatIds` (see normalize.ts) rather
- * than silently dropped or guessed — see ROADMAP.md "Open questions
- * — answer before Phase 0.3" and AGENTS.md "When requirements are
- * ambiguous".
+ * statIds 198 and 209 appear in this league's real scoringItems but
+ * are NOT included here: they aren't documented in any public
+ * reference, and the commissioner doesn't know what they map to
+ * either (confirmed 2026-08-15, see ROADMAP.md). They will surface
+ * via `unmappedStatIds` (see normalize.ts) rather than being
+ * silently dropped or guessed — see AGENTS.md "When requirements
+ * are ambiguous".
  */
-export const ESPN_STAT_ID_TO_KEY: Record<number, string> = {};
+export const ESPN_STAT_ID_TO_KEY: Record<number, string> = {
+  // Passing
+  3: "pass_yd",
+  4: "pass_td",
+  19: "pass_2pt",
+  20: "pass_int",
+
+  // Rushing
+  24: "rush_yd",
+  25: "rush_td",
+  26: "rush_2pt",
+
+  // Receiving
+  42: "rec_yd",
+  43: "rec_td",
+  44: "rec_2pt",
+  53: "rec",
+
+  // Fumbles
+  63: "fum_rec_td",
+  72: "fum_lost",
+
+  // Kicking
+  77: "fg_40_49",
+  80: "fg_0_39",
+  85: "fg_miss",
+  86: "xp_made",
+  201: "fg_60_plus",
+
+  // Defense/Special Teams — points allowed bands
+  89: "def_pa_0",
+  90: "def_pa_1_6",
+  91: "def_pa_7_13",
+  92: "def_pa_14_17",
+  123: "def_pa_28_34",
+  124: "def_pa_35_45",
+  125: "def_pa_46_plus",
+
+  // Defense/Special Teams — yards allowed bands
+  128: "def_yds_lt100",
+  129: "def_yds_100_199",
+  130: "def_yds_200_299",
+  132: "def_yds_350_399",
+  133: "def_yds_400_449",
+  134: "def_yds_450_499",
+  135: "def_yds_500_549",
+  136: "def_yds_550_plus",
+
+  // Defense/Special Teams — plays
+  93: "def_blk_kick_td",
+  95: "def_int",
+  96: "def_fum_rec",
+  97: "def_blk_kick",
+  98: "def_safety",
+  99: "def_sack",
+  101: "def_kr_td",
+  102: "def_pr_td",
+  103: "def_int_td",
+  104: "def_fum_ret_td",
+  206: "def_2pt_ret",
+};
 
 export function mapEspnStatId(statId: number): string | null {
   return ESPN_STAT_ID_TO_KEY[statId] ?? null;

@@ -61,8 +61,12 @@ Full schedule with computed winners for all 3 seasons in `matchups-by-season.jso
 - **329 unique players** were rostered at least once from 2023-2025 (players never rostered are excluded, per request).
 - Most-rostered players (51/51 weeks — every week of every season): Chris Olave, DeVonta Smith, Alvin Kamara, James Cook, Ja'Marr Chase, Josh Jacobs, Josh Allen, Breece Hall, Justin Jefferson, Amon-Ra St. Brown.
 
+## Resolved (commissioner-confirmed)
+
+- **statId `198` and `209`** stay unmapped — commissioner doesn't know what they are either. Left flagged/unmapped in `src/lib/providers/espn/mappings.ts` rather than guessed; not a blocker.
+- **Franchise identity across owner changes**: a new owner inheriting an old ESPN `teamId` slot is **always a new `franchises` row**, never a continuation. Confirmed happening again for 2026 — Trent Cassell (2025 `teamId` 10) and Bradly Major (2025 `teamId` 5) are both absent from the 2026 `members` list (see `data/espn-raw/2026/settings-teams.json`); two open/unclaimed slots, not one.
+
 ## Known gaps / unverified
 
-- **statId `198` and `209`** appear in this league's scoring config but aren't documented in any public ESPN stat-ID reference I could find. Left unmapped rather than guessed — flagged for commissioner input or discovery once real stat lines are synced and can be matched empirically.
 - Weekly roster `weekPoints` (`appliedStatTotal`) was pulled as ESPN's own applied total, **not recomputed** via our `computePoints()` engine — do not treat it as validated against our scoring engine yet. That validation is Phase 1.2 (golden-file regression tests).
 - No draft-pick-level data (who drafted whom, in what round) was pulled in this batch — that's a separate `mDraftDetail` view, not yet fetched.

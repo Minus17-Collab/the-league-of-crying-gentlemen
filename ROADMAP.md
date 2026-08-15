@@ -171,10 +171,11 @@ open items are marked accordingly.
   see `RUNBOOK.md`).
 - Scoring settings: confirmed for all of 2023, 2024, 2025 (2026 identical
   to 2024/2025). Full statId->points map and year-over-year diffs in
-  `data/history/scoring-by-season.json` / `scoring-diffs.json`. **Two
-  statIds (198, 209) remain unmapped** — not in any public ESPN reference,
-  intentionally left unmapped in `src/lib/providers/espn/mappings.ts`
-  rather than guessed.
+  `data/history/scoring-by-season.json` / `scoring-diffs.json`.
+  **RESOLVED — statIds 198 and 209 stay unmapped.** Commissioner doesn't
+  know what they are either; leaving them flagged/unmapped in
+  `src/lib/providers/espn/mappings.ts` rather than guessing is the
+  correct behavior per `AGENTS.md`, not a blocker.
 - Roster configuration: confirmed via live `mSettings` — 1 QB, 2 RB, 2 WR,
   1 TE, 1 FLEX, 1 D/ST, 1 K, 8 BE, 1 IR (2026 settings; same shape
   2024-2025, see `data/history/format-by-season.json` for prior years).
@@ -189,12 +190,19 @@ open items are marked accordingly.
   intentional (see `data/history/SUMMARY.md` "Known gaps").
 - Manager list: confirmed for 2023-2025 in `data/history/managers.json`.
   8 managers in 2023, growing to 10 from 2024 on. Jacob Grant left after
-  2023; Leah Faison played only 2024. **Still needs commissioner
-  confirmation**: whether a new owner inheriting an old `teamId` slot
-  (e.g. Bradly Major taking over Jacob Grant's slot 5 in 2024) should be
-  modeled as the same `franchises` row or a new one — ESPN's `teamId` is
-  a recycled slot, not a stable identity, and this decision is exactly
-  the kind of league-specific rule this file says not to guess at.
+  2023; Leah Faison played only 2024.
+- **RESOLVED — franchise identity rule (commissioner-confirmed):** when a
+  new owner inherits an old ESPN `teamId` slot, it is **always a new
+  `franchises` row**, never a continuation of the old one. ESPN's
+  `teamId` is a recycled slot, not a stable identity, so this must be
+  enforced at ingest time (Phase 2.2) rather than inferred from `teamId`
+  continuity.
+  - Confirmed happening again for **2026**: `data/espn-raw/2026/settings-teams.json`
+    shows **Trent Cassell** (2025 `teamId` 10, "Street Rats") and
+    **Bradly Major** (2025 `teamId` 5, "Fisted Sister") both absent from
+    the 2026 `members` list — two open/unclaimed slots ("Team 5",
+    "Team 10"), not one. Whoever claims those slots for 2026 gets new
+    `franchises` rows, per the rule above.
 
 ## Infra setup (blocks Phase 0.2 apply / Phase 2 testing)
 
