@@ -66,7 +66,11 @@ Full schedule with computed winners for all 3 seasons in `matchups-by-season.jso
 - **statId `198` and `209`** stay unmapped — commissioner doesn't know what they are either. Left flagged/unmapped in `src/lib/providers/espn/mappings.ts` rather than guessed; not a blocker.
 - **Franchise identity across owner changes**: a new owner inheriting an old ESPN `teamId` slot is **always a new `franchises` row**, never a continuation. Confirmed happening again for 2026 — Trent Cassell (2025 `teamId` 10) and Bradly Major (2025 `teamId` 5) are both absent from the 2026 `members` list (see `data/espn-raw/2026/settings-teams.json`); two open/unclaimed slots, not one.
 
+### Draft picks
+
+Pulled via `scripts/fetch-draft-and-transactions.mjs` → `draft-picks-by-season.json`: 136 picks in 2023 (8 teams x 17 rounds), 170 in 2024 and 2025 (10 teams x 17 rounds). Each pick has `teamId` + `playerId` + round/overall position, but **not player names** — resolving `playerId` to a name requires a separate player-info call, deferred to Phase 2.2 (player identity resolution) rather than done ad hoc here.
+
 ## Known gaps / unverified
 
 - Weekly roster `weekPoints` (`appliedStatTotal`) was pulled as ESPN's own applied total, **not recomputed** via our `computePoints()` engine — do not treat it as validated against our scoring engine yet. That validation is Phase 1.2 (golden-file regression tests).
-- No draft-pick-level data (who drafted whom, in what round) was pulled in this batch — that's a separate `mDraftDetail` view, not yet fetched.
+- **Transactions could not be pulled.** `view=mTransactions2` (the documented view for waiver/trade/roster transactions) consistently returns a response with no `transactions` key at all for this league — for 2023, 2024, 2025, *and* the live 2026 season, with or without an `X-Fantasy-Filter` header. Confirmed the request mechanism itself works (`view=mTeam` on the same league/year returns real data). This isn't a code bug being papered over — it's an unresolved ESPN API behavior for this specific league, left as a gap rather than guessed at. `transactions-by-season.json` exists but is `[]` for every season. Revisit if a future ESPN API investigation turns up why (possibly requires `scoringPeriodId` ranges, a different auth scope, or the endpoint is deprecated for private leagues).

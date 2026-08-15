@@ -1,0 +1,4292 @@
+{
+  "2023": [
+    {
+      "overallPickNumber": 1,
+      "roundId": 1,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4262921,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 2,
+      "roundId": 1,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4362628,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 3,
+      "roundId": 1,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 3068267,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 4,
+      "roundId": 1,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4569618,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 5,
+      "roundId": 1,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 3116406,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 6,
+      "roundId": 1,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 2976212,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 7,
+      "roundId": 1,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 3139477,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 8,
+      "roundId": 1,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 3117251,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 9,
+      "roundId": 2,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 16800,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 10,
+      "roundId": 2,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 3043078,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 11,
+      "roundId": 2,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 4430807,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 12,
+      "roundId": 2,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3929630,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 13,
+      "roundId": 2,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 3916148,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 14,
+      "roundId": 2,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3128720,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 15,
+      "roundId": 2,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 4047365,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 16,
+      "roundId": 2,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 4374302,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 17,
+      "roundId": 3,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 15847,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 18,
+      "roundId": 3,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 3918298,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 19,
+      "roundId": 3,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 4361370,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 20,
+      "roundId": 3,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4242335,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 21,
+      "roundId": 3,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 3126486,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 22,
+      "roundId": 3,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 4047646,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 23,
+      "roundId": 3,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 2977187,
+      "keeper": false,
+      "autoDraftTypeId": 2
+    },
+    {
+      "overallPickNumber": 24,
+      "roundId": 3,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4239996,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 25,
+      "roundId": 4,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3916387,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 26,
+      "roundId": 4,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 4241389,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 27,
+      "roundId": 4,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 3116385,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 28,
+      "roundId": 4,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4429795,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 29,
+      "roundId": 4,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 4372016,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 30,
+      "roundId": 4,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3042519,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 31,
+      "roundId": 4,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 4036133,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 32,
+      "roundId": 4,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 4241457,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 33,
+      "roundId": 5,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4045163,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 34,
+      "roundId": 5,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4239993,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 35,
+      "roundId": 5,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 4241478,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 36,
+      "roundId": 5,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4047650,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 37,
+      "roundId": 5,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 4426354,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 38,
+      "roundId": 5,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 4040715,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 39,
+      "roundId": 5,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4569173,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 40,
+      "roundId": 5,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 15818,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 41,
+      "roundId": 6,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3116365,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 42,
+      "roundId": 6,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 3040151,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 43,
+      "roundId": 6,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 2576925,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 44,
+      "roundId": 6,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3121023,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 45,
+      "roundId": 6,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 3915511,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 46,
+      "roundId": 6,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4360310,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 47,
+      "roundId": 6,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 4360238,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 48,
+      "roundId": 6,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 4241463,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 49,
+      "roundId": 7,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4362887,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 50,
+      "roundId": 7,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4427366,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 51,
+      "roundId": 7,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 3054850,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 52,
+      "roundId": 7,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4567048,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 53,
+      "roundId": 7,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 8439,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 54,
+      "roundId": 7,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 15795,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 55,
+      "roundId": 7,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 3925357,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 56,
+      "roundId": 7,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4361579,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 57,
+      "roundId": 8,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3121422,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 58,
+      "roundId": 8,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 4697815,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 59,
+      "roundId": 8,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 2976499,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 60,
+      "roundId": 8,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4361529,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 61,
+      "roundId": 8,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 3116593,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 62,
+      "roundId": 8,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3915416,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 63,
+      "roundId": 8,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": -16025,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 64,
+      "roundId": 8,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 3045138,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 65,
+      "roundId": 9,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4241985,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 66,
+      "roundId": 9,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": -16023,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 67,
+      "roundId": 9,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 14880,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 68,
+      "roundId": 9,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4241372,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 69,
+      "roundId": 9,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 16731,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 70,
+      "roundId": 9,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 3045147,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 71,
+      "roundId": 9,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": -16021,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 72,
+      "roundId": 9,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4038941,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 73,
+      "roundId": 10,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4035886,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 74,
+      "roundId": 10,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 15683,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 75,
+      "roundId": 10,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 4259545,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 76,
+      "roundId": 10,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4241479,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 77,
+      "roundId": 10,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 4248528,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 78,
+      "roundId": 10,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3123076,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 79,
+      "roundId": 10,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 4048244,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 80,
+      "roundId": 10,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 4241474,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 81,
+      "roundId": 11,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": -16006,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 82,
+      "roundId": 11,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 3116165,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 83,
+      "roundId": 11,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 4240021,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 84,
+      "roundId": 11,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 4360248,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 85,
+      "roundId": 11,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 3051876,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 86,
+      "roundId": 11,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 2577327,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 87,
+      "roundId": 11,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4685720,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 88,
+      "roundId": 11,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": -16017,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 89,
+      "roundId": 12,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4360234,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 90,
+      "roundId": 12,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 4360635,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 91,
+      "roundId": 12,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 3117256,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 92,
+      "roundId": 12,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": -16020,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 93,
+      "roundId": 12,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 3122840,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 94,
+      "roundId": 12,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4035687,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 95,
+      "roundId": 12,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 2577417,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 96,
+      "roundId": 12,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 16737,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 97,
+      "roundId": 13,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 3055899,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 98,
+      "roundId": 13,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4239934,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 99,
+      "roundId": 13,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 4379399,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 100,
+      "roundId": 13,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": -16002,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 101,
+      "roundId": 13,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 2980453,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 102,
+      "roundId": 13,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 15864,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 103,
+      "roundId": 13,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 16733,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 104,
+      "roundId": 13,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": -16015,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 105,
+      "roundId": 14,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3051392,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 106,
+      "roundId": 14,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 4035538,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 107,
+      "roundId": 14,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 3051909,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 108,
+      "roundId": 14,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3895856,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 109,
+      "roundId": 14,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 3932905,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 110,
+      "roundId": 14,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4258595,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 111,
+      "roundId": 14,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 4426502,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 112,
+      "roundId": 14,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 4361741,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 113,
+      "roundId": 15,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4430878,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 114,
+      "roundId": 15,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4361411,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 115,
+      "roundId": 15,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 2576414,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 116,
+      "roundId": 15,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 12460,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 117,
+      "roundId": 15,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 4429205,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 118,
+      "roundId": 15,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": -16005,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 119,
+      "roundId": 15,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4360438,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 120,
+      "roundId": 15,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 3128429,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 121,
+      "roundId": 16,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4243537,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 122,
+      "roundId": 16,
+      "roundPickNumber": 2,
+      "teamId": 4,
+      "playerId": 3139925,
+      "keeper": false,
+      "autoDraftTypeId": 2
+    },
+    {
+      "overallPickNumber": 123,
+      "roundId": 16,
+      "roundPickNumber": 3,
+      "teamId": 8,
+      "playerId": 4360294,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 124,
+      "roundId": 16,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3050478,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 125,
+      "roundId": 16,
+      "roundPickNumber": 5,
+      "teamId": 5,
+      "playerId": 4429615,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 126,
+      "roundId": 16,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": -16004,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 127,
+      "roundId": 16,
+      "roundPickNumber": 7,
+      "teamId": 2,
+      "playerId": 3917792,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 128,
+      "roundId": 16,
+      "roundPickNumber": 8,
+      "teamId": 3,
+      "playerId": 3116389,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 129,
+      "roundId": 17,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4385690,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 130,
+      "roundId": 17,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 16486,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 131,
+      "roundId": 17,
+      "roundPickNumber": 3,
+      "teamId": 1,
+      "playerId": 3917232,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 132,
+      "roundId": 17,
+      "roundPickNumber": 4,
+      "teamId": 5,
+      "playerId": 2573401,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 133,
+      "roundId": 17,
+      "roundPickNumber": 5,
+      "teamId": 7,
+      "playerId": 4373626,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 134,
+      "roundId": 17,
+      "roundPickNumber": 6,
+      "teamId": 8,
+      "playerId": 2976316,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 135,
+      "roundId": 17,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4361409,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 136,
+      "roundId": 17,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 3116164,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    }
+  ],
+  "2024": [
+    {
+      "overallPickNumber": 1,
+      "roundId": 1,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 3117251,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 2,
+      "roundId": 1,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4241389,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 3,
+      "roundId": 1,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 3116406,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 4,
+      "roundId": 1,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4430807,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 5,
+      "roundId": 1,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4427366,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 6,
+      "roundId": 1,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4374302,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 7,
+      "roundId": 1,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4362628,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 8,
+      "roundId": 1,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4262921,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 9,
+      "roundId": 1,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4047650,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 10,
+      "roundId": 1,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 4242335,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 11,
+      "roundId": 2,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4047646,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 12,
+      "roundId": 2,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 3139477,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 13,
+      "roundId": 2,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 3929630,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 14,
+      "roundId": 2,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3043078,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 15,
+      "roundId": 2,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4426515,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 16,
+      "roundId": 2,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4569618,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 17,
+      "roundId": 2,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4361529,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 18,
+      "roundId": 2,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 4429795,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 19,
+      "roundId": 2,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4239996,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 20,
+      "roundId": 2,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4361370,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 21,
+      "roundId": 3,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 16800,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 22,
+      "roundId": 3,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4258173,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 23,
+      "roundId": 3,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4429160,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 24,
+      "roundId": 3,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4040715,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 25,
+      "roundId": 3,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4430737,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 26,
+      "roundId": 3,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3054850,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 27,
+      "roundId": 3,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 2976212,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 28,
+      "roundId": 3,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 2977187,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 29,
+      "roundId": 3,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4047365,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 30,
+      "roundId": 3,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 16737,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 31,
+      "roundId": 4,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4432577,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 32,
+      "roundId": 4,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 3126486,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 33,
+      "roundId": 4,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 3916387,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 34,
+      "roundId": 4,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4259545,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 35,
+      "roundId": 4,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4360438,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 36,
+      "roundId": 4,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4035687,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 37,
+      "roundId": 4,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4432708,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 38,
+      "roundId": 4,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 4426502,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 39,
+      "roundId": 4,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3918298,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 40,
+      "roundId": 4,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4595348,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 41,
+      "roundId": 5,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4361741,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 42,
+      "roundId": 5,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 15847,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 43,
+      "roundId": 5,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 3915416,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 44,
+      "roundId": 5,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4372016,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 45,
+      "roundId": 5,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4697815,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 46,
+      "roundId": 5,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3925357,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 47,
+      "roundId": 5,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3121422,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 48,
+      "roundId": 5,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4429615,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 49,
+      "roundId": 5,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 2976499,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 50,
+      "roundId": 5,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 4379399,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 51,
+      "roundId": 6,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4430027,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 52,
+      "roundId": 6,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 3040151,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 53,
+      "roundId": 6,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 4385690,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 54,
+      "roundId": 6,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 8439,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 55,
+      "roundId": 6,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 3042519,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 56,
+      "roundId": 6,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 3051876,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 57,
+      "roundId": 6,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 3116365,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 58,
+      "roundId": 6,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 4567048,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 59,
+      "roundId": 6,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4241478,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 60,
+      "roundId": 6,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 3123076,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 61,
+      "roundId": 7,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4366031,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 62,
+      "roundId": 7,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 3116385,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 63,
+      "roundId": 7,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4361307,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 64,
+      "roundId": 7,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": -16005,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 65,
+      "roundId": 7,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4429084,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 66,
+      "roundId": 7,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4036378,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 67,
+      "roundId": 7,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4360248,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 68,
+      "roundId": 7,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": -16006,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 69,
+      "roundId": 7,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4428557,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 70,
+      "roundId": 7,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 4569173,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 71,
+      "roundId": 8,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4239993,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 72,
+      "roundId": 8,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": -16020,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 73,
+      "roundId": 8,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 4426354,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 74,
+      "roundId": 8,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4361579,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 75,
+      "roundId": 8,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4241474,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 76,
+      "roundId": 8,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4035538,
+      "keeper": false,
+      "autoDraftTypeId": 6
+    },
+    {
+      "overallPickNumber": 77,
+      "roundId": 8,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 3915511,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 78,
+      "roundId": 8,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 2577417,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 79,
+      "roundId": 8,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": -16033,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 80,
+      "roundId": 8,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 15818,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 81,
+      "roundId": 9,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 3116165,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 82,
+      "roundId": 9,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4612826,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 83,
+      "roundId": 9,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4428331,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 84,
+      "roundId": 9,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4635008,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 85,
+      "roundId": 9,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 3895856,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 86,
+      "roundId": 9,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4242355,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 87,
+      "roundId": 9,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": -16025,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 88,
+      "roundId": 9,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4361777,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 89,
+      "roundId": 9,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 14880,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 90,
+      "roundId": 9,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 3045147,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 91,
+      "roundId": 10,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3932905,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 92,
+      "roundId": 10,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": -16015,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 93,
+      "roundId": 10,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 4360310,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 94,
+      "roundId": 10,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4432773,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 95,
+      "roundId": 10,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 2576414,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 96,
+      "roundId": 10,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4430878,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 97,
+      "roundId": 10,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 3121023,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 98,
+      "roundId": 10,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 15795,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 99,
+      "roundId": 10,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4362249,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 100,
+      "roundId": 10,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 3916148,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 101,
+      "roundId": 11,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4241457,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 102,
+      "roundId": 11,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4036133,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 103,
+      "roundId": 11,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4683062,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 104,
+      "roundId": 11,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 15683,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 105,
+      "roundId": 11,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4569987,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 106,
+      "roundId": 11,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4040761,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 107,
+      "roundId": 11,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3128720,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 108,
+      "roundId": 11,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4248528,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 109,
+      "roundId": 11,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4241463,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 110,
+      "roundId": 11,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": -16012,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 111,
+      "roundId": 12,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3051392,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 112,
+      "roundId": 12,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 3068267,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 113,
+      "roundId": 12,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 3055899,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 114,
+      "roundId": 12,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4432665,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 115,
+      "roundId": 12,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4258595,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 116,
+      "roundId": 12,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 3128429,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 117,
+      "roundId": 12,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4430034,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 118,
+      "roundId": 12,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 4426348,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 119,
+      "roundId": 12,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4431299,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 120,
+      "roundId": 12,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4372019,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 121,
+      "roundId": 13,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4241985,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 122,
+      "roundId": 13,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4431611,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 123,
+      "roundId": 13,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4362238,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 124,
+      "roundId": 13,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4429205,
+      "keeper": false,
+      "autoDraftTypeId": 1
+    },
+    {
+      "overallPickNumber": 125,
+      "roundId": 13,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 3917315,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 126,
+      "roundId": 13,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4038941,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 127,
+      "roundId": 13,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4426388,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 128,
+      "roundId": 13,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 3117256,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 129,
+      "roundId": 13,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4040655,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 130,
+      "roundId": 13,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 3916433,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 131,
+      "roundId": 14,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 3045138,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 132,
+      "roundId": 14,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 2468609,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 133,
+      "roundId": 14,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 4243537,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 134,
+      "roundId": 14,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4241479,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 135,
+      "roundId": 14,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4242433,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 136,
+      "roundId": 14,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4035676,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 137,
+      "roundId": 14,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4678008,
+      "keeper": false,
+      "autoDraftTypeId": 1
+    },
+    {
+      "overallPickNumber": 138,
+      "roundId": 14,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 3915486,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 139,
+      "roundId": 14,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3953687,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 140,
+      "roundId": 14,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 3046779,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 141,
+      "roundId": 15,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4361411,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 142,
+      "roundId": 15,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": -16030,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 143,
+      "roundId": 15,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": 4372066,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 144,
+      "roundId": 15,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 4241372,
+      "keeper": false,
+      "autoDraftTypeId": 1
+    },
+    {
+      "overallPickNumber": 145,
+      "roundId": 15,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 2577327,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 146,
+      "roundId": 15,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3121427,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 147,
+      "roundId": 15,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3050478,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 148,
+      "roundId": 15,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4373678,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 149,
+      "roundId": 15,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 14993,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 150,
+      "roundId": 15,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 3051926,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 151,
+      "roundId": 16,
+      "roundPickNumber": 1,
+      "teamId": 6,
+      "playerId": 4241416,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 152,
+      "roundId": 16,
+      "roundPickNumber": 2,
+      "teamId": 11,
+      "playerId": 4429275,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 153,
+      "roundId": 16,
+      "roundPickNumber": 3,
+      "teamId": 5,
+      "playerId": 4373626,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 154,
+      "roundId": 16,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4426385,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 155,
+      "roundId": 16,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": -16018,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 156,
+      "roundId": 16,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": -16023,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 157,
+      "roundId": 16,
+      "roundPickNumber": 7,
+      "teamId": 4,
+      "playerId": 4242431,
+      "keeper": false,
+      "autoDraftTypeId": 1
+    },
+    {
+      "overallPickNumber": 158,
+      "roundId": 16,
+      "roundPickNumber": 8,
+      "teamId": 2,
+      "playerId": 12483,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 159,
+      "roundId": 16,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4360294,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 160,
+      "roundId": 16,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": -16008,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 161,
+      "roundId": 17,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 2971573,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 162,
+      "roundId": 17,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4427095,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 163,
+      "roundId": 17,
+      "roundPickNumber": 3,
+      "teamId": 2,
+      "playerId": -16004,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 164,
+      "roundId": 17,
+      "roundPickNumber": 4,
+      "teamId": 4,
+      "playerId": 16460,
+      "keeper": false,
+      "autoDraftTypeId": 1
+    },
+    {
+      "overallPickNumber": 165,
+      "roundId": 17,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4360234,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    },
+    {
+      "overallPickNumber": 166,
+      "roundId": 17,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 3049899,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 167,
+      "roundId": 17,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3916945,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 168,
+      "roundId": 17,
+      "roundPickNumber": 8,
+      "teamId": 5,
+      "playerId": 4430637,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 169,
+      "roundId": 17,
+      "roundPickNumber": 9,
+      "teamId": 11,
+      "playerId": 4597500,
+      "keeper": false,
+      "autoDraftTypeId": 0
+    },
+    {
+      "overallPickNumber": 170,
+      "roundId": 17,
+      "roundPickNumber": 10,
+      "teamId": 6,
+      "playerId": 4362081,
+      "keeper": false,
+      "autoDraftTypeId": 3
+    }
+  ],
+  "2025": [
+    {
+      "overallPickNumber": 1,
+      "roundId": 1,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4362628,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 2,
+      "roundId": 1,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4430807,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 3,
+      "roundId": 1,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4262921,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 4,
+      "roundId": 1,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 3929630,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 5,
+      "roundId": 1,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4429795,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 6,
+      "roundId": 1,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4241389,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 7,
+      "roundId": 1,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3117251,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 8,
+      "roundId": 1,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4426515,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 9,
+      "roundId": 1,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4374302,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 10,
+      "roundId": 1,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4595348,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 11,
+      "roundId": 2,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4890973,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 12,
+      "roundId": 2,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4429160,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 13,
+      "roundId": 2,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 4258173,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 14,
+      "roundId": 2,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4432773,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 15,
+      "roundId": 2,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4047646,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 16,
+      "roundId": 2,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4426502,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 17,
+      "roundId": 2,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 4242335,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 18,
+      "roundId": 2,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 4047365,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 19,
+      "roundId": 2,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3043078,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 20,
+      "roundId": 2,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 4596448,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 21,
+      "roundId": 3,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4432665,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 22,
+      "roundId": 3,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4361307,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 23,
+      "roundId": 3,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4430737,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 24,
+      "roundId": 3,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4239993,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 25,
+      "roundId": 3,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4612826,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 26,
+      "roundId": 3,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4362238,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 27,
+      "roundId": 3,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3116406,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 28,
+      "roundId": 3,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 16800,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 29,
+      "roundId": 3,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 3918298,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 30,
+      "roundId": 3,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 3916387,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 31,
+      "roundId": 4,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4379399,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 32,
+      "roundId": 4,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4430878,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 33,
+      "roundId": 4,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 4426348,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 34,
+      "roundId": 4,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4040715,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 35,
+      "roundId": 4,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4567048,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 36,
+      "roundId": 4,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 3121422,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 37,
+      "roundId": 4,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 4569618,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 38,
+      "roundId": 4,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 3054850,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 39,
+      "roundId": 4,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3915511,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 40,
+      "roundId": 4,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 3040151,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 41,
+      "roundId": 5,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4241416,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 42,
+      "roundId": 5,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 3045147,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 43,
+      "roundId": 5,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4432708,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 44,
+      "roundId": 5,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4685382,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 45,
+      "roundId": 5,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4427366,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 46,
+      "roundId": 5,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 16737,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 47,
+      "roundId": 5,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3116385,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 48,
+      "roundId": 5,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4259545,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 49,
+      "roundId": 5,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4047650,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 50,
+      "roundId": 5,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 3915416,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 51,
+      "roundId": 6,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4683062,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 52,
+      "roundId": 6,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4430027,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 53,
+      "roundId": 6,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 3042519,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 54,
+      "roundId": 6,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4428331,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 55,
+      "roundId": 6,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4429615,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 56,
+      "roundId": 6,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 3139477,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 57,
+      "roundId": 6,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 3052587,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 58,
+      "roundId": 6,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 4036133,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 59,
+      "roundId": 6,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3128429,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 60,
+      "roundId": 6,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 3925357,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 61,
+      "roundId": 7,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4241478,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 62,
+      "roundId": 7,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4372016,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 63,
+      "roundId": 7,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4241463,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 64,
+      "roundId": 7,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4426388,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 65,
+      "roundId": 7,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4426354,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 66,
+      "roundId": 7,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4431299,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 67,
+      "roundId": 7,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4685415,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 68,
+      "roundId": 7,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4035538,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 69,
+      "roundId": 7,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4819231,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 70,
+      "roundId": 7,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 15847,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 71,
+      "roundId": 8,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4432710,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 72,
+      "roundId": 8,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4685472,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 73,
+      "roundId": 8,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 3123076,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 74,
+      "roundId": 8,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 3116365,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 75,
+      "roundId": 8,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4568490,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 76,
+      "roundId": 8,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 3051876,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 77,
+      "roundId": 8,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 3116165,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 78,
+      "roundId": 8,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 4426338,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 79,
+      "roundId": 8,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3916433,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 80,
+      "roundId": 8,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 3917315,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 81,
+      "roundId": 9,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4361370,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 82,
+      "roundId": 9,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 2977187,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 83,
+      "roundId": 9,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 2976212,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 84,
+      "roundId": 9,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4701936,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 85,
+      "roundId": 9,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4429205,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 86,
+      "roundId": 9,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4361741,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 87,
+      "roundId": 9,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 3916148,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 88,
+      "roundId": 9,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4361529,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 89,
+      "roundId": 9,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4361579,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 90,
+      "roundId": 9,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4360516,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 91,
+      "roundId": 10,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4241474,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 92,
+      "roundId": 10,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4569987,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 93,
+      "roundId": 10,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 4569173,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 94,
+      "roundId": 10,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4696981,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 95,
+      "roundId": 10,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4572680,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 96,
+      "roundId": 10,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4241985,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 97,
+      "roundId": 10,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 4373678,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 98,
+      "roundId": 10,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 4635008,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 99,
+      "roundId": 10,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 3886598,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 100,
+      "roundId": 10,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 3126486,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 101,
+      "roundId": 11,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4428209,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 102,
+      "roundId": 11,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4035687,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 103,
+      "roundId": 11,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4362249,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 104,
+      "roundId": 11,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4723086,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 105,
+      "roundId": 11,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4038941,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 106,
+      "roundId": 11,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4040655,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 107,
+      "roundId": 11,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 2577417,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 108,
+      "roundId": 11,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4362887,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 109,
+      "roundId": 11,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4032473,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 110,
+      "roundId": 11,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 4431611,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 111,
+      "roundId": 12,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4877706,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 112,
+      "roundId": 12,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4567750,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 113,
+      "roundId": 12,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 3068267,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 114,
+      "roundId": 12,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4603186,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 115,
+      "roundId": 12,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4036378,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 116,
+      "roundId": 12,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4239996,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 117,
+      "roundId": 12,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 4428557,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 118,
+      "roundId": 12,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 4429013,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 119,
+      "roundId": 12,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4372019,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 120,
+      "roundId": 12,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 4697815,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 121,
+      "roundId": 13,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4360569,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 122,
+      "roundId": 13,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 3046779,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 123,
+      "roundId": 13,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4433970,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 124,
+      "roundId": 13,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 3121023,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 125,
+      "roundId": 13,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4242355,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 126,
+      "roundId": 13,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4385690,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 127,
+      "roundId": 13,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4431459,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 128,
+      "roundId": 13,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4686472,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 129,
+      "roundId": 13,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4685702,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 130,
+      "roundId": 13,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 5081397,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 131,
+      "roundId": 14,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 16460,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 132,
+      "roundId": 14,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 4426385,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 133,
+      "roundId": 14,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": 4430034,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 134,
+      "roundId": 14,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": 4429275,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 135,
+      "roundId": 14,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 4373626,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 136,
+      "roundId": 14,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": 4241457,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 137,
+      "roundId": 14,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": -16034,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 138,
+      "roundId": 14,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 3046439,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 139,
+      "roundId": 14,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": -16023,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 140,
+      "roundId": 14,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": -16007,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 141,
+      "roundId": 15,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4689936,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 142,
+      "roundId": 15,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 3150744,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 143,
+      "roundId": 15,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": -16016,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 144,
+      "roundId": 15,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4362081,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 145,
+      "roundId": 15,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 4685278,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 146,
+      "roundId": 15,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": 4682745,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 147,
+      "roundId": 15,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 4369863,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 148,
+      "roundId": 15,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 4241372,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 149,
+      "roundId": 15,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": -16026,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 150,
+      "roundId": 15,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": -16033,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 151,
+      "roundId": 16,
+      "roundPickNumber": 1,
+      "teamId": 3,
+      "playerId": 4360438,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 152,
+      "roundId": 16,
+      "roundPickNumber": 2,
+      "teamId": 2,
+      "playerId": 3953687,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 153,
+      "roundId": 16,
+      "roundPickNumber": 3,
+      "teamId": 6,
+      "playerId": -16017,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 154,
+      "roundId": 16,
+      "roundPickNumber": 4,
+      "teamId": 7,
+      "playerId": -16008,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 155,
+      "roundId": 16,
+      "roundPickNumber": 5,
+      "teamId": 1,
+      "playerId": 3124679,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 156,
+      "roundId": 16,
+      "roundPickNumber": 6,
+      "teamId": 10,
+      "playerId": -16021,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 157,
+      "roundId": 16,
+      "roundPickNumber": 7,
+      "teamId": 11,
+      "playerId": 4241479,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 158,
+      "roundId": 16,
+      "roundPickNumber": 8,
+      "teamId": 4,
+      "playerId": 3917232,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 159,
+      "roundId": 16,
+      "roundPickNumber": 9,
+      "teamId": 8,
+      "playerId": 4360248,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 160,
+      "roundId": 16,
+      "roundPickNumber": 10,
+      "teamId": 5,
+      "playerId": 12483,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 161,
+      "roundId": 17,
+      "roundPickNumber": 1,
+      "teamId": 5,
+      "playerId": 4882093,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 162,
+      "roundId": 17,
+      "roundPickNumber": 2,
+      "teamId": 8,
+      "playerId": 4685247,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 163,
+      "roundId": 17,
+      "roundPickNumber": 3,
+      "teamId": 4,
+      "playerId": 4372561,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 164,
+      "roundId": 17,
+      "roundPickNumber": 4,
+      "teamId": 11,
+      "playerId": 4429023,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 165,
+      "roundId": 17,
+      "roundPickNumber": 5,
+      "teamId": 10,
+      "playerId": 3050478,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 166,
+      "roundId": 17,
+      "roundPickNumber": 6,
+      "teamId": 1,
+      "playerId": -16002,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 167,
+      "roundId": 17,
+      "roundPickNumber": 7,
+      "teamId": 7,
+      "playerId": 17372,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 168,
+      "roundId": 17,
+      "roundPickNumber": 8,
+      "teamId": 6,
+      "playerId": 3055899,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 169,
+      "roundId": 17,
+      "roundPickNumber": 9,
+      "teamId": 2,
+      "playerId": 4431452,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    },
+    {
+      "overallPickNumber": 170,
+      "roundId": 17,
+      "roundPickNumber": 10,
+      "teamId": 3,
+      "playerId": 17427,
+      "keeper": false,
+      "autoDraftTypeId": 7
+    }
+  ]
+}
