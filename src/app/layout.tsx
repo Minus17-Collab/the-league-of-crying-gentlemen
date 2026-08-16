@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Association of Try Hard Gamers",
-  description: "League history and records for the Association of Try Hard Gamers fantasy football league.",
+  title: "The League of Crying Gentlemen",
+  description: "League history and records for The League of Crying Gentlemen fantasy football league.",
 };
 
 const NAV_LINKS = [
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="border-b border-zinc-200 bg-white">
           <nav className="mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
             <span className="font-semibold tracking-tight">
-              Association of Try Hard Gamers
+              The League of Crying Gentlemen
             </span>
             <div className="flex gap-4 text-sm text-zinc-600">
               {NAV_LINKS.map((link) => (

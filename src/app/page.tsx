@@ -13,7 +13,7 @@ export default function Home() {
     <div className="flex flex-col gap-12">
       <section className="flex flex-col gap-3">
         <h1 className="text-3xl font-semibold tracking-tight">
-          Association of Try Hard Gamers
+          The League of Crying Gentlemen
         </h1>
         <p className="max-w-2xl text-zinc-600">
           League history, standings, and scoring rules for our ESPN fantasy
