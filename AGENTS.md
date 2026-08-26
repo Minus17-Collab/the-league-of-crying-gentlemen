@@ -11,9 +11,11 @@ Fantasy football league platform. Mirrors an ESPN league in 2026, replaces it in
 
 ## Stack
 
-- Next.js 15+ (App Router), TypeScript strict mode
+- Next.js 15+ (App Router), TypeScript strict mode, statically exported
+  (`output: "export"` in `next.config.ts` — no server runtime)
 - Supabase (Postgres + Auth + RLS)
-- Vercel (hosting + cron)
+- GitHub Pages (hosting, custom domain thecryinggents.org) + GitHub
+  Actions (build/deploy on push, scheduled ESPN sync)
 - Tailwind CSS
 - Vitest for unit tests, Playwright for e2e
 

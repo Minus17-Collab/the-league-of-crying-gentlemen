@@ -20,17 +20,25 @@ plan and current phase status.
    - From the repo root: `git remote add origin <repo-url>`, then
      `git push -u origin main`.
 
-3. **Vercel**
-   - Import the GitHub repo into Vercel.
-   - Add all `.env.example` variables as Vercel environment variables
-     (Production + Preview).
-   - Vercel Cron picks up the schedule in `vercel.json` automatically.
+3. **GitHub Pages + Actions**
+   - Repo Settings → Pages: source = GitHub Actions, custom domain =
+     `thecryinggents.org` (DNS + HTTPS cert are already provisioned).
+   - Add the `.env.example` variables as repo secrets (Settings →
+     Secrets and variables → Actions): `NEXT_PUBLIC_SUPABASE_URL`,
+     `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
+     `ESPN_SWID`, `ESPN_S2`. `ESPN_LEAGUE_ID` can be a repo variable
+     (not secret).
+   - `.github/workflows/deploy.yml` builds the static export and
+     publishes it to Pages on every push to `main`.
+   - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` on the
+     same weekly schedule the old `vercel.json` cron used.
 
 4. **ESPN credentials** (private league)
    - Log into fantasy.espn.com in a browser, open devtools → Application →
      Cookies, and copy the `SWID` (including its literal braces) and
      `espn_s2` values.
-   - Set `ESPN_SWID` and `ESPN_S2` in `.env.local` and in Vercel.
+   - Set `ESPN_SWID` and `ESPN_S2` in `.env.local` and as repo secrets
+     (Settings → Secrets and variables → Actions).
 
 ## Refreshing ESPN cookies
 
@@ -39,9 +47,9 @@ If `pnpm exec tsx -e "import('./src/lib/providers/espn/check-credentials').then(
 (or the weekly cron job) reports a credential failure:
 
 1. Re-extract `SWID` and `espn_s2` from a fresh, logged-in browser session.
-2. Update `ESPN_SWID` / `ESPN_S2` in Vercel's environment variables.
-3. Re-run the failed sync manually via the `/api/cron/sync` route
-   (requires `CRON_SECRET` if set) or redeploy to pick up new env vars.
+2. Update `ESPN_SWID` / `ESPN_S2` in the repo's Actions secrets.
+3. Re-run the failed sync manually via the "ESPN sync" workflow's
+   "Run workflow" button (or wait for the next scheduled run).
 
 ## Re-running the backfill
 
@@ -88,8 +96,8 @@ fails. To recover:
 
 1. Check the latest `sync_runs` row for the failure message.
 2. If it's a credential failure, follow "Refreshing ESPN cookies" above.
-3. Re-trigger the cron manually (Vercel dashboard → Cron → Run) or wait
-   for the next scheduled run.
+3. Re-trigger the sync manually (Actions tab → "ESPN sync" →
+   Run workflow) or wait for the next scheduled run.
 
 ## Commands reference
 

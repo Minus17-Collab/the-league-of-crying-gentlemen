@@ -8,7 +8,7 @@ and replaces it in 2027. See `AGENTS.md` for architecture invariants and
 
 - Next.js 15+ (App Router), TypeScript strict mode
 - Supabase (Postgres + Auth + RLS)
-- Vercel (hosting + cron)
+- GitHub Pages (static export) + GitHub Actions (deploy, scheduled ESPN sync)
 - Tailwind CSS
 - Vitest for unit tests, Playwright for e2e
 

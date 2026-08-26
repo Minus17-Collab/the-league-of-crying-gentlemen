@@ -66,12 +66,14 @@ collisions and mid-season team changes without creating duplicate players.
 - Done when: syncing twice produces zero duplicate player rows.
 
 **2.3 Sync jobs**
-Vercel cron route handlers. Full sync (daily), live sync (every 5 min during
-game windows). Every run writes a `sync_runs` row. Failures are logged and
-retried, never silent.
-- Status: skeleton route handler at `src/app/api/cron/sync/route.ts` +
-  `vercel.json` cron schedule (Tuesdays). Checks ESPN credentials and logs
-  to `sync_runs`; does not yet upsert gameplay data (depends on 2.2).
+GitHub Actions scheduled workflow (the site is a static export on GitHub
+Pages, which has no server runtime for a route handler/cron). Full sync
+(daily), live sync (every 5 min during game windows) would need a
+different host if ever required. Every run writes a `sync_runs` row.
+Failures are logged and retried, never silent.
+- Status: skeleton script at `scripts/sync-espn.mjs`, run weekly by
+  `.github/workflows/sync.yml` (Tuesdays). Checks ESPN credentials and
+  logs to `sync_runs`; does not yet upsert gameplay data (depends on 2.2).
 - Done when: a scheduled run populates a week of data end to end and is visible in `sync_runs`.
 
 ---
@@ -223,7 +225,12 @@ open items are marked accordingly.
 - `ESPN_SWID` / `ESPN_S2`: obtained and verified working 2026-08-15 for
   all 4 seasons (2023-2026). See `RUNBOOK.md` for refresh instructions —
   cookie export showed a short (~6 day) expiry window.
-- Hosting: Vercel, free tier / default subdomain (per `.windsurf/plans/fantasy-league-hq-hybrid-6c3632.md`).
+- Hosting: GitHub Pages (static export), custom domain `thecryinggents.org`
+  (DNS + HTTPS cert provisioned via GitHub). Site is statically exported —
+  no server runtime, so mutation-heavy Phase 4/5 features (auth writes,
+  roster moves, live scoring) will need their own plan (e.g. Supabase
+  Edge Functions or client-side writes under RLS) before those phases
+  start; flag this rather than assuming a Vercel-style backend exists.
 
 ## Historical data pull (2023-2025)
 

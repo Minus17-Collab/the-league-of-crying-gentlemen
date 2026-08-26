@@ -1,0 +1,34 @@
+name: ESPN sync
+
+# Weekly credential-check + sync job (see AGENTS.md and ROADMAP.md Phase
+# 2.3). Runs here instead of a Vercel Cron Route Handler because the
+# site is a static export with no server runtime — see scripts/sync-espn.mjs.
+
+on:
+  schedule:
+    # Tuesdays at 10:00 UTC.
+    - cron: "0 10 * * 2"
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: node scripts/sync-espn.mjs
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ESPN_LEAGUE_ID: ${{ vars.ESPN_LEAGUE_ID }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
