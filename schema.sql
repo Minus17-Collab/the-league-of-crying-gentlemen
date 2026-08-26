@@ -253,6 +253,26 @@ create table awards (
   note          text
 );
 
+-- Computed by scripts/compute-records.mjs (mirrors
+-- src/lib/records/engine.ts), not by a SQL view per definition, the
+-- same "script computes -> table stores -> page reads" pattern as
+-- draft_pick_grades/trade_grades below. One row per (definition,
+-- scope, holder) -- ties are just multiple rows sharing `value`, so
+-- there is no code path that arbitrarily breaks a tie.
+create table record_results (
+  id                    uuid primary key default gen_random_uuid(),
+  record_definition_id  uuid not null references record_definitions(id) on delete cascade,
+  scope                 text not null check (scope in ('alltime', 'season')),
+  season_year           int,              -- set when scope = 'season'; null for 'alltime'
+  is_playoff            boolean not null default false,
+  franchise_id          uuid not null references franchises(id),
+  value                 numeric(10, 2) not null,
+  context               jsonb not null default '{}',  -- week, opponent, streak span, all-play detail, etc.
+  computed_at           timestamptz not null default now(),
+  constraint record_results_season_year_check
+    check ((scope = 'season' and season_year is not null) or (scope = 'alltime' and season_year is null))
+);
+
 
 -- ------------------------------------------------------------
 -- GRADING  (draft grades, trade grades)

@@ -115,6 +115,17 @@ Draft Night Grade (curved, ADP-based reach value) computed at ingest time;
 End-of-Season Regrade (uncurved, VOE against a pooled pick-slot decay
 curve) computed once a season is `is_locked`. Both write to
 `draft_pick_grades`.
+- Status: done for the 3 locked seasons (2023-2025). Pure logic in
+  `src/lib/grading/draftGrades.ts` (+ `draftGrades.test.ts`), run via
+  `scripts/fetch-historical-adp.mjs` (pulls PPR ADP from Fantasy Football
+  Calculator's public API — see that file's header for caveats) and
+  `scripts/compute-draft-grades.mjs` (computes both gradings, upserts
+  `draft_pick_grades`, logs a `data_gaps` row documenting the ADP
+  approximation and the pre-existing 2023 rush-yardage scoring-override
+  gap that flows into that year's VOE). Re-run `compute-draft-grades.mjs`
+  whenever `draft_picks`/`lineup_entries` change for a locked season, or
+  once a future season becomes locked (after re-running
+  `fetch-historical-adp.mjs` for that year first).
 - Done when: every pick has a reach value and, once the season is locked,
   a VOE and regrade grade; math is reproducible from `stat_lines` +
   `scoring_rules` + `draft_picks`.

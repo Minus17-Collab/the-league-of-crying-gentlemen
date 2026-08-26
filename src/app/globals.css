@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
+/*
+ * Brand theme: "gaslight Victorian" — deep burgundy + antique gold on a
+ * charcoal ground, ivory text, amber highlights, silver metallics, and a
+ * warm bronze footer. Fixed, not tied to OS light/dark preference — this
+ * is a deliberate league-branding palette, not a neutral UI theme.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1e1e1e;
+  --foreground: #f3e9d2;
+
+  /* Deep Burgundy — header/navbar, dark surfaces */
+  --color-burgundy-950: #200a0a;
+  --color-burgundy-900: #401212;
+  --color-burgundy-800: #6b1e1e;
+  --color-burgundy-700: #7d2626;
+  --color-burgundy-600: #93302f;
+  --color-burgundy-500: #a83d3a;
+  --color-burgundy-400: #c15f5c;
+  --color-burgundy-300: #d68f8c;
+  --color-burgundy-200: #e6bdbb;
+  --color-burgundy-100: #f1dcdb;
+  --color-burgundy-50: #f8ecec;
+
+  /* Antique Gold — accents, buttons, borders */
+  --color-gold-900: #4a3717;
+  --color-gold-800: #6b4e24;
+  --color-gold-700: #8a6530;
+  --color-gold-600: #a87d3e;
+  --color-gold-500: #c6a664;
+  --color-gold-400: #d3b57f;
+  --color-gold-300: #ddc79c;
+  --color-gold-200: #e8dab9;
+  --color-gold-100: #f2e8d3;
+
+  /* Charcoal Black — page background and card surfaces */
+  --color-charcoal-900: #141414;
+  --color-charcoal-800: #1e1e1e;
+  --color-charcoal-700: #2a2a2a;
+  --color-charcoal-600: #383838;
+  --color-charcoal-500: #4a4a4a;
+
+  /* Solid accent colors */
+  --color-ivory: #f3e9d2;
+  --color-amber: #e8b86d;
+  --color-silver: #b0b0b0;
+  --color-bronze: #8c6239;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Body copy: Lora. Headings: Cinzel Decorative. Subheadings: Playfair
+   * Display. Script accents: Great Vibes. Registered as font-* theme
+   * tokens so `font-heading`, `font-subheading`, `font-body` and
+   * `font-script` utilities are generated automatically. */
+  --font-sans: var(--font-lora);
+  --font-body: var(--font-lora);
+  --font-heading: var(--font-cinzel-decorative);
+  --font-subheading: var(--font-playfair-display);
+  --font-script: var(--font-great-vibes);
+  --font-mono: var(--font-geist-mono);
+
+  --color-burgundy-950: var(--color-burgundy-950);
+  --color-burgundy-900: var(--color-burgundy-900);
+  --color-burgundy-800: var(--color-burgundy-800);
+  --color-burgundy-700: var(--color-burgundy-700);
+  --color-burgundy-600: var(--color-burgundy-600);
+  --color-burgundy-500: var(--color-burgundy-500);
+  --color-burgundy-400: var(--color-burgundy-400);
+  --color-burgundy-300: var(--color-burgundy-300);
+  --color-burgundy-200: var(--color-burgundy-200);
+  --color-burgundy-100: var(--color-burgundy-100);
+  --color-burgundy-50: var(--color-burgundy-50);
+
+  --color-gold-900: var(--color-gold-900);
+  --color-gold-800: var(--color-gold-800);
+  --color-gold-700: var(--color-gold-700);
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-200: var(--color-gold-200);
+  --color-gold-100: var(--color-gold-100);
+
+  --color-charcoal-900: var(--color-charcoal-900);
+  --color-charcoal-800: var(--color-charcoal-800);
+  --color-charcoal-700: var(--color-charcoal-700);
+  --color-charcoal-600: var(--color-charcoal-600);
+  --color-charcoal-500: var(--color-charcoal-500);
+
+  --color-ivory: var(--color-ivory);
+  --color-amber: var(--color-amber);
+  --color-silver: var(--color-silver);
+  --color-bronze: var(--color-bronze);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-subheading), Georgia, serif;
 }

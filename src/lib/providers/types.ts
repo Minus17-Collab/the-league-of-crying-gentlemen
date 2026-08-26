@@ -38,6 +38,14 @@ export interface NormalizedTeam {
   draftSlot: number | null;
 }
 
+/**
+ * Which playoff bracket a matchup belongs to, normalized across
+ * providers (see lib/providers/{provider}/normalize.ts for the
+ * provider-specific mapping — e.g. ESPN's `playoffTierType` enum).
+ * `null` for non-playoff (regular season) matchups.
+ */
+export type PlayoffBracket = "winners" | "winners_consolation" | "losers_consolation" | null;
+
 export interface NormalizedMatchup {
   year: number;
   week: number;
@@ -48,6 +56,7 @@ export interface NormalizedMatchup {
   isPlayoff: boolean;
   isChampionship: boolean;
   isFinal: boolean;
+  playoffBracket: PlayoffBracket;
 }
 
 export interface NormalizedRosterEntry {

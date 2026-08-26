@@ -3,8 +3,7 @@ import {
   getScoring,
   getScoringDiff,
   type ScoringItem,
-} from "@/lib/data/history";
-import { mapEspnStatId } from "@/lib/providers/espn/mappings";
+} from "@/lib/data/league";
 
 /** Display-only labels for stat keys. Not scoring logic — just UI text. */
 const STAT_LABELS: Record<string, string> = {
@@ -54,10 +53,8 @@ const STAT_LABELS: Record<string, string> = {
   def_2pt_ret: "2pt Return",
 };
 
-function labelForStatId(statId: string): string {
-  const key = mapEspnStatId(Number(statId));
-  if (!key) return `Unmapped stat ${statId}`;
-  return STAT_LABELS[key] ?? key;
+function labelForStatKey(statKey: string): string {
+  return STAT_LABELS[statKey] ?? statKey;
 }
 
 function formatPoints(item: ScoringItem | undefined | null): string {
@@ -65,36 +62,45 @@ function formatPoints(item: ScoringItem | undefined | null): string {
   return item.points > 0 ? `+${item.points}` : `${item.points}`;
 }
 
-export default function ScoringPage() {
-  const seasons = getAllScoringSeasons();
+/** Years with unresolved scoring ambiguity — see data/history/SUMMARY.md. */
+const SEASONS_WITH_AMBIGUOUS_SCORING = new Set([2023]);
+
+export default async function ScoringPage() {
+  const seasons = await getAllScoringSeasons();
   const latestSeason = seasons[seasons.length - 1];
-  const latestScoring = getScoring(latestSeason);
+  const latestScoring = await getScoring(latestSeason);
+
+  const diffPairs = seasons.slice(0, -1).map((season, i) => ({
+    season,
+    nextSeason: seasons[i + 1],
+  }));
+  const diffs = await Promise.all(
+    diffPairs.map(({ season, nextSeason }) => getScoringDiff(season, nextSeason))
+  );
 
   return (
     <div className="flex flex-col gap-10">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Scoring</h1>
-        <p className="mt-2 max-w-2xl text-sm text-zinc-500">
-          Current rules ({latestSeason}), {latestScoring?.scoringType.replace("_", " ")}
-          , {latestScoring?.playerRankType} rankings. Full year-over-year
-          changes below.
+        <h1 className="font-heading text-2xl tracking-wide text-gold-400">Scoring</h1>
+        <p className="mt-2 max-w-2xl text-sm text-ivory">
+          Current rules ({latestSeason}). Full year-over-year changes below.
         </p>
       </div>
 
       {latestScoring && (
-        <table className="w-full border-collapse overflow-hidden rounded-lg border border-zinc-200 bg-white text-sm">
+        <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
           <thead>
-            <tr className="border-b border-zinc-200 bg-zinc-50 text-left text-zinc-500">
+            <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
               <th className="px-4 py-3 font-medium">Stat</th>
               <th className="px-4 py-3 font-medium">Points</th>
             </tr>
           </thead>
           <tbody>
-            {Object.entries(latestScoring.items)
-              .sort((a, b) => labelForStatId(a[0]).localeCompare(labelForStatId(b[0])))
-              .map(([statId, item]) => (
-                <tr key={statId} className="border-b border-zinc-100 last:border-0">
-                  <td className="px-4 py-3">{labelForStatId(statId)}</td>
+            {[...latestScoring.items]
+              .sort((a, b) => labelForStatKey(a.statKey).localeCompare(labelForStatKey(b.statKey)))
+              .map((item) => (
+                <tr key={item.statKey} className="border-b border-charcoal-600 last:border-0">
+                  <td className="px-4 py-3">{labelForStatKey(item.statKey)}</td>
                   <td className="px-4 py-3 font-mono">{formatPoints(item)}</td>
                 </tr>
               ))}
@@ -103,35 +109,38 @@ export default function ScoringPage() {
       )}
 
       <div className="flex flex-col gap-8">
-        <h2 className="text-lg font-semibold">Year-over-year changes</h2>
-        {seasons.slice(0, -1).map((season, i) => {
-          const nextSeason = seasons[i + 1];
-          const diffKey = `${season}_to_${nextSeason}`;
-          const diffs = getScoringDiff(diffKey);
-          if (diffs.length === 0) return null;
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Year-over-year changes</h2>
+        {diffPairs.map(({ season, nextSeason }, i) => {
+          const seasonDiffs = diffs[i];
+          if (seasonDiffs.length === 0) return null;
           return (
-            <div key={diffKey}>
-              <h3 className="mb-2 font-medium">
+            <div key={`${season}_to_${nextSeason}`}>
+              <h3 className="mb-2 font-medium text-ivory">
                 {season} &rarr; {nextSeason}
               </h3>
-              <table className="w-full border-collapse overflow-hidden rounded-lg border border-zinc-200 bg-white text-sm">
+              {(SEASONS_WITH_AMBIGUOUS_SCORING.has(season) ||
+                SEASONS_WITH_AMBIGUOUS_SCORING.has(nextSeason)) && (
+                <p className="mb-2 rounded-md border border-amber/40 bg-charcoal-600 px-3 py-2 text-xs text-amber">
+                  {SEASONS_WITH_AMBIGUOUS_SCORING.has(season) ? season : nextSeason} rushing/TD
+                  scoring is incomplete: ESPN&apos;s position-keyed overrides for that season
+                  couldn&apos;t be resolved to a known vocabulary, so rushing yardage/TD bonuses
+                  may be understated. Commissioner input pending — see data/history/SUMMARY.md.
+                </p>
+              )}
+              <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
                 <thead>
-                  <tr className="border-b border-zinc-200 bg-zinc-50 text-left text-zinc-500">
+                  <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
                     <th className="px-4 py-3 font-medium">Stat</th>
                     <th className="px-4 py-3 font-medium">{season}</th>
                     <th className="px-4 py-3 font-medium">{nextSeason}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {diffs.map((diff) => (
-                    <tr key={diff.statId} className="border-b border-zinc-100 last:border-0">
-                      <td className="px-4 py-3">{labelForStatId(diff.statId)}</td>
-                      <td className="px-4 py-3 font-mono">
-                        {formatPoints(diff[season] as ScoringItem | null)}
-                      </td>
-                      <td className="px-4 py-3 font-mono">
-                        {formatPoints(diff[nextSeason] as ScoringItem | null)}
-                      </td>
+                  {seasonDiffs.map((diff) => (
+                    <tr key={diff.statKey} className="border-b border-charcoal-600 last:border-0">
+                      <td className="px-4 py-3">{labelForStatKey(diff.statKey)}</td>
+                      <td className="px-4 py-3 font-mono">{formatPoints(diff.before)}</td>
+                      <td className="px-4 py-3 font-mono">{formatPoints(diff.after)}</td>
                     </tr>
                   ))}
                 </tbody>

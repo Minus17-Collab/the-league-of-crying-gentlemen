@@ -21,9 +21,40 @@ function loadSeason(year) {
   return league;
 }
 
+// Richer schedule dump (view=mMatchupScore) with `playoffTierType` and
+// `winner` per game — see scripts/fetch-playoff-tiers.mjs. settings-teams.json
+// alone doesn't carry these, so the matchups section below reads from here.
+function loadMatchupScore(year) {
+  const raw = readFileSync(
+    join(ROOT, "data", "espn-raw", String(year), "matchup-score.json"),
+    "utf-8",
+  );
+  const [league] = JSON.parse(raw);
+  return league;
+}
+
 const seasons = {};
+const matchupScoreSeasons = {};
 for (const year of YEARS) {
   seasons[year] = loadSeason(year);
+  matchupScoreSeasons[year] = loadMatchupScore(year);
+}
+
+/** Maps ESPN's playoffTierType enum to our normalized bracket (mirrors
+ * src/lib/providers/espn/normalize.ts's mapEspnPlayoffTier — this script
+ * is a one-off outside the app runtime, so it isn't imported directly). */
+function mapPlayoffTier(tierType) {
+  switch (tierType) {
+    case "WINNERS_BRACKET":
+    case "WINNERS_BRACKET_CHAMPIONSHIP":
+      return "winners";
+    case "WINNERS_CONSOLATION_LADDER":
+      return "winners_consolation";
+    case "LOSERS_CONSOLATION_LADDER":
+      return "losers_consolation";
+    default:
+      return null;
+  }
 }
 
 // ---- 1. Managers per season (owner GUID -> name), + presence across years ----
@@ -81,9 +112,9 @@ for (const year of YEARS) {
 // ---- 3. Head-to-head matchups (regular + playoff) per season ----
 const matchupsBySeason = {};
 for (const year of YEARS) {
-  const league = seasons[year];
-  const playoffStartWeek = league.settings.scheduleSettings.matchupPeriodCount + 1;
-  matchupsBySeason[year] = league.schedule.map((g) => {
+  const league = matchupScoreSeasons[year];
+
+  const games = league.schedule.map((g) => {
     const homeScore = g.home?.totalPoints ?? null;
     const awayScore = g.away?.totalPoints ?? null;
     let winner = null;
@@ -93,9 +124,12 @@ for (const year of YEARS) {
       else if (awayScore > homeScore) winner = "away";
       else winner = "tie";
     }
+    const playoffBracket = mapPlayoffTier(g.playoffTierType);
     return {
       week: g.matchupPeriodId,
-      isPlayoff: g.matchupPeriodId >= playoffStartWeek,
+      isPlayoff: playoffBracket !== null,
+      playoffBracket,
+      isChampionship: false,
       homeTeamId: g.home?.teamId ?? null,
       homeScore,
       awayTeamId: g.away?.teamId ?? null,
@@ -103,6 +137,20 @@ for (const year of YEARS) {
       winner,
     };
   });
+
+  // The championship is the single remaining "winners" bracket game, in
+  // the last week any "winners" bracket game was played that season.
+  const lastWinnersWeek = Math.max(
+    -Infinity,
+    ...games.filter((g) => g.playoffBracket === "winners").map((g) => g.week),
+  );
+  for (const g of games) {
+    if (g.playoffBracket === "winners" && g.week === lastWinnersWeek) {
+      g.isChampionship = true;
+    }
+  }
+
+  matchupsBySeason[year] = games;
 }
 
 // ---- 4. Scoring rules per season (statId -> points), for diffing ----

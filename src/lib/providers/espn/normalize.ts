@@ -33,23 +33,62 @@ export function normalizeTeams(
   }));
 }
 
+/**
+ * Maps ESPN's `playoffTierType` enum to our normalized bracket. ESPN
+ * does have a `WINNERS_BRACKET_CHAMPIONSHIP` tier in its enum, but in
+ * practice leagues' final round is just tagged `WINNERS_BRACKET` like
+ * every earlier round — the championship game is instead identified
+ * as the last `WINNERS_BRACKET` week for the season (see below).
+ */
+function mapEspnPlayoffTier(tierType: string | undefined): NormalizedMatchup["playoffBracket"] {
+  switch (tierType) {
+    case "WINNERS_BRACKET":
+    case "WINNERS_BRACKET_CHAMPIONSHIP":
+      return "winners";
+    case "WINNERS_CONSOLATION_LADDER":
+      return "winners_consolation";
+    case "LOSERS_CONSOLATION_LADDER":
+      return "losers_consolation";
+    default:
+      return null;
+  }
+}
+
 export function normalizeMatchups(
   league: EspnLeagueResponse,
   year: number,
 ): NormalizedMatchup[] {
-  return league.schedule
+  const matchups = league.schedule
     .filter((m) => m.home?.teamId !== undefined && m.away?.teamId !== undefined)
-    .map((m) => ({
-      year,
-      week: m.matchupPeriodId,
-      homeExternalTeamId: String(m.home!.teamId),
-      awayExternalTeamId: String(m.away!.teamId),
-      homeScore: m.home?.totalPoints ?? null,
-      awayScore: m.away?.totalPoints ?? null,
-      isPlayoff: m.playoffTierType !== undefined && m.playoffTierType !== "NONE",
-      isChampionship: m.playoffTierType === "WINNERS_BRACKET_CHAMPIONSHIP",
-      isFinal: m.winner !== undefined && m.winner !== "UNDECIDED",
-    }));
+    .map((m) => {
+      const playoffBracket = mapEspnPlayoffTier(m.playoffTierType);
+      return {
+        year,
+        week: m.matchupPeriodId,
+        homeExternalTeamId: String(m.home!.teamId),
+        awayExternalTeamId: String(m.away!.teamId),
+        homeScore: m.home?.totalPoints ?? null,
+        awayScore: m.away?.totalPoints ?? null,
+        isPlayoff: playoffBracket !== null,
+        isChampionship: false,
+        isFinal: m.winner !== undefined && m.winner !== "UNDECIDED",
+        playoffBracket,
+      };
+    });
+
+  // The championship is the single remaining "winners" bracket game, in
+  // the last week any "winners" bracket game was played that season.
+  const lastWinnersWeek = Math.max(
+    -Infinity,
+    ...matchups.filter((m) => m.playoffBracket === "winners").map((m) => m.week),
+  );
+  for (const m of matchups) {
+    if (m.playoffBracket === "winners" && m.week === lastWinnersWeek) {
+      m.isChampionship = true;
+    }
+  }
+
+  return matchups;
 }
 
 export function normalizeDraftPicks(

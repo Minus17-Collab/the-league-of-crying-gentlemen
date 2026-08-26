@@ -63,14 +63,31 @@ Full schedule with computed winners for all 3 seasons in `matchups-by-season.jso
 
 ## Resolved (commissioner-confirmed)
 
-- **statId `198` and `209`** stay unmapped — commissioner doesn't know what they are either. Left flagged/unmapped in `src/lib/providers/espn/mappings.ts` rather than guessed; not a blocker.
 - **Franchise identity across owner changes**: a new owner inheriting an old ESPN `teamId` slot is **always a new `franchises` row**, never a continuation. Confirmed happening again for 2026 — Trent Cassell (2025 `teamId` 10) and Bradly Major (2025 `teamId` 5) are both absent from the 2026 `members` list (see `data/espn-raw/2026/settings-teams.json`); two open/unclaimed slots, not one.
 
 ### Draft picks
 
 Pulled via `scripts/fetch-draft-and-transactions.mjs` → `draft-picks-by-season.json`: 136 picks in 2023 (8 teams x 17 rounds), 170 in 2024 and 2025 (10 teams x 17 rounds). Each pick has `teamId` + `playerId` + round/overall position, but **not player names** — resolving `playerId` to a name requires a separate player-info call, deferred to Phase 2.2 (player identity resolution) rather than done ad hoc here.
 
+### Boxscore stat lines (2026-08-16 update)
+
+Pulled via `scripts/fetch-weekly-boxscore-stats.mjs` → `boxscore-stats-{year}.json`: full per-player, per-statId boxscore breakdowns for all 51 weeks (2023-2025), not just ESPN's cached `weekPoints` total. Loaded into Supabase `stat_lines` by `scripts/backfill-supabase.mjs` and validated by `scripts/validate-scoring.mjs`, which independently recomputes every `lineup_entries.points` value via `lib/scoring/engine.ts` (`computePoints`) from `stat_lines` + `scoring_rules` and diffs it against ESPN's own cached total:
+
+- **2024: 2488/2488 matched (100%).** **2025: 2506/2506 matched (100%).** The scoring engine, stat-ID mappings, and scoring_rules ingestion are confirmed byte-exact against ESPN's own numbers for both seasons.
+- **2023: 1174/2043 matched (~57%).** All mismatches are running backs, and all stem from the one still-open gap below (2023 position-keyed rush-yardage overrides) — not a new issue.
+
+### Previously-unmapped statIds — now resolved (2026-08-16)
+
+`198`, `209`, and `214` (previously left unmapped, commissioner didn't recognize them either) were identified by cross-referencing `cwendt94/espn-api`'s `SETTINGS_SCORING_FORMAT_MAP`, which documents labels for statIds up to 234 (broader than the `PLAYER_STATS_MAP` subset checked originally):
+
+- `198` = "FG Made (50-59 yards)" — a real distance band between `fg_40_49` (77) and `fg_60_plus` (201) that this league's original mapping had a gap for.
+- `209` = "1pt Safety" (a rare NFL rule: returning a blocked-kick/failed-2pt-attempt for a safety).
+- `214` = "FG Made Yards" — a per-yard bonus on made field goals (2023 only, 0.01 pts/yard).
+
+All other previously-unmapped statIds in this league's real scoring config (`15`-`18`, `35`-`38`, `45`, `46`, `56`-`58`, `64`, `83`, `88`, `109`, `114`, `115`) were also identified via the same reference and are now mapped in `src/lib/providers/espn/mappings.ts` — see that file's header comment for the full list and provenance.
+
 ## Known gaps / unverified
 
-- Weekly roster `weekPoints` (`appliedStatTotal`) was pulled as ESPN's own applied total, **not recomputed** via our `computePoints()` engine — do not treat it as validated against our scoring engine yet. That validation is Phase 1.2 (golden-file regression tests).
-- **Transactions could not be pulled.** `view=mTransactions2` (the documented view for waiver/trade/roster transactions) consistently returns a response with no `transactions` key at all for this league — for 2023, 2024, 2025, *and* the live 2026 season, with or without an `X-Fantasy-Filter` header. Confirmed the request mechanism itself works (`view=mTeam` on the same league/year returns real data). This isn't a code bug being papered over — it's an unresolved ESPN API behavior for this specific league, left as a gap rather than guessed at. `transactions-by-season.json` exists but is `[]` for every season. Revisit if a future ESPN API investigation turns up why (possibly requires `scoringPeriodId` ranges, a different auth scope, or the endpoint is deprecated for private leagues).
+- **2023 rush-yardage/TD scoring overrides are NOT fully modeled.** statIds `24` (rush_yd), `25` (rush_td), `26` (rush_2pt), `35`-`38` (rush TD/yardage-game bonuses) carry `pointsOverrides` keyed by small integers (`"1"`, `"2"`, `"3"`, `"4"`, `"15"`) that do not match ESPN's `defaultPositionId` or `lineupSlotId` vocabularies used elsewhere in this codebase, and could not be confirmed from public references. Current ingestion falls back to the base `points` value (0 for all seven in 2023), which **undercounts every running back's 2023 score** — confirmed via `validate-scoring.mjs` (869 mismatches, 100% of them RBs, e.g. Christian McCaffrey week 1 2023: ESPN shows 38.25, engine computes 4.95). This needs commissioner input: which position/roster-slot does each override key (1, 2, 3, 4, 15) represent? Once known, `resolveStatPoints()` in `scripts/backfill-supabase.mjs` and the header comment in `src/lib/providers/espn/mappings.ts` can be updated to apply per-position scoring for 2023.
+- **Transactions could not be pulled — re-confirmed 2026-08-16.** Tried `view=mTransactions2` with the exact `x-fantasy-filter` header the reference `cwendt94/espn-api` implementation uses (still returns no `transactions` key, for all of 2023-2026), and the `communication/?view=kona_league_communication` "recent activity" endpoint (returns HTTP 404 for 2023-2025 — ESPN does not retain that feed for past seasons — and HTTP 200 with zero topics for the live 2026 season). This is conclusively an ESPN data-retention limitation for this league, not a header/parameter issue. `transactions-by-season.json` remains `[]` for every season; there is no further avenue to pursue with ESPN's public API.
+- **Roster slot counts are pulled from the authoritative `mSettings` response** (`settings.rosterSettings.lineupSlotCounts` in `data/espn-raw/{year}/settings-teams.json`), not inferred from roster snapshots — confirmed identical across all 3 seasons (QB:1, RB:2, WR:2, TE:1, FLEX:1, K:1, DST:1, BE:8, IR:1).

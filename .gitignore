@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# supabase
+supabase/.temp
+
 # testing
 /playwright-report/
 /test-results/
