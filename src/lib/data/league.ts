@@ -54,23 +54,6 @@ export interface SeasonFormat {
   keeperCount: number | null;
 }
 
-export interface ScoringItem {
-  statKey: string;
-  points: number;
-  positionFilter: string[] | null;
-}
-
-export interface SeasonScoring {
-  year: number;
-  items: ScoringItem[];
-}
-
-export interface ScoringDiffEntry {
-  statKey: string;
-  before: ScoringItem | null;
-  after: ScoringItem | null;
-}
-
 export interface ManagerTopScorer {
   playerId: string;
   name: string;
@@ -130,16 +113,6 @@ export async function getSeasons(): Promise<number[]> {
     .from("seasons")
     .select("year")
     .order("year", { ascending: false });
-  if (error) throw error;
-  return (data ?? []).map((s) => s.year);
-}
-
-export async function getAllScoringSeasons(): Promise<number[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("seasons")
-    .select("year")
-    .order("year", { ascending: true });
   if (error) throw error;
   return (data ?? []).map((s) => s.year);
 }
@@ -388,46 +361,6 @@ export async function getFormat(year: number): Promise<SeasonFormat | null> {
     draftType: season.draft_type,
     keeperCount: season.keeper_count,
   };
-}
-
-export async function getScoring(year: number): Promise<SeasonScoring | null> {
-  const seasonId = await getSeasonId(year);
-  if (!seasonId) return null;
-
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("scoring_rules")
-    .select("stat_key, points_per_unit, position_filter")
-    .eq("season_id", seasonId)
-    .order("sort_order", { ascending: true });
-  if (error) throw error;
-
-  return {
-    year,
-    items: (data ?? []).map((r) => ({
-      statKey: r.stat_key,
-      points: r.points_per_unit,
-      positionFilter: r.position_filter,
-    })),
-  };
-}
-
-export async function getScoringDiff(yearBefore: number, yearAfter: number): Promise<ScoringDiffEntry[]> {
-  const [before, after] = await Promise.all([getScoring(yearBefore), getScoring(yearAfter)]);
-  const beforeByKey = new Map((before?.items ?? []).map((i) => [i.statKey, i]));
-  const afterByKey = new Map((after?.items ?? []).map((i) => [i.statKey, i]));
-  const allKeys = new Set([...beforeByKey.keys(), ...afterByKey.keys()]);
-
-  const diffs: ScoringDiffEntry[] = [];
-  for (const key of allKeys) {
-    const b = beforeByKey.get(key) ?? null;
-    const a = afterByKey.get(key) ?? null;
-    const samePoints = b?.points === a?.points;
-    const samePositions = JSON.stringify(b?.positionFilter ?? null) === JSON.stringify(a?.positionFilter ?? null);
-    if (samePoints && samePositions) continue;
-    diffs.push({ statKey: key, before: b, after: a });
-  }
-  return diffs.sort((x, y) => x.statKey.localeCompare(y.statKey));
 }
 
 /**

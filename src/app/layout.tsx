@@ -46,7 +46,6 @@ const NAV_LINKS = [
   { href: "/history", label: "History" },
   { href: "/managers", label: "Managers" },
   { href: "/records", label: "Records" },
-  { href: "/scoring", label: "Scoring" },
 ];
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
