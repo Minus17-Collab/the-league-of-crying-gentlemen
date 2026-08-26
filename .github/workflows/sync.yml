@@ -3,29 +3,49 @@ name: ESPN sync
 # Weekly credential-check + sync job (see AGENTS.md and ROADMAP.md Phase
 # 2.3). Runs here instead of a Vercel Cron Route Handler because the
 # site is a static export with no server runtime — see scripts/sync-espn.mjs.
+#
+# Target: Tuesdays at 10:00 PM US Eastern (per AGENTS.md's US Eastern /
+# NFL scheduling convention). GitHub Actions cron is UTC-only and
+# doesn't observe DST, so it's scheduled twice (EDT and EST UTC
+# offsets) and the "Skip if not 10pm Eastern" step below no-ops
+# whichever run doesn't actually land at 10pm ET.
 
 on:
   schedule:
-    # Tuesdays at 10:00 UTC.
-    - cron: "0 10 * * 2"
+    - cron: "0 2 * * 3"  # 10pm EDT Tue (UTC-4) -> 02:00 UTC Wed
+    - cron: "0 3 * * 3"  # 10pm EST Tue (UTC-5) -> 03:00 UTC Wed
   workflow_dispatch: {}
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - name: Skip if not 10pm Eastern
+        if: github.event_name == 'schedule'
+        run: |
+          hour="$(TZ=America/New_York date +%H)"
+          if [ "$hour" != "22" ]; then
+            echo "Current Eastern hour is $hour, not 22 — skipping (this is the other DST offset's run)."
+            echo "SKIP=true" >> "$GITHUB_ENV"
+          fi
+
       - uses: actions/checkout@v4
+        if: env.SKIP != 'true'
 
       - uses: pnpm/action-setup@v4
+        if: env.SKIP != 'true'
 
       - uses: actions/setup-node@v4
+        if: env.SKIP != 'true'
         with:
           node-version: 22
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+        if: env.SKIP != 'true'
 
       - run: node scripts/sync-espn.mjs
+        if: env.SKIP != 'true'
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
