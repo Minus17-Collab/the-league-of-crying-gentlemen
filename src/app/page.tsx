@@ -31,6 +31,13 @@ export default async function Home() {
   const activeManagers = managers.filter(
     (m) => m.inferredRetiredAfterSeason === null
   );
+  const reigningChampion = champions[0];
+  const reigningChampionManager = reigningChampion
+    ? activeManagers.find((m) => m.franchiseId === reigningChampion.franchiseId)
+    : undefined;
+  const otherManagers = reigningChampionManager
+    ? activeManagers.filter((m) => m.franchiseId !== reigningChampionManager.franchiseId)
+    : activeManagers;
 
   return (
     <div className="flex flex-col gap-12">
@@ -54,6 +61,27 @@ export default async function Home() {
         </p>
       </section>
 
+      {reigningChampionManager && (
+        <section className="flex flex-col items-center gap-4 rounded-lg border-2 border-gold-300 bg-gradient-to-b from-gold-500/20 to-transparent p-6">
+          <span className="rounded-full bg-gold-500 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-charcoal-900 shadow">
+            Reigning Champion
+          </span>
+          <Link
+            href={`/managers/${reigningChampionManager.franchiseId}`}
+            className="group flex flex-col items-center gap-3"
+          >
+            <ManagerPhoto
+              src={`/manager-photos/${slugify(reigningChampionManager.name)}.jpg`}
+              alt={reigningChampionManager.name}
+              initials={initials(reigningChampionManager.name)}
+            />
+            <span className="rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-4 py-1.5 text-center text-base font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
+              {reigningChampionManager.name}
+            </span>
+          </Link>
+        </section>
+      )}
+
       <section className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="font-subheading text-lg text-gold-400">Managers</h2>
@@ -65,7 +93,7 @@ export default async function Home() {
           </Link>
         </div>
         <div className="flex flex-wrap justify-center gap-6">
-          {activeManagers.map((manager) => (
+          {otherManagers.map((manager) => (
             <Link
               key={manager.franchiseId}
               href={`/managers/${manager.franchiseId}`}
