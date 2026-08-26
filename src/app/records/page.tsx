@@ -45,9 +45,19 @@ function contextLabel(context: Record<string, unknown>): string {
     );
   }
   if (typeof context.actualWins === "number" && typeof context.wouldBeWins === "number") {
-    parts.push(`${context.actualWins} actual wins vs ${fmt(context.wouldBeWins as number, 2)} all-play wins`);
+    parts.push(
+      `won ${context.actualWins} real games, scores deserved about ${fmt(context.wouldBeWins as number, 1)}`,
+    );
   }
   return parts.join(" · ");
+}
+
+function valueLabel(entry: AllTimeRecordEntry): string {
+  if (entry.definition.key.includes("luck")) {
+    const signed = entry.value > 0 ? `+${fmt(entry.value)}` : fmt(entry.value);
+    return `${signed} wins`;
+  }
+  return fmt(entry.value);
 }
 
 function RecordCard({ entry }: { entry: AllTimeRecordEntry }) {
@@ -55,7 +65,7 @@ function RecordCard({ entry }: { entry: AllTimeRecordEntry }) {
     <div className="flex flex-col gap-3 rounded-lg border border-gold-500/30 bg-charcoal-700 p-5">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-subheading text-base text-gold-400">{entry.definition.title}</h3>
-        <span className="text-xl font-semibold text-gold-300">{fmt(entry.value)}</span>
+        <span className="text-xl font-semibold text-gold-300">{valueLabel(entry)}</span>
       </div>
       {entry.definition.description && (
         <p className="text-xs text-ivory/60">{entry.definition.description}</p>
@@ -150,12 +160,32 @@ export default async function RecordsPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Luck (All-Play Method)</h2>
-        <p className="max-w-2xl text-xs text-ivory/60">
-          Regular season only. Each week, every manager&apos;s score is ranked against the full
-          field to compute a normalized &quot;would-be win&quot; share; summed across the season
-          and compared to actual wins. Positive gap = lucky, negative = unlucky.
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Luck</h2>
+        <p className="max-w-2xl text-sm text-ivory">
+          Every week, we check how a manager&apos;s score would have done against the{" "}
+          <em>whole league</em> that week, not just their actual opponent — that gives an
+          &quot;expected&quot; win total for the season, based purely on scoring. Compare that to
+          their real win total:
         </p>
+        <ul className="max-w-2xl list-disc pl-5 text-sm text-ivory">
+          <li>
+            <span className="font-medium text-gold-400">Luckiest</span> = won more real games than
+            their scores really deserved.
+          </li>
+          <li>
+            <span className="font-medium text-gold-400">Unluckiest</span> = scored well enough to
+            win a lot more games than they actually did.
+          </li>
+        </ul>
+        <p className="max-w-2xl text-sm text-ivory">
+          Each week, every manager gets partial credit for how many of the other teams in the
+          league they outscored, and adding that up across the season produces a
+          &quot;would-be&quot; win total based purely on scoring strength, regardless of who they
+          actually played. Comparing that would-be total to a manager&apos;s real win total reveals
+          the luck: winning more real games than your scores earned makes you the luckiest, while
+          your scores deserving more wins than you actually got makes you the unluckiest.
+        </p>
+        <p className="max-w-2xl text-xs text-ivory/60">Regular season only.</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {luck.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
