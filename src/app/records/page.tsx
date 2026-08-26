@@ -15,18 +15,23 @@ function HoldersList({ entry }: { entry: AllTimeRecordEntry }) {
     return <p className="text-sm text-ivory/60">Not yet computed.</p>;
   }
   return (
-    <div className="flex flex-col gap-1">
-      {entry.holders.map((holder, i) => (
-        <div key={`${holder.franchiseId}-${i}`} className="flex items-baseline justify-between gap-3 text-sm">
+    <div className="flex flex-col gap-2">
+      {entry.holders.map((holder, i) => {
+        const context = contextLabel(holder.context);
+        return (
           <Link
+            key={`${holder.franchiseId}-${i}`}
             href={`/managers/${holder.franchiseId}`}
-            className="font-medium text-ivory underline underline-offset-2 hover:text-amber"
+            className="flex items-center justify-between gap-3 rounded-md border border-gold-500/40 bg-gold-500/10 px-3 py-2 transition-colors hover:border-amber hover:bg-gold-500/20"
           >
-            {holder.managerName}
+            <span className="flex items-center gap-2">
+              <span aria-hidden="true">🏆</span>
+              <span className="text-base font-semibold text-amber">{holder.managerName}</span>
+            </span>
+            {context && <span className="text-right text-xs text-ivory/70">{context}</span>}
           </Link>
-          <span className="text-right text-ivory/70">{contextLabel(holder.context)}</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

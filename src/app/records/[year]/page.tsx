@@ -81,17 +81,22 @@ export default async function SeasonRecordsPage({
               {entry.holders.length === 0 ? (
                 <p className="text-sm text-ivory/60">Not yet computed.</p>
               ) : (
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-2">
                   {entry.holders.map((holder, i) => (
-                    <div key={`${holder.franchiseId}-${i}`} className="flex items-baseline justify-between gap-3 text-sm">
-                      <Link href={`/managers/${holder.franchiseId}`} className="font-medium underline underline-offset-2 hover:text-amber">
-                        {holder.managerName}
-                      </Link>
-                      <span className="text-ivory/70">
+                    <Link
+                      key={`${holder.franchiseId}-${i}`}
+                      href={`/managers/${holder.franchiseId}`}
+                      className="flex items-center justify-between gap-3 rounded-md border border-gold-500/40 bg-gold-500/10 px-3 py-2 transition-colors hover:border-amber hover:bg-gold-500/20"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span aria-hidden="true">🏆</span>
+                        <span className="text-base font-semibold text-amber">{holder.managerName}</span>
+                      </span>
+                      <span className="text-right text-xs text-ivory/70">
                         {typeof holder.context.week === "number" ? `Wk ${holder.context.week}` : ""}
                         {typeof holder.context.opponentManagerName === "string" ? ` vs ${holder.context.opponentManagerName}` : ""}
                       </span>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
