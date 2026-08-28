@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { getManagerDetail, getManagers } from "@/lib/data/league";
 
 export async function generateStaticParams() {
@@ -25,6 +26,15 @@ export default async function ManagerDetailPage({
 
   const { careerRecord } = manager;
 
+  const photoSlug = manager.name.split(" ")[0].toLowerCase();
+  const photoInitials = manager.name
+    .split(" ")
+    .map((n) => n[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between">
@@ -36,6 +46,11 @@ export default async function ManagerDetailPage({
       {/* Banner */}
       <div className="flex flex-col gap-2 rounded-lg border-2 border-gold-500 bg-charcoal-700 p-6">
         <div className="flex items-center gap-3">
+          <ManagerPhoto
+            src={`/manager-photos/${photoSlug}.jpg`}
+            alt={manager.name}
+            initials={photoInitials}
+          />
           <h1 className="font-heading text-2xl tracking-wide capitalize text-gold-300">{manager.name}</h1>
           {manager.status === "active" ? (
             <span className="rounded-full bg-gold-100 px-2.5 py-0.5 text-xs font-medium text-gold-800">

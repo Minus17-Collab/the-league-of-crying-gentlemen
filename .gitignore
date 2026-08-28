@@ -24,6 +24,13 @@
 .DS_Store
 *.pem
 
+# local scratch files (commit messages, one-off API payloads)
+.git-commit-msg*.txt
+.branch-protection.json
+
+# raw throwback manager photo source files (cropped outputs go in public/)
+Manager Photos/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
