@@ -3,12 +3,8 @@ import Link from "next/link";
 import { getSeasons, getStandings, getManagers, getChampions } from "@/lib/data/league";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 
-function slugify(name: string): string {
-  return name
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+function photoSlug(name: string): string {
+  return name.trim().split(/\s+/)[0].toLowerCase();
 }
 
 function initials(name: string): string {
@@ -71,7 +67,7 @@ export default async function Home() {
             className="group flex flex-col items-center gap-3"
           >
             <ManagerPhoto
-              src={`/manager-photos/${slugify(reigningChampionManager.name)}.jpg`}
+              src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
               alt={reigningChampionManager.name}
               initials={initials(reigningChampionManager.name)}
             />
@@ -100,7 +96,7 @@ export default async function Home() {
               className="group flex w-full flex-col items-center gap-3 rounded-lg border-2 border-gold-500 bg-burgundy-800 p-5 transition hover:border-gold-300 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
               <ManagerPhoto
-                src={`/manager-photos/${slugify(manager.name)}.jpg`}
+                src={`/manager-photos/${photoSlug(manager.name)}.jpg`}
                 alt={manager.name}
                 initials={initials(manager.name)}
               />
