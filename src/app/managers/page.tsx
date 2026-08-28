@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { getManagers } from "@/lib/data/league";
 
 export default async function ManagersPage() {
@@ -21,30 +22,45 @@ export default async function ManagersPage() {
           </tr>
         </thead>
         <tbody>
-          {managers.map((manager) => (
-            <tr key={manager.franchiseId} className="border-b border-charcoal-600 last:border-0">
-              <td className="px-4 py-3 font-medium capitalize">
-                <Link
-                  href={`/managers/${manager.franchiseId}`}
-                  className="text-ivory underline underline-offset-2 hover:text-amber"
-                >
-                  {manager.name}
-                </Link>
-              </td>
-              <td className="px-4 py-3 text-ivory/75">
-                {manager.seasonsActive.join(", ")}
-              </td>
-              <td className="px-4 py-3">
-                {manager.inferredRetiredAfterSeason ? (
-                  <span className="text-ivory/60">
-                    Left after {manager.inferredRetiredAfterSeason}
-                  </span>
-                ) : (
-                  <span className="font-medium text-gold-400">Active</span>
-                )}
-              </td>
-            </tr>
-          ))}
+          {managers.map((manager) => {
+            const photoSlug = manager.name.split(" ")[0].toLowerCase();
+            const initials = manager.name
+              .split(" ")
+              .map((n) => n[0])
+              .filter(Boolean)
+              .slice(0, 2)
+              .join("")
+              .toUpperCase();
+            return (
+              <tr key={manager.franchiseId} className="border-b border-charcoal-600 last:border-0">
+                <td className="px-4 py-3 font-medium capitalize">
+                  <Link
+                    href={`/managers/${manager.franchiseId}`}
+                    className="flex items-center gap-3 text-ivory underline underline-offset-2 hover:text-amber"
+                  >
+                    <ManagerPhoto
+                      src={`/manager-photos/${photoSlug}.jpg`}
+                      alt={manager.name}
+                      initials={initials}
+                    />
+                    <span>{manager.name}</span>
+                  </Link>
+                </td>
+                <td className="px-4 py-3 text-ivory/75">
+                  {manager.seasonsActive.join(", ")}
+                </td>
+                <td className="px-4 py-3">
+                  {manager.inferredRetiredAfterSeason ? (
+                    <span className="text-ivory/60">
+                      Left after {manager.inferredRetiredAfterSeason}
+                    </span>
+                  ) : (
+                    <span className="font-medium text-gold-400">Active</span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

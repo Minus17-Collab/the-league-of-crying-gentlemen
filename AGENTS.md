@@ -34,6 +34,23 @@ pnpm db:types       # regenerate TS types from schema — run after every migrat
 
 Before finishing any task: `pnpm typecheck && pnpm lint && pnpm test && pnpm build` must all pass.
 
+`pnpm typecheck` is `next typegen && tsc --noEmit`. The typegen step is
+required, not cosmetic — Next generates `LayoutProps`/`PageProps` into the
+gitignored `.next/types`, so a clean checkout has no such types without it.
+
+## CI / deploy
+
+Three workflows: `ci.yml` (PR status check), `deploy.yml` (push to `main` →
+Pages), `sync.yml` (scheduled ESPN sync). Node 22 is a hard floor — pnpm 11
+requires >= 22.13.
+
+Non-secret config comes from the Actions `vars` context
+(`NEXT_PUBLIC_SUPABASE_URL`, `ESPN_LEAGUE_ID`); everything else from `secrets`.
+A missing key in either context expands to an empty string rather than failing,
+so a wrong context yields a green build serving a broken site.
+
+Full details and the pitfalls behind them: `.devin/rules/ci-and-deploy.md`.
+
 ## Architecture invariants
 
 ### 1. Scoring is data, never code

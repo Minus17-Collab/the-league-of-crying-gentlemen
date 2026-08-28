@@ -23,15 +23,23 @@ plan and current phase status.
 3. **GitHub Pages + Actions**
    - Repo Settings → Pages: source = GitHub Actions, custom domain =
      `thecryinggents.org` (DNS + HTTPS cert are already provisioned).
-   - Add the `.env.example` variables as repo secrets (Settings →
-     Secrets and variables → Actions): `NEXT_PUBLIC_SUPABASE_URL`,
-     `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
-     `ESPN_SWID`, `ESPN_S2`. `ESPN_LEAGUE_ID` can be a repo variable
-     (not secret).
+   - Add the `.env.example` values under Settings → Secrets and
+     variables → Actions. The split matters — the workflows read each
+     name from one specific context, and a name in the wrong context
+     expands to an empty string instead of failing the run, so the build
+     goes green and ships a broken site:
+     - **Variables** tab: `NEXT_PUBLIC_SUPABASE_URL`, `ESPN_LEAGUE_ID`
+     - **Secrets** tab: `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+       `SUPABASE_SERVICE_ROLE_KEY`, `ESPN_SWID`, `ESPN_S2`
    - `.github/workflows/deploy.yml` builds the static export and
      publishes it to Pages on every push to `main`.
-   - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` on the
-     same weekly schedule the old `vercel.json` cron used.
+   - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` weekly,
+     Tuesdays at 10:00 PM US Eastern. Actions cron is UTC-only and DST-blind,
+     so it registers both offsets and the job no-ops on whichever run isn't
+     actually 10pm Eastern.
+   - `.github/workflows/ci.yml` runs typecheck/lint/test/build on pull
+     requests to `main` — set it as the required status check in branch
+     protection.
 
 4. **ESPN credentials** (private league)
    - Log into fantasy.espn.com in a browser, open devtools → Application →
@@ -43,8 +51,15 @@ plan and current phase status.
 ## Refreshing ESPN cookies
 
 ESPN's `SWID`/`espn_s2` cookies expire roughly annually with no warning.
-If `pnpm exec tsx -e "import('./src/lib/providers/espn/check-credentials').then(m=>m.checkEspnCredentials().then(console.log))"`
-(or the weekly cron job) reports a credential failure:
+To check them locally, run the sync job — it performs the credential check
+first and, while Phase 2.3's data sync is still unimplemented, does nothing
+else:
+
+```bash
+node --env-file=.env.local scripts/sync-espn.mjs
+```
+
+If that (or the weekly scheduled run) reports a credential failure:
 
 1. Re-extract `SWID` and `espn_s2` from a fresh, logged-in browser session.
 2. Update `ESPN_SWID` / `ESPN_S2` in the repo's Actions secrets.
@@ -90,9 +105,9 @@ once a season's `is_locked` flag is set to `true`.
 
 ## When the cron reports stale data
 
-The `/api/cron/sync` job checks ESPN credentials first and writes a
-`failed` row to `sync_runs` without touching gameplay data if the check
-fails. To recover:
+`scripts/sync-espn.mjs` (run by the "ESPN sync" workflow) checks ESPN
+credentials first and writes a `failed` row to `sync_runs` without touching
+gameplay data if the check fails. To recover:
 
 1. Check the latest `sync_runs` row for the failure message.
 2. If it's a credential failure, follow "Refreshing ESPN cookies" above.
