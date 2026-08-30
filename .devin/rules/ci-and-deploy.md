@@ -17,7 +17,7 @@ before editing anything under `.github/workflows/`.
 |------|---------|---------|
 | `ci.yml` | `pull_request` → `main` | Required status check. Mirrors deploy's build job. |
 | `deploy.yml` | `push` → `main`, manual | Build static export, publish to Pages. |
-| `sync.yml` | 2× weekly cron, manual | `node scripts/sync-espn.mjs`. |
+| `sync.yml` | 3× weekly cron, manual | `node scripts/sync-espn.mjs`. |
 
 ## Requirements
 
@@ -52,26 +52,40 @@ From `5dd17a0`. GitHub Actions cron has no timezone support, so a fixed UTC
 time drifts an hour twice a year against the US Eastern convention this project
 uses for NFL scheduling.
 
-The pattern: register both UTC offsets, then no-op the wrong one.
+The pattern: register both UTC offsets per target time, then no-op the runs
+that land on the wrong offset. `sync.yml` currently targets three ET
+slots/week (Fri 6am, Mon 1am, Tue 1am), so it's six cron lines guarded by one
+day+hour check:
 
 ```yaml
 on:
   schedule:
-    - cron: "0 2 * * 3"  # 10pm EDT Tue (UTC-4)
-    - cron: "0 3 * * 3"  # 10pm EST Tue (UTC-5)
+    - cron: "0 10 * * 5"  # 6am EDT Fri (UTC-4)
+    - cron: "0 11 * * 5"  # 6am EST Fri (UTC-5)
+    - cron: "0 5 * * 1"   # 1am EDT Mon (UTC-4)
+    - cron: "0 6 * * 1"   # 1am EST Mon (UTC-5)
+    - cron: "0 5 * * 2"   # 1am EDT Tue (UTC-4)
+    - cron: "0 6 * * 2"   # 1am EST Tue (UTC-5)
 ```
 
 ```yaml
-- name: Skip if not 10pm Eastern
+- name: Skip if not a scheduled Eastern time
   if: github.event_name == 'schedule'
   run: |
+    day="$(TZ=America/New_York date +%u)"
     hour="$(TZ=America/New_York date +%H)"
-    if [ "$hour" != "22" ]; then echo "SKIP=true" >> "$GITHUB_ENV"; fi
+    run=false
+    [ "$day" = "5" ] && [ "$hour" = "06" ] && run=true
+    [ "$day" = "1" ] && [ "$hour" = "01" ] && run=true
+    [ "$day" = "2" ] && [ "$hour" = "01" ] && run=true
+    if [ "$run" != "true" ]; then echo "SKIP=true" >> "$GITHUB_ENV"; fi
 ```
 
 Every subsequent step needs `if: env.SKIP != 'true'`. Adding a step and
-forgetting that guard means it runs twice a week instead of once. The
-`workflow_dispatch` path deliberately skips the hour check.
+forgetting that guard means it runs on every cron firing instead of just the
+intended slots. The `workflow_dispatch` path deliberately skips the check.
+Adding or moving a target time means adding both UTC-offset cron lines *and*
+a `day`/`hour` branch in the guard — the two must stay in sync.
 
 ### 5. `ci.yml` and `deploy.yml` duplicate the build job — keep them in sync
 `ci.yml` exists so branch protection has a real status check on PRs. It is a

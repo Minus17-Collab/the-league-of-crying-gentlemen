@@ -1,31 +1,43 @@
 name: ESPN sync
 
-# Weekly credential-check + sync job (see AGENTS.md and ROADMAP.md Phase
-# 2.3). Runs here instead of a Vercel Cron Route Handler because the
-# site is a static export with no server runtime — see scripts/sync-espn.mjs.
+# Credential-check + sync job for data, scoring, and matchups (see
+# AGENTS.md and ROADMAP.md Phase 2.3). Runs here instead of a Vercel Cron
+# Route Handler because the site is a static export with no server
+# runtime — see scripts/sync-espn.mjs.
 #
-# Target: Tuesdays at 10:00 PM US Eastern (per AGENTS.md's US Eastern /
-# NFL scheduling convention). GitHub Actions cron is UTC-only and
-# doesn't observe DST, so it's scheduled twice (EDT and EST UTC
-# offsets) and the "Skip if not 10pm Eastern" step below no-ops
-# whichever run doesn't actually land at 10pm ET.
+# Target: Fridays 6:00 AM, Mondays 1:00 AM, and Tuesdays 1:00 AM, all US
+# Eastern (per AGENTS.md's US Eastern / NFL scheduling convention) — one
+# pull after Thursday/Monday/Sunday-night games finish scoring and one
+# ahead of the weekend slate. GitHub Actions cron is UTC-only and doesn't
+# observe DST, so each target time is scheduled twice (EDT and EST UTC
+# offsets); the "Skip if not a scheduled Eastern time" step below no-ops
+# whichever run doesn't actually land on one of the three ET slots.
 
 on:
   schedule:
-    - cron: "0 2 * * 3"  # 10pm EDT Tue (UTC-4) -> 02:00 UTC Wed
-    - cron: "0 3 * * 3"  # 10pm EST Tue (UTC-5) -> 03:00 UTC Wed
+    - cron: "0 10 * * 5"  # 6am EDT Fri (UTC-4) -> 10:00 UTC Fri
+    - cron: "0 11 * * 5"  # 6am EST Fri (UTC-5) -> 11:00 UTC Fri
+    - cron: "0 5 * * 1"   # 1am EDT Mon (UTC-4) -> 05:00 UTC Mon
+    - cron: "0 6 * * 1"   # 1am EST Mon (UTC-5) -> 06:00 UTC Mon
+    - cron: "0 5 * * 2"   # 1am EDT Tue (UTC-4) -> 05:00 UTC Tue
+    - cron: "0 6 * * 2"   # 1am EST Tue (UTC-5) -> 06:00 UTC Tue
   workflow_dispatch: {}
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Skip if not 10pm Eastern
+      - name: Skip if not a scheduled Eastern time
         if: github.event_name == 'schedule'
         run: |
+          day="$(TZ=America/New_York date +%u)"   # 1=Mon .. 5=Fri .. 7=Sun
           hour="$(TZ=America/New_York date +%H)"
-          if [ "$hour" != "22" ]; then
-            echo "Current Eastern hour is $hour, not 22 — skipping (this is the other DST offset's run)."
+          run=false
+          [ "$day" = "5" ] && [ "$hour" = "06" ] && run=true  # Fri 6am ET
+          [ "$day" = "1" ] && [ "$hour" = "01" ] && run=true  # Mon 1am ET
+          [ "$day" = "2" ] && [ "$hour" = "01" ] && run=true  # Tue 1am ET
+          if [ "$run" != "true" ]; then
+            echo "Current Eastern time is day $day hour $hour, not a scheduled slot — skipping (this is the other DST offset's run)."
             echo "SKIP=true" >> "$GITHUB_ENV"
           fi
 
