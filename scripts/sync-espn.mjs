@@ -1,21 +1,12 @@
-// Weekly sync job (see AGENTS.md "Call a stat provider from a React
-// component or page. Sync jobs only." and ROADMAP.md Phase 2.3).
+// Weekly ESPN sync job.
 //
-// Runs as a scheduled GitHub Actions job (.github/workflows/sync.yml),
-// not a Next.js Route Handler — the site is statically exported to
-// GitHub Pages, which has no server runtime to host a route handler.
+// This is the first real ingestion pass. It currently ingests:
+//   - teams (per season, resolved to franchises by ESPN owner GUID)
+//   - matchups (current week + the two prior weeks, to absorb stat corrections)
 //
-// Sequence:
-//  1. Check ESPN credentials. On failure, log a failed sync_runs row
-//     and stop — never silently serve stale data.
-//  2. Fetch current-season matchups/rosters/transactions.
-//  3. Re-fetch the two most recent weeks (stat corrections land for
-//     several days after games).
-//  4. Write normalized rows (idempotent) and a sync_runs row.
-//
-// This is a skeleton: player/team ID resolution (Phase 2.2) and the
-// actual upsert logic are not yet implemented. It authenticates and
-// logs to sync_runs but does not yet write gameplay data.
+// It deliberately does not yet write rosters, stat lines, or transactions —
+// those are the next slices. It is idempotent by deleting matchups for the
+// target weeks and re-inserting (season must not be locked).
 //
 // Run with:
 //   node --env-file=.env.local scripts/sync-espn.mjs
@@ -25,63 +16,254 @@ import { createClient } from "@supabase/supabase-js";
 const LEAGUE_ID = process.env.ESPN_LEAGUE_ID ?? "771894515";
 const SWID = process.env.ESPN_SWID;
 const S2 = process.env.ESPN_S2;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY,
-  { auth: { autoRefreshToken: false, persistSession: false } },
-);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: { autoRefreshToken: false, persistSession: false },
+});
 
-/** One lightweight authenticated call. Resolves false on auth failure (e.g. HTTP 401). */
-async function checkEspnCredentials() {
-  if (!SWID || !S2) {
-    console.error("ESPN_SWID / ESPN_S2 must be set in the environment.");
-    return false;
+const BASE_URL = "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl";
+
+function headers() {
+  const h = {};
+  if (SWID && S2) {
+    h.Cookie = `SWID=${SWID}; espn_s2=${S2}`;
   }
-  const year = new Date().getFullYear();
-  const url = `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${year}/segments/0/leagues/${LEAGUE_ID}?view=mSettings`;
-  const res = await fetch(url, {
-    headers: { Cookie: `SWID=${SWID}; espn_s2=${S2}` },
+  return h;
+}
+
+async function espn(year, views, preferHistorical = false) {
+  const viewParams = views.map((v) => `view=${v}`).join("&");
+  const current = `${BASE_URL}/seasons/${year}/segments/0/leagues/${LEAGUE_ID}?${viewParams}`;
+  const historical = `${BASE_URL}/leagueHistory/${LEAGUE_ID}?seasonId=${year}&${viewParams}`;
+  const first = preferHistorical ? historical : current;
+  const second = preferHistorical ? current : historical;
+
+  let res = await fetch(first, { headers: headers() });
+  if (!res.ok) {
+    res = await fetch(second, { headers: headers() });
+  }
+  if (!res.ok) {
+    throw new Error(`ESPN fetch failed: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+
+function unwrapHistory(raw) {
+  if (Array.isArray(raw)) return raw[0];
+  return raw;
+}
+
+function getTeams(league) {
+  return (league.teams ?? []).map((t) => ({
+    externalTeamId: String(t.id),
+    name:
+      t.name ??
+      [t.location, t.nickname].filter(Boolean).join(" ").trim() ??
+      `Team ${t.id}`,
+    abbreviation: t.abbrev ?? null,
+    logoUrl: t.logo ?? null,
+    owners: Array.isArray(t.owners) ? t.owners : [],
+    draftDayProjectedRank: t.draftDayProjectedRank ?? null,
+  }));
+}
+
+function mapPlayoffTier(tierType) {
+  switch (tierType) {
+    case "WINNERS_BRACKET":
+    case "WINNERS_BRACKET_CHAMPIONSHIP":
+      return "winners";
+    case "WINNERS_CONSOLATION_LADDER":
+      return "winners_consolation";
+    case "LOSERS_CONSOLATION_LADDER":
+      return "losers_consolation";
+    default:
+      return null;
+  }
+}
+
+function getMatchups(league) {
+  const out = (league.schedule ?? [])
+    .filter((m) => m.home?.teamId !== undefined && m.away?.teamId !== undefined)
+    .map((m) => ({
+      week: m.matchupPeriodId,
+      homeExternalTeamId: String(m.home.teamId),
+      awayExternalTeamId: String(m.away.teamId),
+      homeScore: m.home.totalPoints ?? null,
+      awayScore: m.away.totalPoints ?? null,
+      playoffBracket: mapPlayoffTier(m.playoffTierType),
+      isPlayoff: mapPlayoffTier(m.playoffTierType) !== null,
+      isFinal: m.winner !== undefined && m.winner !== "UNDECIDED",
+    }));
+
+  const lastWinnersWeek = Math.max(
+    -Infinity,
+    ...out.filter((m) => m.playoffBracket === "winners").map((m) => m.week),
+  );
+  for (const m of out) {
+    if (m.playoffBracket === "winners" && m.week === lastWinnersWeek) {
+      m.isChampionship = true;
+    } else {
+      m.isChampionship = false;
+    }
+  }
+  return out;
+}
+
+function fmtIso() {
+  return new Date().toISOString();
+}
+
+async function logRun({ status, scope, seasonId, week, message }) {
+  const startedAt = fmtIso();
+  await supabase.from("sync_runs").insert({
+    provider: "espn",
+    scope,
+    season_id: seasonId,
+    week,
+    status,
+    message,
+    started_at: startedAt,
+    finished_at: fmtIso(),
   });
-  return res.ok;
 }
 
 async function main() {
-  const startedAt = new Date().toISOString();
+  const year = new Date().getFullYear();
 
-  const credentialsOk = await checkEspnCredentials();
-  if (!credentialsOk) {
-    await supabase.from("sync_runs").insert({
-      provider: "espn",
-      scope: "credential-check",
-      status: "failed",
-      message:
-        "ESPN credentials rejected (401). Cookies likely expired — see RUNBOOK.md.",
-      started_at: startedAt,
-      finished_at: new Date().toISOString(),
+  try {
+    const settings = unwrapHistory(await espn(year, ["mSettings"], false));
+    const currentWeek = settings.status?.currentMatchupPeriod ?? null;
+    if (!currentWeek) {
+      throw new Error("Could not determine current matchup period from ESPN settings.");
+    }
+
+    const { data: season, error: seasonErr } = await supabase
+      .from("seasons")
+      .select("id, year, is_locked")
+      .eq("year", year)
+      .maybeSingle();
+    if (seasonErr) throw seasonErr;
+    if (!season) {
+      throw new Error(`Season ${year} not found in the database. Create it before syncing.`);
+    }
+    if (season.is_locked) {
+      throw new Error(`Season ${year} is locked and will not be mutated.`);
+    }
+
+    const seasonId = season.id;
+
+    const league = unwrapHistory(await espn(year, ["mTeam", "mMatchup"], year < new Date().getFullYear()));
+    const normalizedTeams = getTeams(league);
+    const normalizedMatchups = getMatchups(league);
+
+    // Resolve franchises by ESPN owner GUID. A team with no matching franchise is a hard error.
+    const allOwnerGuids = [...new Set(normalizedTeams.flatMap((t) => t.owners))];
+    const { data: franchises, error: franchisesErr } = await supabase
+      .from("franchises")
+      .select("id, espn_owner_ids")
+      .overlaps("espn_owner_ids", allOwnerGuids);
+    if (franchisesErr) throw franchisesErr;
+
+    const franchiseByOwner = new Map();
+    for (const f of franchises ?? []) {
+      for (const guid of f.espn_owner_ids) {
+        franchiseByOwner.set(guid, f.id);
+      }
+    }
+
+    const franchiseByTeam = new Map();
+    for (const t of normalizedTeams) {
+      const matchingGuid = t.owners.find((guid) => franchiseByOwner.has(guid));
+      if (!matchingGuid) {
+        throw new Error(
+          `No franchise found for ESPN owner GUIDs ${JSON.stringify(t.owners)} (team ${t.externalTeamId} "${t.name}"). Add the franchise before syncing.`,
+        );
+      }
+      franchiseByTeam.set(t.externalTeamId, franchiseByOwner.get(matchingGuid));
+    }
+
+    // Upsert teams (one per franchise per season).
+    const { data: existingTeams, error: existingTeamsErr } = await supabase
+      .from("teams")
+      .select("id, franchise_id, espn_team_id")
+      .eq("season_id", seasonId);
+    if (existingTeamsErr) throw existingTeamsErr;
+
+    const teamIdByFranchise = new Map((existingTeams ?? []).map((t) => [t.franchise_id, t.id]));
+    const teamInserts = [];
+    for (const t of normalizedTeams) {
+      const franchiseId = franchiseByTeam.get(t.externalTeamId);
+      const existingId = teamIdByFranchise.get(franchiseId);
+      teamInserts.push({
+        ...(existingId ? { id: existingId } : {}),
+        season_id: seasonId,
+        franchise_id: franchiseId,
+        name: t.name,
+        abbreviation: t.abbreviation,
+        logo_url: t.logoUrl,
+        espn_team_id: t.externalTeamId,
+        draft_slot: t.draftDayProjectedRank,
+      });
+    }
+
+    const { data: upsertedTeams, error: teamsErr } = await supabase
+      .from("teams")
+      .upsert(teamInserts, { onConflict: "season_id, franchise_id" })
+      .select("id, franchise_id, espn_team_id");
+    if (teamsErr) throw teamsErr;
+
+    const teamIdByExternal = new Map((upsertedTeams ?? []).map((t) => [t.espn_team_id, t.id]));
+
+    // Re-sync current week plus two prior weeks to absorb stat corrections.
+    const weeks = [currentWeek, currentWeek - 1, currentWeek - 2].filter((w) => w >= 1);
+    const { error: deleteMatchupsErr } = await supabase
+      .from("matchups")
+      .delete()
+      .eq("season_id", seasonId)
+      .in("week", weeks);
+    if (deleteMatchupsErr) throw deleteMatchupsErr;
+
+    const matchupsForTargetWeeks = normalizedMatchups.filter((m) => weeks.includes(m.week));
+    const matchupInserts = matchupsForTargetWeeks.map((m) => ({
+      season_id: seasonId,
+      week: m.week,
+      home_team_id: teamIdByExternal.get(m.homeExternalTeamId),
+      away_team_id: teamIdByExternal.get(m.awayExternalTeamId),
+      home_score: m.homeScore,
+      away_score: m.awayScore,
+      is_playoff: m.isPlayoff,
+      is_championship: m.isChampionship,
+      is_final: m.isFinal,
+      playoff_bracket: m.playoffBracket,
+    }));
+
+    const { error: matchupsErr } = await supabase.from("matchups").insert(matchupInserts);
+    if (matchupsErr) throw matchupsErr;
+
+    await logRun({
+      status: "success",
+      scope: "matchups",
+      seasonId,
+      week: currentWeek,
+      message: `Ingested ${upsertedTeams?.length ?? 0} teams and ${matchupInserts.length} matchups for weeks ${weeks.join(", ")}.`,
     });
-    console.error("Sync failed: ESPN credential check failed.");
+
+    console.log(
+      `Sync ok: ${upsertedTeams?.length ?? 0} teams, ${matchupInserts.length} matchups for weeks ${weeks.join(", ")}.`,
+    );
+  } catch (err) {
+    await logRun({
+      status: "failed",
+      scope: "matchups",
+      seasonId: null,
+      week: null,
+      message: err.message,
+    });
+    console.error("Sync failed:", err);
     process.exit(1);
   }
-
-  // TODO (Phase 2.2 / 2.3): resolve current season + week, fetch
-  // matchups/rosters/transactions for it and the prior week, resolve
-  // external IDs to internal player_id/team_id, and upsert into
-  // matchups / lineup_entries / transactions / stat_lines. Record the
-  // outcome in sync_runs regardless of success or partial failure.
-
-  await supabase.from("sync_runs").insert({
-    provider: "espn",
-    scope: "credential-check",
-    status: "success",
-    message: "Credential check passed. Data sync not yet implemented.",
-    started_at: startedAt,
-    finished_at: new Date().toISOString(),
-  });
-  console.log("Sync ok: credential check passed.");
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+main();
