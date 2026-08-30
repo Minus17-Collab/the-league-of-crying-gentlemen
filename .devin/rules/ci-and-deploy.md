@@ -108,11 +108,13 @@ See AGENTS.md "Never do this".
 ### 8. GitHub's own notification settings can't be set from a workflow
 There is no API to toggle a user's "email me on Actions failure" preference
 (Settings → Notifications is web-UI-only) — don't try to script it. Instead,
-`sync.yml`'s last step posts to `secrets.DISCORD_WEBHOOK_URL` on `failure()`
-whenever that secret is set, and no-ops (not a failure) if it isn't. It fires
-regardless of which prior step failed — credential check, `pnpm install`, or
-`sync-espn.mjs` itself exiting non-zero — because it's gated on `failure()`,
-not `env.SKIP`.
+`sync.yml`'s last two steps post to `secrets.DISCORD_WEBHOOK_URL` — one on
+`success()`, one on `failure()` — whenever that secret is set, and no-op (not
+a failure) if it isn't. The failure step fires regardless of which prior step
+failed — credential check, `pnpm install`, or `sync-espn.mjs` itself exiting
+non-zero — because it's gated on `failure()`, not `env.SKIP`. The success step
+additionally checks `env.SKIP != 'true'` so the benign DST-offset run that did
+nothing doesn't post a "succeeded" message for a sync that never ran.
 
 ## Enforcement
 - Open a throwaway PR after any workflow edit; `ci.yml` only runs on

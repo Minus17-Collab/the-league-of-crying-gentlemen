@@ -40,7 +40,7 @@ plan and current phase status.
      actually at one of those three Eastern times.
    - Optional: set a **Secrets** tab `DISCORD_WEBHOOK_URL` (a Discord
      channel's Integrations → Webhooks URL) to get a message there whenever
-     a scheduled sync run fails — the credential check, a dependency
+     a sync run succeeds or fails — the credential check, a dependency
      install, or the sync script itself. This is independent of GitHub's
      own per-account notification settings, which can't be configured from
      a workflow. Without this secret set, failures are silent except in the
