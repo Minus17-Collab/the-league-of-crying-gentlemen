@@ -45,7 +45,7 @@ function warn(...args) {
   console.warn("[compute-records warn]", ...args);
 }
 
-const EXCLUDED_SEASON_YEARS = [2023];
+const EXCLUDED_SEASON_YEARS = [2023, 2026];
 
 // ---- mirrors src/lib/records/engine.ts — keep in sync ----
 
