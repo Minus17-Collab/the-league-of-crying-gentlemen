@@ -1,6 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { getManagers } from "@/lib/data/league";
+
+export const metadata: Metadata = {
+  title: "Managers",
+  description: "All-time manager roster and career records.",
+};
 
 export default async function ManagersPage() {
   const managers = await getManagers();

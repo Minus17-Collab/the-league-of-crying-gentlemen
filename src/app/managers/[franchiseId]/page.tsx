@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { getManagerDetail, getManagers } from "@/lib/data/league";
@@ -6,6 +7,20 @@ import { getManagerDetail, getManagers } from "@/lib/data/league";
 export async function generateStaticParams() {
   const managers = await getManagers();
   return managers.map((m) => ({ franchiseId: m.franchiseId }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ franchiseId: string }>;
+}): Promise<Metadata> {
+  const { franchiseId } = await params;
+  const manager = await getManagerDetail(franchiseId);
+  if (!manager) return {};
+  return {
+    title: manager.name,
+    description: `Career record, best draft picks, and top players for ${manager.name}.`,
+  };
 }
 
 function fmt(n: number | null, digits = 1): string {

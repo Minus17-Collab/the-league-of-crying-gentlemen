@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getSeasons,
@@ -11,6 +12,18 @@ import {
 export async function generateStaticParams() {
   const seasons = await getSeasons();
   return seasons.map((year) => ({ year: String(year) }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}): Promise<Metadata> {
+  const { year } = await params;
+  return {
+    title: `${year} Season`,
+    description: `Full ${year} standings, results, and playoff bracket.`,
+  };
 }
 
 // The winners bracket is a clean single-elimination tree (no consolation

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getIncludedSeasonYears,
@@ -9,6 +10,18 @@ import {
 export async function generateStaticParams() {
   const years = await getIncludedSeasonYears();
   return years.map((year) => ({ year: String(year) }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}): Promise<Metadata> {
+  const { year } = await params;
+  return {
+    title: `${year} Records`,
+    description: `Season records for ${year}.`,
+  };
 }
 
 function fmt(value: number, digits = 2): string {

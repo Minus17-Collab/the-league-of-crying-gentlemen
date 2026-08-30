@@ -8,6 +8,9 @@ import {
   Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
+import { getLastSuccessfulSyncAt } from "@/lib/data/league";
+
+const SITE_URL = "https://www.thecryinggents.org";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -37,8 +40,29 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "The League of Crying Gentlemen",
-  description: "League history and records for The League of Crying Gentlemen fantasy football league.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "The League of Crying Gentlemen",
+    template: "%s — LCG",
+  },
+  description: "League history, records, and champions since 2023.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
+  openGraph: {
+    siteName: "The League of Crying Gentlemen",
+    type: "website",
+    images: ["/og-default.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 const NAV_LINKS = [
@@ -48,7 +72,10 @@ const NAV_LINKS = [
   { href: "/records", label: "Records" },
 ];
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const lastSync = await getLastSuccessfulSyncAt();
+  const lastUpdated = (lastSync ?? new Date()).toISOString().slice(0, 10);
+
   return (
     <html
       lang="en"
@@ -77,7 +104,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <footer className="border-t border-gold-700 bg-bronze py-6 text-center text-xs text-gold-100">
-          Data sourced from ESPN Fantasy Football. Interim build — not yet backed by a database.
+          League records compiled from ESPN Fantasy Football. Last updated {lastUpdated}.
         </footer>
       </body>
     </html>

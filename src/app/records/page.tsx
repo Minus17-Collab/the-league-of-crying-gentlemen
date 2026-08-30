@@ -1,10 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   getAllTimeRecords,
   getFranchiseRecords,
   getIncludedSeasonYears,
   type AllTimeRecordEntry,
 } from "@/lib/data/records";
+
+export const metadata: Metadata = {
+  title: "League Records",
+  description: "All-time single-week, season, streak, and luck records.",
+};
 
 function fmt(value: number, digits = 2): string {
   return value.toFixed(digits);

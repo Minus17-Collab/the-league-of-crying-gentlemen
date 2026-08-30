@@ -107,6 +107,29 @@ async function getSeasonId(year: number): Promise<string | null> {
   return data?.id ?? null;
 }
 
+/**
+ * When ESPN data was last successfully synced (see
+ * supabase/migrations/20260101000012_sync_status_public_view.sql, which
+ * exposes only this one aggregate from the otherwise authenticated-only
+ * `sync_runs` table). Returns null if the view isn't reachable yet (e.g.
+ * the migration hasn't been applied to this environment) or no
+ * successful sync has ever run — callers should fall back to build time
+ * in that case rather than fail the page.
+ */
+export async function getLastSuccessfulSyncAt(): Promise<Date | null> {
+  try {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("public_sync_status")
+      .select("last_successful_sync_at")
+      .maybeSingle();
+    if (error || !data?.last_successful_sync_at) return null;
+    return new Date(data.last_successful_sync_at);
+  } catch {
+    return null;
+  }
+}
+
 export async function getSeasons(): Promise<number[]> {
   const supabase = createClient();
   const { data, error } = await supabase
