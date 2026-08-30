@@ -159,11 +159,9 @@ async function main() {
     const normalizedMatchups = getMatchups(league);
 
     // Resolve franchises by ESPN owner GUID. A team with no matching franchise is a hard error.
-    const allOwnerGuids = [...new Set(normalizedTeams.flatMap((t) => t.owners))];
     const { data: franchises, error: franchisesErr } = await supabase
       .from("franchises")
-      .select("id, espn_owner_ids")
-      .overlaps("espn_owner_ids", allOwnerGuids);
+      .select("id, espn_owner_ids");
     if (franchisesErr) throw franchisesErr;
 
     const franchiseByOwner = new Map();
