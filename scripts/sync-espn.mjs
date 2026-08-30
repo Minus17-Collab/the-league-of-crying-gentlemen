@@ -269,6 +269,72 @@ async function syncRosters(seasonId, year, weeks, teamIdByExternal) {
   }
 }
 
+async function updateTeamRecords(seasonId) {
+  const { data: matchups, error } = await supabase
+    .from("matchups")
+    .select("home_team_id, away_team_id, home_score, away_score")
+    .eq("season_id", seasonId)
+    .eq("is_playoff", false);
+  if (error) throw error;
+
+  const stats = new Map();
+  function ensure(teamId) {
+    if (!stats.has(teamId)) {
+      stats.set(teamId, { wins: 0, losses: 0, ties: 0, pointsFor: 0, pointsAgainst: 0 });
+    }
+    return stats.get(teamId);
+  }
+
+  for (const m of matchups ?? []) {
+    if (m.home_score == null || m.away_score == null) continue;
+    const home = ensure(m.home_team_id);
+    const away = ensure(m.away_team_id);
+
+    home.pointsFor += m.home_score;
+    home.pointsAgainst += m.away_score;
+    away.pointsFor += m.away_score;
+    away.pointsAgainst += m.home_score;
+
+    if (m.home_score > m.away_score) {
+      home.wins += 1;
+      away.losses += 1;
+    } else if (m.away_score > m.home_score) {
+      away.wins += 1;
+      home.losses += 1;
+    } else {
+      home.ties += 1;
+      away.ties += 1;
+    }
+  }
+
+  const updates = [...stats.entries()].map(([id, s]) => ({
+    id,
+    points_for: s.pointsFor,
+    points_against: s.pointsAgainst,
+    wins: s.wins,
+    losses: s.losses,
+    ties: s.ties,
+  }));
+
+  for (const u of updates) {
+    const { error: updateErr } = await supabase
+      .from("teams")
+      .update({
+        points_for: u.points_for,
+        points_against: u.points_against,
+        wins: u.wins,
+        losses: u.losses,
+        ties: u.ties,
+      })
+      .eq("id", u.id);
+    if (updateErr) throw updateErr;
+  }
+
+  if (updates.length > 0) {
+    console.log(`Updated team records for ${updates.length} teams.`);
+  }
+}
+
 async function logRun({ status, scope, seasonId, week, message }) {
   const startedAt = fmtIso();
   await supabase.from("sync_runs").insert({
@@ -393,6 +459,8 @@ async function main() {
 
     const { error: matchupsErr } = await supabase.from("matchups").insert(matchupInserts);
     if (matchupsErr) throw matchupsErr;
+
+    await updateTeamRecords(seasonId);
 
     await logRun({
       status: "success",
