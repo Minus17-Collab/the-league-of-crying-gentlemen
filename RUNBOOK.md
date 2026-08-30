@@ -33,10 +33,11 @@ plan and current phase status.
        `SUPABASE_SERVICE_ROLE_KEY`, `ESPN_SWID`, `ESPN_S2`
    - `.github/workflows/deploy.yml` builds the static export and
      publishes it to Pages on every push to `main`.
-   - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` weekly,
-     Tuesdays at 10:00 PM US Eastern. Actions cron is UTC-only and DST-blind,
-     so it registers both offsets and the job no-ops on whichever run isn't
-     actually 10pm Eastern.
+   - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` three times a
+     week — Fridays 6:00 AM, Mondays 1:00 AM, and Tuesdays 1:00 AM, all US
+     Eastern. Actions cron is UTC-only and DST-blind, so each target time
+     registers both UTC offsets and the job no-ops on whichever run isn't
+     actually at one of those three Eastern times.
    - `.github/workflows/ci.yml` runs typecheck/lint/test/build on pull
      requests to `main` — set it as the required status check in branch
      protection.
@@ -59,7 +60,7 @@ else:
 node --env-file=.env.local scripts/sync-espn.mjs
 ```
 
-If that (or the weekly scheduled run) reports a credential failure:
+If that (or one of the scheduled runs) reports a credential failure:
 
 1. Re-extract `SWID` and `espn_s2` from a fresh, logged-in browser session.
 2. Update `ESPN_SWID` / `ESPN_S2` in the repo's Actions secrets.
