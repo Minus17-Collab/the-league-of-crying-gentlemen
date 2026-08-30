@@ -65,11 +65,30 @@ jobs:
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
           ESPN_S2: ${{ secrets.ESPN_S2 }}
 
+      # These two are mutually exclusive per run (success() and failure()
+      # can't both be true) and independent of GitHub's personal
+      # notification settings, so together they're the reliable way to
+      # know whether a scheduled sync went through. Both no-op (silently
+      # skipped, not a failure) if DISCORD_WEBHOOK_URL isn't configured as
+      # a repo secret. The success one also skips on the benign
+      # DST-offset run (env.SKIP == 'true') that did nothing — only the
+      # failure one should ever fire for that case, and even then only if
+      # something upstream (e.g. the Skip step itself) errored.
+      - name: Notify Discord on success
+        if: success() && env.SKIP != 'true'
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL not set — skipping Discord notification."
+            exit 0
+          fi
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          payload=$(jq -n --arg content "✅ **ESPN sync succeeded** — $run_url" '{content: $content}')
+          curl -sf -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
       # Fires on any prior step failure (credential check, install, or the
-      # sync script itself exiting non-zero) — independent of GitHub's
-      # personal notification settings, so it's the reliable way to know
-      # a scheduled sync didn't go through. No-op (silently skipped) if
-      # DISCORD_WEBHOOK_URL isn't configured as a repo secret.
+      # sync script itself exiting non-zero).
       - name: Notify Discord on failure
         if: failure()
         run: |
