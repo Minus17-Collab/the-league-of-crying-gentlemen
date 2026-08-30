@@ -6,83 +6,24 @@ import {
   getIncludedSeasonYears,
   type AllTimeRecordEntry,
 } from "@/lib/data/records";
+import { formatCount, formatRecordValue } from "@/lib/records/format";
+import { RecordCard as RecordCardBase } from "@/components/RecordCard";
+import { Disclosure } from "@/components/Disclosure";
 
 export const metadata: Metadata = {
   title: "League Records",
   description: "All-time single-week, season, streak, and luck records.",
 };
 
-function fmt(value: number, digits = 2): string {
-  return value.toFixed(digits);
-}
-
-function HoldersList({ entry }: { entry: AllTimeRecordEntry }) {
-  if (entry.holders.length === 0) {
-    return <p className="text-sm text-ivory/60">Not yet computed.</p>;
-  }
-  return (
-    <div className="flex flex-col gap-2">
-      {entry.holders.map((holder, i) => {
-        const context = contextLabel(holder.context);
-        return (
-          <Link
-            key={`${holder.franchiseId}-${i}`}
-            href={`/managers/${holder.franchiseId}`}
-            className="flex items-center justify-between gap-3 rounded-md border border-gold-500/40 bg-gold-500/10 px-3 py-2 transition-colors hover:border-amber hover:bg-gold-500/20"
-          >
-            <span className="flex items-center gap-2">
-              <span aria-hidden="true">🏆</span>
-              <span className="text-base font-semibold text-amber">{holder.managerName}</span>
-            </span>
-            {context && <span className="text-right text-xs text-ivory/70">{context}</span>}
-          </Link>
-        );
-      })}
-    </div>
-  );
-}
-
-function contextLabel(context: Record<string, unknown>): string {
-  const parts: string[] = [];
-  if (typeof context.seasonYear === "number") parts.push(`${context.seasonYear}`);
-  if (typeof context.week === "number") parts.push(`Wk ${context.week}`);
-  if (typeof context.opponentManagerName === "string") parts.push(`vs ${context.opponentManagerName}`);
-  if (typeof context.startSeasonYear === "number" && typeof context.endSeasonYear === "number") {
-    const cross = context.crossSeason === true;
-    parts.push(
-      cross
-        ? `${context.startSeasonYear} wk${context.startWeek} → ${context.endSeasonYear} wk${context.endWeek} (cross-season)`
-        : `${context.startSeasonYear}, wk ${context.startWeek}–${context.endWeek}`,
-    );
-  }
-  if (typeof context.actualWins === "number" && typeof context.wouldBeWins === "number") {
-    parts.push(
-      `won ${context.actualWins} real games, scores deserved about ${fmt(context.wouldBeWins as number, 1)}`,
-    );
-  }
-  return parts.join(" · ");
-}
-
-function valueLabel(entry: AllTimeRecordEntry): string {
-  if (entry.definition.key.includes("luck")) {
-    const signed = entry.value > 0 ? `+${fmt(entry.value)}` : fmt(entry.value);
-    return `${signed} wins`;
-  }
-  return fmt(entry.value);
-}
-
 function RecordCard({ entry }: { entry: AllTimeRecordEntry }) {
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-gold-500/30 bg-charcoal-700 p-5">
-      <div className="flex items-baseline justify-between gap-3">
-        <h3 className="font-subheading text-base text-gold-400">{entry.definition.title}</h3>
-        <span className="text-xl font-semibold text-gold-300">{valueLabel(entry)}</span>
-      </div>
-      {entry.definition.description && (
-        <p className="text-xs text-ivory/60">{entry.definition.description}</p>
-      )}
-      <HoldersList entry={entry} />
-    </div>
+    <RecordCardBase
+      title={entry.definition.title}
+      scope={entry.isPlayoff ? "Playoffs" : undefined}
+      value={formatRecordValue(entry.definition.key, entry.value)}
+      description={entry.definition.description}
+      holders={entry.holders}
+    />
   );
 }
 
@@ -173,30 +114,25 @@ export default async function RecordsPage() {
       <section className="flex flex-col gap-4">
         <h2 className="font-subheading text-lg tracking-wide text-gold-400">Luck</h2>
         <p className="max-w-2xl text-sm text-ivory">
-          Every week, we check how a manager&apos;s score would have done against the{" "}
-          <em>whole league</em> that week, not just their actual opponent — that gives an
-          &quot;expected&quot; win total for the season, based purely on scoring. Compare that to
-          their real win total:
+          Compares each manager&apos;s weekly score against the entire league to find how many
+          wins their scoring actually earned.
         </p>
-        <ul className="max-w-2xl list-disc pl-5 text-sm text-ivory">
-          <li>
-            <span className="font-medium text-gold-400">Luckiest</span> = won more real games than
-            their scores really deserved.
-          </li>
-          <li>
-            <span className="font-medium text-gold-400">Unluckiest</span> = scored well enough to
-            win a lot more games than they actually did.
-          </li>
-        </ul>
-        <p className="max-w-2xl text-sm text-ivory">
-          Each week, every manager gets partial credit for how many of the other teams in the
-          league they outscored, and adding that up across the season produces a
-          &quot;would-be&quot; win total based purely on scoring strength, regardless of who they
-          actually played. Comparing that would-be total to a manager&apos;s real win total reveals
-          the luck: winning more real games than your scores earned makes you the luckiest, while
-          your scores deserving more wins than you actually got makes you the unluckiest.
-        </p>
-        <p className="max-w-2xl text-xs text-ivory/60">Regular season only.</p>
+        <Disclosure summary="How this is calculated">
+          <p>
+            Every week, we check how a manager&apos;s score would have done against the{" "}
+            <em>whole league</em> that week, not just their actual opponent. Each manager gets
+            partial credit for how many of the other teams they outscored (a tie counts as half a
+            win), and adding that up across the season produces a &quot;would-be&quot; win total
+            based purely on scoring strength, regardless of who they actually played.
+          </p>
+          <p className="mt-2">
+            Comparing that would-be total to a manager&apos;s real win total reveals the luck:
+            winning more real games than your scores earned makes you the{" "}
+            <span className="font-medium text-gold-400">luckiest</span>; your scores deserving
+            more wins than you actually got makes you the{" "}
+            <span className="font-medium text-gold-400">unluckiest</span>. Regular season only.
+          </p>
+        </Disclosure>
         <div className="grid gap-4 sm:grid-cols-2">
           {luck.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
@@ -223,24 +159,42 @@ export default async function RecordsPage() {
                 <p className="mt-1 text-xs text-ivory/60">{section.definition.description}</p>
               )}
               {section.unavailable ? (
-                <p className="mt-3 text-sm text-ivory/60">
-                  Not available for this league — see the description above for why, and what would
-                  need to be logged going forward to support this record.
-                </p>
+                <div className="mt-3 rounded-md border border-dashed border-gold-500/20 bg-charcoal-800/50 px-4 py-3">
+                  <p className="text-sm text-ivory/50">
+                    Not available for this league. See the description above for what&apos;s
+                    missing and what would need to be logged going forward to support this record.
+                  </p>
+                </div>
               ) : (
                 <table className="mt-3 w-full border-collapse text-sm text-ivory">
+                  <caption className="mb-2 text-left text-xs text-ivory/50">
+                    {section.definition.title}, combined across all included seasons.
+                  </caption>
+                  <thead>
+                    <tr className="border-b border-gold-500/30 text-left text-ivory/75">
+                      <th scope="col" className="py-2 pr-4 font-medium">
+                        Manager
+                      </th>
+                      <th scope="col" className="py-2 text-right font-medium">
+                        Total
+                      </th>
+                    </tr>
+                  </thead>
                   <tbody>
-                    {section.rows.map((row) => (
-                      <tr key={row.franchiseId} className="border-b border-charcoal-600 last:border-0">
-                        <td className="py-2 pr-4">
+                    {section.rows.map((row, i) => (
+                      <tr
+                        key={row.franchiseId}
+                        className={`border-b border-charcoal-600 last:border-0 ${i % 2 === 1 ? "bg-charcoal-800/40" : ""}`}
+                      >
+                        <th scope="row" className="py-2 pr-4 text-left font-normal">
                           <Link
                             href={`/managers/${row.franchiseId}`}
                             className="underline underline-offset-2 hover:text-amber"
                           >
                             {row.managerName}
                           </Link>
-                        </td>
-                        <td className="py-2 text-right font-medium">{fmt(row.value, 0)}</td>
+                        </th>
+                        <td className="py-2 text-right font-medium tabular-nums">{formatCount(row.value)}</td>
                       </tr>
                     ))}
                   </tbody>

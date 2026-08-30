@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
+import { Disclosure } from "@/components/Disclosure";
 import { getManagerDetail, getManagers } from "@/lib/data/league";
 
 export async function generateStaticParams() {
@@ -142,15 +143,16 @@ export default async function ManagerDetailPage({
       {/* Best draft picks */}
       <section className="flex flex-col gap-3">
         <h2 className="font-subheading text-lg tracking-wide text-gold-400">Best Draft Picks</h2>
-        <p className="max-w-2xl text-sm text-ivory">
-          Regrade (VOE) compares each pick&apos;s actual season points to the
-          expected value for that draft round, pooled across this
-          league&apos;s own draft history — exact, not curved. Draft Night
-          Grade is curved against market ADP (Fantasy Football Calculator)
-          and is approximate — see{" "}
-          <code className="rounded bg-charcoal-900 px-1 py-0.5 text-gold-300">data_gaps</code>{" "}
-          for details.
-        </p>
+        <Disclosure summary="How Regrade and Draft Night Grade are calculated">
+          <p>
+            Regrade (VOE) compares each pick&apos;s actual season points to the expected value for
+            that draft round, pooled across this league&apos;s own draft history — exact, not
+            curved. Draft Night Grade is curved against market ADP (Fantasy Football Calculator)
+            and is approximate — see{" "}
+            <code className="rounded bg-charcoal-900 px-1 py-0.5 text-gold-300">data_gaps</code>{" "}
+            for details.
+          </p>
+        </Disclosure>
         {manager.bestDraftPicks.length === 0 ? (
           <p className="text-sm text-ivory">No graded draft picks available yet.</p>
         ) : (
