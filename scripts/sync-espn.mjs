@@ -50,6 +50,79 @@ const ESPN_LINEUP_SLOT_MAP = {
   21: "IR",
 };
 
+const ESPN_STAT_ID_TO_KEY = {
+  3: "pass_yd",
+  4: "pass_td",
+  15: "pass_td_40_plus",
+  16: "pass_td_50_plus",
+  17: "pass_yd_300_399",
+  18: "pass_yd_400_plus",
+  19: "pass_2pt",
+  20: "pass_int",
+  64: "pass_sacked",
+  24: "rush_yd",
+  25: "rush_td",
+  26: "rush_2pt",
+  35: "rush_td_40_plus",
+  36: "rush_td_50_plus",
+  37: "rush_yd_100_199",
+  38: "rush_yd_200_plus",
+  42: "rec_yd",
+  43: "rec_td",
+  44: "rec_2pt",
+  45: "rec_td_40_plus",
+  46: "rec_td_50_plus",
+  53: "rec",
+  56: "rec_yd_100_199",
+  57: "rec_yd_200_plus",
+  58: "rec_target",
+  63: "fum_rec_td",
+  72: "fum_lost",
+  77: "fg_40_49",
+  80: "fg_0_39",
+  83: "fg_made",
+  85: "fg_miss",
+  86: "xp_made",
+  88: "xp_missed",
+  198: "fg_50_59",
+  201: "fg_60_plus",
+  214: "fg_made_yards",
+  89: "def_pa_0",
+  90: "def_pa_1_6",
+  91: "def_pa_7_13",
+  92: "def_pa_14_17",
+  123: "def_pa_28_34",
+  124: "def_pa_35_45",
+  125: "def_pa_46_plus",
+  128: "def_yds_lt100",
+  129: "def_yds_100_199",
+  130: "def_yds_200_299",
+  132: "def_yds_350_399",
+  133: "def_yds_400_449",
+  134: "def_yds_450_499",
+  135: "def_yds_500_549",
+  136: "def_yds_550_plus",
+  93: "def_blk_kick_td",
+  95: "def_int",
+  96: "def_fum_rec",
+  97: "def_blk_kick",
+  98: "def_safety",
+  99: "def_sack",
+  101: "def_kr_td",
+  102: "def_pr_td",
+  103: "def_int_td",
+  104: "def_fum_ret_td",
+  109: "def_tackles",
+  114: "def_kr_yd",
+  115: "def_pr_yd",
+  206: "def_2pt_ret",
+  209: "def_1pt_safety",
+};
+
+function mapStatKey(id) {
+  return ESPN_STAT_ID_TO_KEY[id] ?? null;
+}
+
 async function archive(year, name, data) {
   const dir = `${ARCHIVE_DIR}/${year}`;
   await mkdir(dir, { recursive: true });
@@ -162,6 +235,13 @@ function mapSlot(id) {
   return ESPN_LINEUP_SLOT_MAP[id] ?? null;
 }
 
+function pointsFromEntry(entry, week) {
+  const stats = entry.playerPoolEntry?.player?.stats;
+  if (!Array.isArray(stats)) return null;
+  const actual = stats.find((s) => s.scoringPeriodId === week && s.statSourceId === 0);
+  return actual?.appliedTotal ?? null;
+}
+
 async function syncRosters(seasonId, year, weeks, teamIdByExternal) {
   const seasonTeamIds = [...teamIdByExternal.values()];
 
@@ -268,7 +348,7 @@ async function syncRosters(seasonId, year, weeks, teamIdByExternal) {
           player_id: playerId,
           slot_code: slotCode,
           is_starter: slotCode !== "BE" && slotCode !== "IR",
-          points: null,
+          points: pointsFromEntry(e, week),
         });
       }
     }
@@ -279,6 +359,82 @@ async function syncRosters(seasonId, year, weeks, teamIdByExternal) {
     }
 
     console.log(`Ingested ${lineupInserts.length} lineup entries for week ${week}.`);
+  }
+}
+
+function allBoxscoreRosterEntries(league) {
+  return (league.schedule ?? []).flatMap((m) => [
+    ...(m.home?.rosterForCurrentScoringPeriod?.entries ?? []),
+    ...(m.away?.rosterForCurrentScoringPeriod?.entries ?? []),
+  ]);
+}
+
+async function syncStatLines(seasonId, year, weeks) {
+  const league = await espn(year, ["mBoxscore"], false);
+  await archive(year, "boxscore", league);
+
+  const statsByWeek = new Map();
+  for (const week of weeks) {
+    statsByWeek.set(week, new Map());
+  }
+
+  const seenExternalIds = new Set();
+  for (const entry of allBoxscoreRosterEntries(league)) {
+    const player = entry.playerPoolEntry?.player;
+    if (!player) continue;
+    const playerId = String(entry.playerId);
+    const weekStats = player.stats?.find((s) => weeks.includes(s.scoringPeriodId) && s.statSourceId === 0);
+    if (!weekStats) continue;
+
+    seenExternalIds.add(playerId);
+    const map = statsByWeek.get(weekStats.scoringPeriodId);
+    if (!map) continue;
+    map.set(playerId, { externalId: playerId, stats: weekStats.stats, appliedTotal: weekStats.appliedTotal });
+  }
+
+  if (seenExternalIds.size === 0) {
+    console.log(`No actual stat lines available for weeks ${weeks.join(", ")} yet.`);
+    return;
+  }
+
+  const { data: existingIds, error: idErr } = await supabase
+    .from("player_external_ids")
+    .select("player_id, external_id")
+    .eq("provider", "espn")
+    .in("external_id", [...seenExternalIds]);
+  if (idErr) throw idErr;
+  const playerByExternal = new Map((existingIds ?? []).map((r) => [r.external_id, r.player_id]));
+
+  const statInserts = [];
+  for (const [week, map] of statsByWeek) {
+    for (const row of map.values()) {
+      const playerId = playerByExternal.get(row.externalId);
+      if (!playerId) {
+        console.warn(`No player_id for ESPN id ${row.externalId} during stat line sync.`);
+        continue;
+      }
+      for (const [statIdRaw, value] of Object.entries(row.stats)) {
+        const statId = Number(statIdRaw);
+        const statKey = mapStatKey(statId);
+        if (!statKey) continue;
+        statInserts.push({
+          player_id: playerId,
+          year,
+          week,
+          stat_key: statKey,
+          value,
+          source: "espn",
+        });
+      }
+    }
+  }
+
+  if (statInserts.length > 0) {
+    const { error: upsertErr } = await supabase
+      .from("stat_lines")
+      .upsert(statInserts, { onConflict: "player_id, year, week, stat_key" });
+    if (upsertErr) throw upsertErr;
+    console.log(`Upserted ${statInserts.length} stat lines for weeks ${weeks.join(", ")}.`);
   }
 }
 
@@ -486,9 +642,10 @@ async function main() {
     });
 
     await syncRosters(seasonId, year, weeks, teamIdByExternal);
+    await syncStatLines(seasonId, year, weeks);
 
     console.log(
-      `Sync ok: ${upsertedTeams?.length ?? 0} teams, ${matchupInserts.length} matchups and rosters for weeks ${weeks.join(", ")}.`,
+      `Sync ok: ${upsertedTeams?.length ?? 0} teams, ${matchupInserts.length} matchups, rosters, and stat lines for weeks ${weeks.join(", ")}.`,
     );
   } catch (err) {
     await logRun({
