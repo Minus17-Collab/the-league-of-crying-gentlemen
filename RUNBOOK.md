@@ -38,6 +38,13 @@ plan and current phase status.
      Eastern. Actions cron is UTC-only and DST-blind, so each target time
      registers both UTC offsets and the job no-ops on whichever run isn't
      actually at one of those three Eastern times.
+   - Optional: set a **Secrets** tab `DISCORD_WEBHOOK_URL` (a Discord
+     channel's Integrations → Webhooks URL) to get a message there whenever
+     a scheduled sync run fails — the credential check, a dependency
+     install, or the sync script itself. This is independent of GitHub's
+     own per-account notification settings, which can't be configured from
+     a workflow. Without this secret set, failures are silent except in the
+     Actions tab and `sync_runs`.
    - `.github/workflows/ci.yml` runs typecheck/lint/test/build on pull
      requests to `main` — set it as the required status check in branch
      protection.
