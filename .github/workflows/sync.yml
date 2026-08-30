@@ -26,6 +26,8 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      SKIP: 'false'
     steps:
       - name: Skip if not a scheduled Eastern time
         if: github.event_name == 'schedule'
