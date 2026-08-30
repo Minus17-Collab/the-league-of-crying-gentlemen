@@ -438,6 +438,55 @@ async function syncStatLines(seasonId, year, weeks) {
   }
 }
 
+function mapTransactionType(transaction) {
+  if (transaction.type === "DRAFT") return null;
+  const itemTypes = (transaction.items ?? []).map((i) => (i.type ?? "").toUpperCase());
+  if (itemTypes.length === 0) return null;
+  if (itemTypes.every((t) => t === "LINEUP")) return null;
+  if (itemTypes.includes("TRADE")) return "trade";
+  if (itemTypes.includes("WAIVER")) return "waiver";
+  if (itemTypes.some((t) => t.includes("DROP"))) return "drop";
+  return "add";
+}
+
+async function syncTransactions(seasonId, year, teamIdByExternal) {
+  const league = await espn(year, ["mTransactions2"], false);
+  await archive(year, "transactions", league);
+
+  const inserts = [];
+  for (const t of league.transactions ?? []) {
+    const type = mapTransactionType(t);
+    if (!type) continue;
+    if (t.isPending || t.status !== "EXECUTED") continue;
+
+    const teamId = t.teamId != null ? teamIdByExternal.get(String(t.teamId)) : null;
+    const counterpartyId = (t.items ?? []).find((i) => i.fromTeamId != null && i.fromTeamId !== 0)
+      ? teamIdByExternal.get(String(t.items.find((i) => i.fromTeamId != null && i.fromTeamId !== 0).fromTeamId))
+      : null;
+
+    inserts.push({
+      season_id: seasonId,
+      week: t.scoringPeriodId ?? null,
+      type,
+      team_id: teamId ?? null,
+      counterparty_team_id: type === "trade" && counterpartyId ? counterpartyId : null,
+      faab_spent: t.bidAmount != null && t.bidAmount > 0 ? t.bidAmount : null,
+      occurred_at: t.proposedDate ? new Date(t.proposedDate).toISOString() : new Date().toISOString(),
+      details: { transactionId: t.id, items: t.items },
+    });
+  }
+
+  const { error: deleteErr } = await supabase.from("transactions").delete().eq("season_id", seasonId);
+  if (deleteErr) throw deleteErr;
+
+  if (inserts.length > 0) {
+    const { error: insertErr } = await supabase.from("transactions").insert(inserts);
+    if (insertErr) throw insertErr;
+  }
+
+  console.log(`Ingested ${inserts.length} transactions for ${year}.`);
+}
+
 async function updateTeamRecords(seasonId) {
   const { data: matchups, error } = await supabase
     .from("matchups")
@@ -643,9 +692,10 @@ async function main() {
 
     await syncRosters(seasonId, year, weeks, teamIdByExternal);
     await syncStatLines(seasonId, year, weeks);
+    await syncTransactions(seasonId, year, teamIdByExternal);
 
     console.log(
-      `Sync ok: ${upsertedTeams?.length ?? 0} teams, ${matchupInserts.length} matchups, rosters, and stat lines for weeks ${weeks.join(", ")}.`,
+      `Sync ok: ${upsertedTeams?.length ?? 0} teams, ${matchupInserts.length} matchups, rosters, stat lines, and transactions for ${year}.`,
     );
   } catch (err) {
     await logRun({
