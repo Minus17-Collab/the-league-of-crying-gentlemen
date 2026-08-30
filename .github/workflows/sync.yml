@@ -64,3 +64,21 @@ jobs:
           ESPN_LEAGUE_ID: ${{ vars.ESPN_LEAGUE_ID }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
           ESPN_S2: ${{ secrets.ESPN_S2 }}
+
+      # Fires on any prior step failure (credential check, install, or the
+      # sync script itself exiting non-zero) — independent of GitHub's
+      # personal notification settings, so it's the reliable way to know
+      # a scheduled sync didn't go through. No-op (silently skipped) if
+      # DISCORD_WEBHOOK_URL isn't configured as a repo secret.
+      - name: Notify Discord on failure
+        if: failure()
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL not set — skipping Discord notification."
+            exit 0
+          fi
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          payload=$(jq -n --arg content "⚠️ **ESPN sync failed** — $run_url" '{content: $content}')
+          curl -sf -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

@@ -28,7 +28,8 @@ produces a site pointed at `""`.
 
 - `vars`: `NEXT_PUBLIC_SUPABASE_URL`, `ESPN_LEAGUE_ID`
 - `secrets`: `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
-  `ESPN_SWID`, `ESPN_S2`
+  `ESPN_SWID`, `ESPN_S2`, `DISCORD_WEBHOOK_URL` (optional, `sync.yml` only —
+  see requirement 8)
 
 When you move a value between the two contexts, update **all three** workflows
 *and* the "GitHub Pages + Actions" section of `RUNBOOK.md` in the same commit.
@@ -103,6 +104,15 @@ needing a server is a script invoked by a workflow, not a route.
 It belongs only to `sync.yml`. `ci.yml` and `deploy.yml` build client-facing
 output; a service-role key reaching a `NEXT_PUBLIC_`-adjacent build is a leak.
 See AGENTS.md "Never do this".
+
+### 8. GitHub's own notification settings can't be set from a workflow
+There is no API to toggle a user's "email me on Actions failure" preference
+(Settings → Notifications is web-UI-only) — don't try to script it. Instead,
+`sync.yml`'s last step posts to `secrets.DISCORD_WEBHOOK_URL` on `failure()`
+whenever that secret is set, and no-ops (not a failure) if it isn't. It fires
+regardless of which prior step failed — credential check, `pnpm install`, or
+`sync-espn.mjs` itself exiting non-zero — because it's gated on `failure()`,
+not `env.SKIP`.
 
 ## Enforcement
 - Open a throwaway PR after any workflow edit; `ci.yml` only runs on
