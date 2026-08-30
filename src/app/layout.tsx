@@ -68,8 +68,11 @@ export const metadata: Metadata = {
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/history", label: "History" },
+  { href: "/h2h", label: "H2H" },
   { href: "/managers", label: "Managers" },
   { href: "/records", label: "Records" },
+  { href: "/draft", label: "Draft" },
+  { href: "/hall-of-fame", label: "Hall of Fame" },
 ];
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

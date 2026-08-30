@@ -609,3 +609,273 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     bestDraftPicks,
   };
 }
+
+export interface HeadToHeadCell {
+  wins: number;
+  losses: number;
+  ties: number;
+  pointsFor: number;
+  pointsAgainst: number;
+}
+
+export interface HeadToHeadRow {
+  franchiseId: string;
+  managerName: string;
+  matchups: number;
+  totalWins: number;
+  totalLosses: number;
+  totalTies: number;
+  pointsFor: number;
+  pointsAgainst: number;
+  cells: Map<string, HeadToHeadCell>;
+}
+
+/** Cross-season regular-season matchup matrix. Computes only from stored
+ * `matchups` rows, treating each game where a franchise was the home or away
+ * team as one row of data. A tie is any game where both scores are non-null
+ * and equal; wins/losses are determined by the higher score. Games missing
+ * one or both scores are ignored. */
+export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
+  const supabase = createClient();
+  const [{ data: matchups, error: matchupsErr }, { data: teams, error: teamsErr }, { data: franchises, error: franchisesErr }] =
+    await Promise.all([
+      supabase
+        .from("matchups")
+        .select("home_team_id, away_team_id, home_score, away_score, is_playoff")
+        .eq("is_playoff", false),
+      supabase.from("teams").select("id, franchise_id, season_id"),
+      supabase.from("franchises").select("id, display_name"),
+    ]);
+  if (matchupsErr) throw matchupsErr;
+  if (teamsErr) throw teamsErr;
+  if (franchisesErr) throw franchisesErr;
+
+  const nameByFranchiseId = new Map((franchises ?? []).map((f) => [f.id, f.display_name]));
+  const franchiseByTeamId = new Map((teams ?? []).map((t) => [t.id, t.franchise_id]));
+
+  const rows = new Map<string, HeadToHeadRow>();
+  function ensureRow(franchiseId: string): HeadToHeadRow {
+    if (!rows.has(franchiseId)) {
+      rows.set(franchiseId, {
+        franchiseId,
+        managerName: nameByFranchiseId.get(franchiseId) ?? "Unknown",
+        matchups: 0,
+        totalWins: 0,
+        totalLosses: 0,
+        totalTies: 0,
+        pointsFor: 0,
+        pointsAgainst: 0,
+        cells: new Map<string, HeadToHeadCell>(),
+      });
+    }
+    return rows.get(franchiseId)!;
+  }
+  function ensureCell(row: HeadToHeadRow, opponentId: string): HeadToHeadCell {
+    if (!row.cells.has(opponentId)) {
+      row.cells.set(opponentId, {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+        pointsFor: 0,
+        pointsAgainst: 0,
+      });
+    }
+    return row.cells.get(opponentId)!;
+  }
+
+  for (const m of matchups ?? []) {
+    const homeId = franchiseByTeamId.get(m.home_team_id);
+    const awayId = franchiseByTeamId.get(m.away_team_id);
+    if (!homeId || !awayId || homeId === awayId) continue;
+    if (m.home_score == null || m.away_score == null) continue;
+
+    const homeRow = ensureRow(homeId);
+    const awayRow = ensureRow(awayId);
+    const homeCell = ensureCell(homeRow, awayId);
+    const awayCell = ensureCell(awayRow, homeId);
+
+    homeRow.matchups += 1;
+    awayRow.matchups += 1;
+    homeRow.pointsFor += m.home_score;
+    homeRow.pointsAgainst += m.away_score;
+    awayRow.pointsFor += m.away_score;
+    awayRow.pointsAgainst += m.home_score;
+    homeCell.pointsFor += m.home_score;
+    homeCell.pointsAgainst += m.away_score;
+    awayCell.pointsFor += m.away_score;
+    awayCell.pointsAgainst += m.home_score;
+
+    if (m.home_score > m.away_score) {
+      homeRow.totalWins += 1;
+      awayRow.totalLosses += 1;
+      homeCell.wins += 1;
+      awayCell.losses += 1;
+    } else if (m.away_score > m.home_score) {
+      awayRow.totalWins += 1;
+      homeRow.totalLosses += 1;
+      awayCell.wins += 1;
+      homeCell.losses += 1;
+    } else {
+      homeRow.totalTies += 1;
+      awayRow.totalTies += 1;
+      homeCell.ties += 1;
+      awayCell.ties += 1;
+    }
+  }
+
+  return [...rows.values()].sort((a, b) => a.managerName.localeCompare(b.managerName));
+}
+
+export interface DraftBoardPick {
+  year: number;
+  round: number;
+  pickInRound: number;
+  overallPick: number;
+  franchiseId: string;
+  managerName: string;
+  playerName: string | null;
+  playerId: string | null;
+  position: string | null;
+  nflTeam: string | null;
+  seasonPoints: number | null;
+  voe: number | null;
+  regradeGrade: string | null;
+  adpAtPick: number | null;
+  draftNightGrade: string | null;
+  keeper: boolean;
+}
+
+/** Full league draft history with VOE regrade and Draft Night Grade for
+ * every pick where grades have been computed. Empty (or partially empty)
+ * boards are returned for seasons that don't have draft data yet rather
+ * than filtering them out. */
+export async function getDraftBoard(): Promise<DraftBoardPick[]> {
+  const supabase = createClient();
+  const [
+    { data: seasons, error: seasonsErr },
+    { data: picks, error: picksErr },
+    { data: players, error: playersErr },
+    { data: franchises, error: franchisesErr },
+    { data: teams, error: teamsErr },
+  ] = await Promise.all([
+    supabase.from("seasons").select("id, year"),
+    supabase
+      .from("draft_picks")
+      .select("id, season_id, round, pick_in_round, overall_pick, team_id, player_id, keeper"),
+    supabase.from("players").select("id, full_name, position, nfl_team"),
+    supabase.from("franchises").select("id, display_name"),
+    supabase.from("teams").select("id, franchise_id, season_id"),
+  ]);
+  if (seasonsErr) throw seasonsErr;
+  if (picksErr) throw picksErr;
+  if (playersErr) throw playersErr;
+  if (franchisesErr) throw franchisesErr;
+  if (teamsErr) throw teamsErr;
+
+  const yearBySeasonId = new Map((seasons ?? []).map((s) => [s.id, s.year]));
+  const playerById = new Map((players ?? []).map((p) => [p.id, p]));
+  const nameByFranchiseId = new Map((franchises ?? []).map((f) => [f.id, f.display_name]));
+  const franchiseByTeamId = new Map((teams ?? []).map((t) => [t.id, t.franchise_id]));
+
+  const { data: grades, error: gradesErr } = await supabase
+    .from("draft_pick_grades")
+    .select("draft_pick_id, season_points, voe, regrade_grade, adp_at_pick, draft_night_grade");
+  if (gradesErr) throw gradesErr;
+  const gradeByPickId = new Map((grades ?? []).map((g) => [g.draft_pick_id, g]));
+
+  return (picks ?? [])
+    .map((p) => {
+      const player = p.player_id ? playerById.get(p.player_id) : null;
+      const franchiseId = franchiseByTeamId.get(p.team_id) ?? "";
+      const grade = gradeByPickId.get(p.id);
+      return {
+        year: yearBySeasonId.get(p.season_id) ?? 0,
+        round: p.round,
+        pickInRound: p.pick_in_round,
+        overallPick: p.overall_pick,
+        franchiseId,
+        managerName: nameByFranchiseId.get(franchiseId) ?? "Unknown",
+        playerName: player?.full_name ?? null,
+        playerId: p.player_id,
+        position: player?.position ?? null,
+        nflTeam: player?.nfl_team ?? null,
+        seasonPoints: grade?.season_points ?? null,
+        voe: grade?.voe ?? null,
+        regradeGrade: grade?.regrade_grade ?? null,
+        adpAtPick: grade?.adp_at_pick ?? null,
+        draftNightGrade: grade?.draft_night_grade ?? null,
+        keeper: p.keeper,
+      };
+    })
+    .sort((a, b) => a.year - b.year || a.overallPick - b.overallPick);
+}
+
+export interface LeagueAward {
+  id: string;
+  year: number | null;
+  title: string;
+  note: string | null;
+  franchiseId: string | null;
+  managerName: string | null;
+}
+
+/** League awards and recognitions, newest first. The `awards` table is
+ * intended for commissioner-entered honors that don't fit a record query
+ * (e.g. "Sacko for worst draft", "Most Improved"). */
+export async function getAwards(): Promise<LeagueAward[]> {
+  const supabase = createClient();
+  const { data: awards, error } = await supabase
+    .from("awards")
+    .select("id, season_id, title, note, franchise_id");
+  if (error) throw error;
+
+  const seasonIds = [...new Set((awards ?? []).map((a) => a.season_id).filter((id): id is string => id != null))];
+  const franchiseIds = [...new Set((awards ?? []).map((a) => a.franchise_id).filter((id): id is string => id != null))];
+
+  const [seasonsRes, franchisesRes] = await Promise.all([
+    supabase.from("seasons").select("id, year").in("id", seasonIds.length > 0 ? seasonIds : [""]),
+    supabase.from("franchises").select("id, display_name").in("id", franchiseIds.length > 0 ? franchiseIds : [""]),
+  ]);
+  if (seasonsRes.error) throw seasonsRes.error;
+  if (franchisesRes.error) throw franchisesRes.error;
+
+  const yearBySeasonId = new Map((seasonsRes.data ?? []).map((s) => [s.id, s.year]));
+  const nameByFranchiseId = new Map((franchisesRes.data ?? []).map((f) => [f.id, f.display_name]));
+
+  return (awards ?? [])
+    .map((a) => ({
+      id: a.id,
+      year: a.season_id ? (yearBySeasonId.get(a.season_id) ?? null) : null,
+      title: a.title,
+      note: a.note,
+      franchiseId: a.franchise_id,
+      managerName: a.franchise_id ? (nameByFranchiseId.get(a.franchise_id) ?? null) : null,
+    }))
+    .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+}
+
+export interface FoundingSeason {
+  year: number;
+  format: SeasonFormat;
+  standings: TeamSeasonRecord[];
+  champion: TeamSeasonRecord | null;
+  note: string;
+}
+
+/** 2023 founding season, deliberately isolated from all-time records.
+ * The same stored data as any other season, but returned with the explicit
+ * caveat that the format and scoring rules were materially different (8
+ * teams, 6 playoff spots, no keepers). */
+export async function getFoundingSeason(): Promise<FoundingSeason | null> {
+  const year = 2023;
+  const [format, standings] = await Promise.all([getFormat(year), getStandings(year)]);
+  if (standings.length === 0) return null;
+  return {
+    year,
+    format: format ?? { teamCount: 8, matchupPeriodCount: 14, playoffTeamCount: 6, divisions: [], playoffMatchupPeriodLength: null, draftType: null, keeperCount: 0 },
+    standings,
+    champion: standings.find((t) => t.finalRank === 1) ?? null,
+    note:
+      "The league's first season. Eight teams, six playoff spots, and scoring settings that differed from every season after it. It is preserved as founding history but is intentionally excluded from all-time record comparisons.",
+  };
+}
