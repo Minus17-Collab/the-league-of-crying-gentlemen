@@ -67,6 +67,12 @@ jobs:
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
           ESPN_S2: ${{ secrets.ESPN_S2 }}
 
+      - run: node scripts/compute-records.mjs
+        if: env.SKIP != 'true'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
       # These two are mutually exclusive per run (success() and failure()
       # can't both be true) and independent of GitHub's personal
       # notification settings, so together they're the reliable way to
