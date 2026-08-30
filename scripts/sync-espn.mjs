@@ -1,19 +1,23 @@
 // Weekly ESPN sync job.
 //
-// This is the first real ingestion pass. It currently ingests:
+// This is the live ESPN ingestion job. It ingests:
 //   - teams (per season, resolved to franchises by ESPN owner GUID)
 //   - matchups (current week + the two prior weeks, to absorb stat corrections)
+//   - rosters and player identity for each target week
 //
-// It deliberately does not yet write rosters, stat lines, or transactions —
-// those are the next slices. It is idempotent by deleting matchups for the
-// target weeks and re-inserting (season must not be locked).
+// It also archives the raw ESPN JSON payloads to data/espn-raw/{year}/ for
+// debugging and replay. It does not yet write stat lines or transactions.
+// It is idempotent by deleting target weeks and re-inserting (season must
+// not be locked).
 //
 // Run with:
 //   node --env-file=.env.local scripts/sync-espn.mjs
 
 import { createClient } from "@supabase/supabase-js";
+import { writeFile, mkdir } from "node:fs/promises";
 
 const LEAGUE_ID = process.env.ESPN_LEAGUE_ID ?? "771894515";
+const ARCHIVE_DIR = "data/espn-raw";
 const SWID = process.env.ESPN_SWID;
 const S2 = process.env.ESPN_S2;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -45,6 +49,13 @@ const ESPN_LINEUP_SLOT_MAP = {
   20: "BE",
   21: "IR",
 };
+
+async function archive(year, name, data) {
+  const dir = `${ARCHIVE_DIR}/${year}`;
+  await mkdir(dir, { recursive: true });
+  const file = `${dir}/${new Date().toISOString().replace(/[:.]/g, "-")}-${name}.json`;
+  await writeFile(file, JSON.stringify(data, null, 2));
+}
 
 function headers() {
   const h = {};
@@ -156,6 +167,8 @@ async function syncRosters(seasonId, year, weeks, teamIdByExternal) {
 
   for (const week of weeks) {
     const league = await espnForWeek(year, week, "mRoster");
+    await archive(year, `rosters-week-${week}`, league);
+
     const teamRosters = (league.teams ?? []).map((t) => ({
       externalTeamId: String(t.id),
       entries: (t.roster?.entries ?? []).map((e) => ({
@@ -375,6 +388,8 @@ async function main() {
     const seasonId = season.id;
 
     const league = unwrapHistory(await espn(year, ["mTeam", "mMatchup"], year < new Date().getFullYear()));
+    await archive(year, "team-matchup", league);
+
     const normalizedTeams = getTeams(league);
     const normalizedMatchups = getMatchups(league);
 
