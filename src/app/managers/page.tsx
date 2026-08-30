@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
-import { getManagers } from "@/lib/data/league";
+import { TrophyBadge } from "@/components/TrophyBadge";
+import { getManagers, getChampions } from "@/lib/data/league";
 
 export const metadata: Metadata = {
   title: "Managers",
@@ -9,7 +10,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ManagersPage() {
-  const managers = await getManagers();
+  const [managers, champions] = await Promise.all([getManagers(), getChampions()]);
+  const championshipCounts = new Map<string, number>();
+  for (const c of champions) {
+    championshipCounts.set(c.franchiseId, (championshipCounts.get(c.franchiseId) ?? 0) + 1);
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -50,6 +55,7 @@ export default async function ManagersPage() {
                       initials={initials}
                     />
                     <span>{manager.name}</span>
+                    <TrophyBadge count={championshipCounts.get(manager.franchiseId) ?? 0} />
                   </Link>
                 </td>
                 <td className="px-4 py-3 text-ivory/75">
