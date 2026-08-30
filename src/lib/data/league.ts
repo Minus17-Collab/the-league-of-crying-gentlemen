@@ -621,6 +621,7 @@ export interface HeadToHeadCell {
 export interface HeadToHeadRow {
   franchiseId: string;
   managerName: string;
+  isRetired: boolean;
   matchups: number;
   totalWins: number;
   totalLosses: number;
@@ -637,20 +638,28 @@ export interface HeadToHeadRow {
  * one or both scores are ignored. */
 export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
   const supabase = createClient();
-  const [{ data: matchups, error: matchupsErr }, { data: teams, error: teamsErr }, { data: franchises, error: franchisesErr }] =
-    await Promise.all([
-      supabase
-        .from("matchups")
-        .select("home_team_id, away_team_id, home_score, away_score, is_playoff")
-        .eq("is_playoff", false),
-      supabase.from("teams").select("id, franchise_id, season_id"),
-      supabase.from("franchises").select("id, display_name"),
-    ]);
+  const [
+    { data: matchups, error: matchupsErr },
+    { data: teams, error: teamsErr },
+    { data: seasons, error: seasonsErr },
+    { data: franchises, error: franchisesErr },
+  ] = await Promise.all([
+    supabase
+      .from("matchups")
+      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, season_id")
+      .eq("is_playoff", false),
+    supabase.from("teams").select("id, franchise_id, season_id"),
+    supabase.from("seasons").select("id, year"),
+    supabase.from("franchises").select("id, display_name, retired_season"),
+  ]);
   if (matchupsErr) throw matchupsErr;
   if (teamsErr) throw teamsErr;
+  if (seasonsErr) throw seasonsErr;
   if (franchisesErr) throw franchisesErr;
 
+  const yearBySeasonId = new Map((seasons ?? []).map((s) => [s.id, s.year]));
   const nameByFranchiseId = new Map((franchises ?? []).map((f) => [f.id, f.display_name]));
+  const retiredByFranchiseId = new Map((franchises ?? []).map((f) => [f.id, f.retired_season != null]));
   const franchiseByTeamId = new Map((teams ?? []).map((t) => [t.id, t.franchise_id]));
 
   const rows = new Map<string, HeadToHeadRow>();
@@ -659,6 +668,7 @@ export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
       rows.set(franchiseId, {
         franchiseId,
         managerName: nameByFranchiseId.get(franchiseId) ?? "Unknown",
+        isRetired: retiredByFranchiseId.get(franchiseId) ?? false,
         matchups: 0,
         totalWins: 0,
         totalLosses: 0,
@@ -684,6 +694,8 @@ export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
   }
 
   for (const m of matchups ?? []) {
+    const year = yearBySeasonId.get(m.season_id);
+    if (year === 2023) continue;
     const homeId = franchiseByTeamId.get(m.home_team_id);
     const awayId = franchiseByTeamId.get(m.away_team_id);
     if (!homeId || !awayId || homeId === awayId) continue;
