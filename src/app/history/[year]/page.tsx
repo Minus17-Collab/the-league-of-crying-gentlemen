@@ -103,6 +103,7 @@ export default async function SeasonHistory({
 
   const winnersRounds = groupByWeek(bracket.winners);
   const consolationRounds = groupByWeek(bracket.consolation);
+  const winnersConsolationRounds = groupByWeek(bracket.winnersConsolation);
 
   return (
     <div className="flex flex-col gap-6">
@@ -149,6 +150,21 @@ export default async function SeasonHistory({
           <h2 className="font-subheading text-lg text-gold-400">{year} Consolation Bracket</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {consolationRounds.map((round) => (
+              <div key={round[0].week} className="flex flex-col gap-3">
+                {round.map((matchup, j) => (
+                  <MatchupCard key={j} matchup={matchup} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {winnersConsolationRounds.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <h2 className="font-subheading text-lg text-gold-400">{year} Winners Consolation Ladder</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {winnersConsolationRounds.map((round) => (
               <div key={round[0].week} className="flex flex-col gap-3">
                 {round.map((matchup, j) => (
                   <MatchupCard key={j} matchup={matchup} />

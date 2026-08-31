@@ -238,18 +238,22 @@ export interface PlayoffBracketResult {
    * purposes and aren't worth a full bracket display.
    */
   consolation: PlayoffMatchup[];
+  /**
+   * The "Winners Consolation Ladder" — the 3rd/5th/7th place games
+   * between playoff teams that lost their first winners-bracket game.
+   */
+  winnersConsolation: PlayoffMatchup[];
 }
 
 /**
  * A season's playoff bracket(s), split by ESPN's `matchups.playoff_bracket`
  * tier (see supabase/migrations/20260101000010_playoff_bracket.sql) —
- * the "Winners Consolation Ladder" (3rd/5th/7th place games) is
- * intentionally omitted. Reads only already-stored matchup rows, no
- * scoring computation.
+ * winners bracket, losers consolation, and winners consolation.
+ * Reads only already-stored matchup rows, no scoring computation.
  */
 export async function getPlayoffBracket(year: number): Promise<PlayoffBracketResult> {
   const seasonId = await getSeasonId(year);
-  if (!seasonId) return { winners: [], consolation: [] };
+  if (!seasonId) return { winners: [], consolation: [], winnersConsolation: [] };
 
   const supabase = createClient();
   const { data: matchups, error: matchupsErr } = await supabase
@@ -258,10 +262,10 @@ export async function getPlayoffBracket(year: number): Promise<PlayoffBracketRes
       "week, home_team_id, away_team_id, home_score, away_score, is_championship, is_final, playoff_bracket",
     )
     .eq("season_id", seasonId)
-    .in("playoff_bracket", ["winners", "losers_consolation"])
+    .in("playoff_bracket", ["winners", "losers_consolation", "winners_consolation"])
     .order("week", { ascending: true });
   if (matchupsErr) throw matchupsErr;
-  if (!matchups || matchups.length === 0) return { winners: [], consolation: [] };
+  if (!matchups || matchups.length === 0) return { winners: [], consolation: [], winnersConsolation: [] };
 
   const teamIds = [
     ...new Set(matchups.flatMap((m) => [m.home_team_id, m.away_team_id])),
@@ -313,7 +317,10 @@ export async function getPlayoffBracket(year: number): Promise<PlayoffBracketRes
     .filter((m) => m.week === firstConsolationWeek)
     .map(toPlayoffMatchup);
 
-  return { winners, consolation };
+  const winnersConsolationMatchups = matchups.filter((m) => m.playoff_bracket === "winners_consolation");
+  const winnersConsolation = winnersConsolationMatchups.map(toPlayoffMatchup);
+
+  return { winners, consolation, winnersConsolation };
 }
 
 /**
