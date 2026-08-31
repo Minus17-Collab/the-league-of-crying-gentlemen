@@ -130,7 +130,8 @@ export function DraftBoardTabs({ picks, years }: Props) {
 
 function PickTable({ picks }: { picks: DraftBoardPick[] }) {
   return (
-    <table className="w-full border-collapse text-sm text-ivory">
+    <div className="-mx-4 max-w-[calc(100%+2rem)] overflow-x-auto px-4">
+      <table className="w-full min-w-[36rem] border-collapse text-sm text-ivory">
       <caption className="sr-only">Draft picks</caption>
       <thead>
         <tr className="border-b border-gold-500/30 text-left text-ivory/75">
@@ -186,6 +187,7 @@ function PickTable({ picks }: { picks: DraftBoardPick[] }) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

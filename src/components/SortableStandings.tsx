@@ -70,7 +70,8 @@ export function SortableStandings({ standings }: Props) {
   }
 
   return (
-    <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+    <div className="-mx-6 max-w-[calc(100%+3rem)] overflow-x-auto px-6">
+      <table className="w-full min-w-[44rem] border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
       <caption className="sr-only">Season standings</caption>
       <thead>
         <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left">
@@ -113,5 +114,6 @@ export function SortableStandings({ standings }: Props) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
