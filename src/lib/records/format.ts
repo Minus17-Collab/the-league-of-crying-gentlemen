@@ -11,14 +11,22 @@ function isStreakKey(key: string): boolean {
   return key.includes("streak");
 }
 
+function isCountKey(key: string): boolean {
+  return key.includes("wins") || key.includes("losses");
+}
+
 function isLuckKey(key: string): boolean {
   return key.includes("luck");
 }
 
+function isWinPctKey(key: string): boolean {
+  return key.includes("win_percentage");
+}
+
 /** The primary displayed value for a record card/leaderboard row. */
 export function formatRecordValue(key: string, value: number): string {
-  if (isStreakKey(key)) {
-    // Streaks and other game counts are always whole numbers.
+  if (isStreakKey(key) || isCountKey(key)) {
+    // Streaks, wins, and losses are always whole numbers.
     return value.toLocaleString("en-US", { maximumFractionDigits: 0 });
   }
   if (isLuckKey(key)) {
@@ -28,6 +36,9 @@ export function formatRecordValue(key: string, value: number): string {
     });
     const sign = value > 0 ? "+" : value < 0 ? "-" : "";
     return `${sign}${formatted} wins`;
+  }
+  if (isWinPctKey(key)) {
+    return `${(value * 100).toFixed(1)}%`;
   }
   // Points, margins, toughest-schedule totals: two decimals, with a
   // thousands separator for anything large (e.g. toughest schedule

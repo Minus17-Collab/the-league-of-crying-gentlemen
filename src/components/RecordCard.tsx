@@ -29,6 +29,15 @@ function contextLabel(context: Record<string, unknown>): string {
       `won ${context.actualWins} real games, scores deserved about ${formatContextNumber(context.wouldBeWins as number, 1)}`,
     );
   }
+  if (typeof context.wins === "number" && typeof context.losses === "number") {
+    const record = context.ties
+      ? `${context.wins}-${context.losses}-${context.ties}`
+      : `${context.wins}-${context.losses}`;
+    const games = typeof context.games === "number" ? ` (${context.games} games)` : "";
+    parts.push(`${record}${games}`);
+  } else if (typeof context.games === "number") {
+    parts.push(`${context.games} games`);
+  }
   return parts.join(" \u00b7 ");
 }
 

@@ -49,6 +49,13 @@ export default async function RecordsPage() {
   const otherRegular = allTime.filter((e) =>
     ["alltime_toughest_schedule", "alltime_easiest_schedule"].includes(e.definition.key),
   );
+  const careerRecords = allTime.filter((e) =>
+    [
+      "alltime_most_regular_season_wins",
+      "alltime_most_regular_season_losses",
+      "alltime_best_win_percentage",
+    ].includes(e.definition.key),
+  );
   const otherPlayoff = allTime.filter((e) => e.definition.key === "alltime_highest_scoring_playoff_run");
 
   return (
@@ -148,6 +155,15 @@ export default async function RecordsPage() {
         <h3 className="font-subheading text-base tracking-wide text-gold-300">Schedule</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           {otherRegular.map((e) => (
+            <RecordCard key={e.definition.key} entry={e} />
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Career Record</h3>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {careerRecords.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
           ))}
         </div>

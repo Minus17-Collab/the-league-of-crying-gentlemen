@@ -126,6 +126,9 @@ const ALL_TIME_KEYS = [
   "alltime_luckiest_season",
   "alltime_toughest_schedule",
   "alltime_easiest_schedule",
+  "alltime_most_regular_season_wins",
+  "alltime_most_regular_season_losses",
+  "alltime_best_win_percentage",
 ];
 
 /** Every all-time record, in the fixed display order above. Empty
