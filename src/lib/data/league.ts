@@ -874,6 +874,136 @@ export interface FoundingSeason {
   note: string;
 }
 
+export interface WeekRecapMatchup {
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number;
+  awayScore: number;
+  winner: string;
+  margin: number;
+  isPlayoff: boolean;
+}
+
+export interface WeekRecap {
+  year: number;
+  week: number;
+  matchups: WeekRecapMatchup[];
+  highestScorer: { team: string; score: number } | null;
+  biggestBlowout: WeekRecapMatchup | null;
+  closestGame: WeekRecapMatchup | null;
+  unluckiestLoss: { team: string; score: number; opponent: string; opponentScore: number } | null;
+}
+
+/** Get a weekly recap from stored matchups. Highlights are computed from
+ * the scores already in the database (see AGENTS.md: scoring is data, never
+ * code). If no matchups are found, returns an empty recap. */
+export async function getWeekRecap(year: number, week: number): Promise<WeekRecap> {
+  const seasonId = await getSeasonId(year);
+  const empty: WeekRecap = {
+    year,
+    week,
+    matchups: [],
+    highestScorer: null,
+    biggestBlowout: null,
+    closestGame: null,
+    unluckiestLoss: null,
+  };
+  if (!seasonId) return empty;
+
+  const supabase = createClient();
+  const [
+    { data: matchups, error: matchupsErr },
+    { data: teams, error: teamsErr },
+    { data: franchises, error: franchisesErr },
+  ] = await Promise.all([
+    supabase
+      .from("matchups")
+      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, playoff_bracket")
+      .eq("season_id", seasonId)
+      .eq("week", week)
+      .order("id"),
+    supabase.from("teams").select("id, franchise_id, name").eq("season_id", seasonId),
+    supabase.from("franchises").select("id, display_name"),
+  ]);
+  if (matchupsErr) throw matchupsErr;
+  if (teamsErr) throw teamsErr;
+  if (franchisesErr) throw franchisesErr;
+
+  const nameByFranchiseId = new Map((franchises ?? []).map((f) => [f.id, f.display_name]));
+  const franchiseByTeamId = new Map((teams ?? []).map((t) => [t.id, t.franchise_id]));
+  const teamNameById = new Map((teams ?? []).map((t) => [t.id, t.name]));
+
+  function teamName(teamId: string) {
+    const franchiseId = franchiseByTeamId.get(teamId);
+    if (franchiseId) return nameByFranchiseId.get(franchiseId) ?? teamNameById.get(teamId) ?? "Unknown";
+    return teamNameById.get(teamId) ?? "Unknown";
+  }
+
+  const normalized: WeekRecapMatchup[] = (matchups ?? [])
+    .filter((m) => m.home_team_id && m.away_team_id)
+    .map((m) => {
+      const homeScore = Number(m.home_score ?? 0);
+      const awayScore = Number(m.away_score ?? 0);
+      const margin = Math.abs(homeScore - awayScore);
+      const winner = homeScore > awayScore ? teamName(m.home_team_id) : awayScore > homeScore ? teamName(m.away_team_id) : "Tie";
+      return {
+        homeTeam: teamName(m.home_team_id),
+        awayTeam: teamName(m.away_team_id),
+        homeScore,
+        awayScore,
+        margin,
+        winner,
+        isPlayoff: m.is_playoff ?? false,
+      };
+    });
+
+  if (normalized.length === 0) return empty;
+
+  let highestScorer: { team: string; score: number } | null = null;
+  let unluckiestLoss: { team: string; score: number; opponent: string; opponentScore: number } | null = null;
+  for (const m of normalized) {
+    for (const [team, score, opponent, opponentScore] of [
+      [m.homeTeam, m.homeScore, m.awayTeam, m.awayScore] as const,
+      [m.awayTeam, m.awayScore, m.homeTeam, m.homeScore] as const,
+    ]) {
+      if (score > (highestScorer?.score ?? -Infinity)) {
+        highestScorer = { team, score };
+      }
+      if (score < opponentScore && score > (unluckiestLoss?.score ?? -Infinity)) {
+        unluckiestLoss = { team, score, opponent, opponentScore };
+      }
+    }
+  }
+
+  const sortedByMargin = [...normalized].sort((a, b) => b.margin - a.margin);
+  const biggestBlowout = sortedByMargin[0] ?? null;
+  const decidedGames = normalized.filter((m) => m.margin > 0);
+  const closestGame = decidedGames.sort((a, b) => a.margin - b.margin)[0] ?? null;
+
+  return {
+    year,
+    week,
+    matchups: normalized,
+    highestScorer,
+    biggestBlowout,
+    closestGame,
+    unluckiestLoss,
+  };
+}
+
+export async function getSeasonWeeks(year: number): Promise<number[]> {
+  const seasonId = await getSeasonId(year);
+  if (!seasonId) return [];
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("matchups")
+    .select("week")
+    .eq("season_id", seasonId)
+    .order("week");
+  if (error) throw error;
+  return [...new Set((data ?? []).map((m) => m.week))].sort((a, b) => a - b);
+}
+
 /** 2023 founding season, deliberately isolated from all-time records.
  * The same stored data as any other season, but returned with the explicit
  * caveat that the format and scoring rules were materially different (8

@@ -46,6 +46,18 @@ export const metadata: Metadata = {
     template: "%s — LCG",
   },
   description: "League history, records, and champions since 2023.",
+  openGraph: {
+    title: "The League of Crying Gentlemen",
+    description: "Fantasy Football Record Book",
+    images: ["/og/default.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The League of Crying Gentlemen",
+    description: "Fantasy Football Record Book",
+    images: ["/og/default.png"],
+  },
   robots: {
     index: false,
     follow: false,
@@ -55,14 +67,6 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.webmanifest",
-  openGraph: {
-    siteName: "The League of Crying Gentlemen",
-    type: "website",
-    images: ["/og-default.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-  },
 };
 
 const NAV_LINKS = [
