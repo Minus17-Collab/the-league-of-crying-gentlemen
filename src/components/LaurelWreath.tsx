@@ -14,41 +14,37 @@ export function LaurelWreath({ className }: { className?: string }) {
         </linearGradient>
       </defs>
       <g fill="none" stroke="url(#laurel)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        {/* Bottom stems */}
-        <path d="M28 32 C18 42, 20 72, 48 90" />
-        <path d="M72 32 C82 42, 80 72, 52 90" />
+        {/* Bottom stems — start low on the sides and meet at the bottom */}
+        <path d="M22 60 C16 68, 22 86, 48 94" />
+        <path d="M78 60 C84 68, 78 86, 52 94" />
 
         {/* Left leaves (top to bottom) */}
-        <path d="M30 36 L24 40" />
-        <path d="M28 42 L22 46" />
-        <path d="M26 48 L20 52" />
-        <path d="M25 54 L19 58" />
-        <path d="M24 60 L18 64" />
-        <path d="M24 66 L18 70" />
-        <path d="M25 72 L19 76" />
-        <path d="M27 78 L21 82" />
-        <path d="M30 84 L24 88" />
-        <path d="M34 88 L28 92" />
-        <path d="M39 92 L33 96" />
-        <path d="M44 94 L38 98" />
+        <path d="M23 64 L17 66" />
+        <path d="M22 70 L16 72" />
+        <path d="M22 76 L16 78" />
+        <path d="M23 82 L17 84" />
+        <path d="M25 88 L19 90" />
+        <path d="M28 92 L22 94" />
+        <path d="M32 94 L26 96" />
+        <path d="M37 96 L31 98" />
+        <path d="M42 96 L36 98" />
+        <path d="M47 96 L41 98" />
 
         {/* Right leaves (top to bottom) */}
-        <path d="M70 36 L76 40" />
-        <path d="M72 42 L78 46" />
-        <path d="M74 48 L80 52" />
-        <path d="M75 54 L81 58" />
-        <path d="M76 60 L82 64" />
-        <path d="M76 66 L82 70" />
-        <path d="M75 72 L81 76" />
-        <path d="M73 78 L79 82" />
-        <path d="M70 84 L76 88" />
-        <path d="M66 88 L72 92" />
-        <path d="M61 92 L67 96" />
-        <path d="M56 94 L62 98" />
+        <path d="M77 64 L83 66" />
+        <path d="M78 70 L84 72" />
+        <path d="M78 76 L84 78" />
+        <path d="M77 82 L83 84" />
+        <path d="M75 88 L81 90" />
+        <path d="M72 92 L78 94" />
+        <path d="M68 94 L74 96" />
+        <path d="M63 96 L69 98" />
+        <path d="M58 96 L64 98" />
+        <path d="M53 96 L59 98" />
 
         {/* Center bow / tie */}
-        <path d="M45 92 C45 96, 48 98, 50 98 C52 98, 55 96, 55 92" />
-        <path d="M50 98 L50 104" />
+        <path d="M46 94 C46 97, 48 99, 50 99 C52 99, 54 97, 54 94" />
+        <path d="M50 99 L50 104" />
       </g>
     </svg>
   );
