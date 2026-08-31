@@ -13,7 +13,7 @@ function fmt(n: number | null, digits = 1): string {
   return n == null ? "—" : n.toFixed(digits);
 }
 
-type DraftView = "round" | "team";
+type DraftView = "round" | "team" | "grade";
 
 function gradeClass(grade: string | null): string {
   if (!grade) return "text-ivory";
@@ -59,6 +59,31 @@ export function DraftBoardTabs({ picks, years }: Props) {
     (byTeam[a][0]?.managerName ?? "").localeCompare(byTeam[b][0]?.managerName ?? ""),
   );
 
+  // Season-wide team grade table: one row per team, sorted by total VOE
+  // descending — this is the same VOE/regrade math the by-team drilldown
+  // and manager pages already use, just aggregated across a whole class
+  // rather than a single pick. Doubles as "best draft class" (see the
+  // site upgrade plan's records backlog).
+  const teamGrades = useMemo(() => {
+    return teamIds
+      .map((franchiseId) => {
+        const teamPicks = byTeam[franchiseId];
+        const withVoe = teamPicks.filter((p) => p.voe != null);
+        const totalVoe = withVoe.reduce((sum, p) => sum + (p.voe ?? 0), 0);
+        const avgVoe = withVoe.length > 0 ? totalVoe / withVoe.length : null;
+        const totalPoints = teamPicks.reduce((sum, p) => sum + (p.seasonPoints ?? 0), 0) || null;
+        return {
+          franchiseId,
+          managerName: teamPicks[0]?.managerName ?? "Unknown",
+          picks: teamPicks.length,
+          totalVoe,
+          avgVoe,
+          totalPoints,
+        };
+      })
+      .sort((a, b) => b.totalVoe - a.totalVoe);
+  }, [teamIds, byTeam]);
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap gap-2" role="tablist" aria-label="Draft year">
@@ -84,6 +109,7 @@ export function DraftBoardTabs({ picks, years }: Props) {
           [
             ["round", "By Round"],
             ["team", "By Team"],
+            ["grade", "Team Grades"],
           ] as [DraftView, string][]
         ).map(([v, label]) => (
           <button
@@ -112,7 +138,7 @@ export function DraftBoardTabs({ picks, years }: Props) {
             </section>
           ))}
         </div>
-      ) : (
+      ) : view === "team" ? (
         <div className="flex flex-col gap-6" role="tabpanel">
           {teamIds.map((franchiseId) => (
             <TeamDraftSection
@@ -122,6 +148,41 @@ export function DraftBoardTabs({ picks, years }: Props) {
               picks={byTeam[franchiseId]}
             />
           ))}
+        </div>
+      ) : (
+        <div role="tabpanel">
+          <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+            <caption className="sr-only">Season-wide team draft grades, sorted by total VOE</caption>
+            <thead>
+              <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
+                <th scope="col" className="px-4 py-3 font-medium">Manager</th>
+                <th scope="col" className="px-4 py-3 font-medium">Picks</th>
+                <th scope="col" className="px-4 py-3 font-medium">Avg VOE</th>
+                <th scope="col" className="px-4 py-3 font-medium">Total VOE</th>
+                <th scope="col" className="px-4 py-3 font-medium">Total Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teamGrades.map((t, i) => (
+                <tr key={t.franchiseId} className="border-b border-charcoal-600 last:border-0">
+                  <th scope="row" className="px-4 py-3 text-left font-medium">
+                    <Link href={`/managers/${t.franchiseId}`} className="underline underline-offset-2 hover:text-amber">
+                      {t.managerName}
+                    </Link>
+                    {i === 0 && (
+                      <span className="ml-2 rounded-full bg-gold-100 px-2 py-0.5 text-xs font-semibold text-gold-800">
+                        Best class
+                      </span>
+                    )}
+                  </th>
+                  <td className="px-4 py-3 tabular-nums">{t.picks}</td>
+                  <td className="px-4 py-3 tabular-nums">{fmt(t.avgVoe, 1)}</td>
+                  <td className="px-4 py-3 tabular-nums">{fmt(t.totalVoe, 1)}</td>
+                  <td className="px-4 py-3 tabular-nums">{fmt(t.totalPoints, 1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

@@ -3,7 +3,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { Disclosure } from "@/components/Disclosure";
-import { getManagerDetail, getManagers } from "@/lib/data/league";
+import { SeasonTrendSparkline } from "@/components/SeasonTrendSparkline";
+import {
+  getManagerDetail,
+  getManagers,
+  getLeagueAveragePointsForBySeason,
+  type ManagerDraftPick,
+} from "@/lib/data/league";
 
 export async function generateStaticParams() {
   const managers = await getManagers();
@@ -28,6 +34,40 @@ function fmt(n: number | null, digits = 1): string {
   return n == null ? "—" : n.toFixed(digits);
 }
 
+function DraftPickTable({ picks, caption }: { picks: ManagerDraftPick[]; caption: string }) {
+  return (
+    <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+      <caption className="sr-only">{caption}</caption>
+      <thead>
+        <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
+          <th scope="col" className="px-4 py-3 font-medium">Player</th>
+          <th scope="col" className="px-4 py-3 font-medium">Year</th>
+          <th scope="col" className="px-4 py-3 font-medium">Pick</th>
+          <th scope="col" className="px-4 py-3 font-medium">Season Points</th>
+          <th scope="col" className="px-4 py-3 font-medium">VOE</th>
+          <th scope="col" className="px-4 py-3 font-medium">Regrade</th>
+          <th scope="col" className="px-4 py-3 font-medium">Draft Night Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        {picks.map((p, i) => (
+          <tr key={`${p.playerId}-${p.year}-${i}`} className="border-b border-charcoal-600 last:border-0">
+            <th scope="row" className="px-4 py-3 text-left font-medium">{p.playerName ?? "Unknown"}</th>
+            <td className="px-4 py-3 text-ivory/75">{p.year}</td>
+            <td className="px-4 py-3 text-ivory/75">
+              Rd {p.round} (#{p.overallPick})
+            </td>
+            <td className="px-4 py-3">{fmt(p.seasonPoints, 1)}</td>
+            <td className="px-4 py-3">{p.voe != null ? (p.voe > 0 ? "+" : "") + fmt(p.voe, 1) : "—"}</td>
+            <td className="px-4 py-3 font-medium text-gold-400">{p.regradeGrade ?? "—"}</td>
+            <td className="px-4 py-3 text-ivory/75">{p.draftNightGrade ?? "—"}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 export default async function ManagerDetailPage({
   params,
 }: {
@@ -41,6 +81,13 @@ export default async function ManagerDetailPage({
   }
 
   const { careerRecord } = manager;
+  const leagueAverages = await getLeagueAveragePointsForBySeason(
+    manager.seasonTrend.map((p) => p.year),
+  );
+  const overallLeagueAverage =
+    leagueAverages.size > 0
+      ? [...leagueAverages.values()].reduce((a, b) => a + b, 0) / leagueAverages.size
+      : null;
 
   const photoSlug = manager.name.split(" ")[0].toLowerCase();
   const photoInitials = manager.name
@@ -122,6 +169,14 @@ export default async function ManagerDetailPage({
         )}
       </section>
 
+      {/* Season trend */}
+      {manager.seasonTrend.length > 0 && (
+        <section className="flex flex-col gap-3">
+          <h2 className="font-subheading text-lg tracking-wide text-gold-400">Season Trend</h2>
+          <SeasonTrendSparkline points={manager.seasonTrend} leagueAverage={overallLeagueAverage} />
+        </section>
+      )}
+
       {/* Top scorers */}
       <section className="flex flex-col gap-3">
         <h2 className="font-subheading text-lg tracking-wide text-gold-400">Top Scorers Ever Rostered</h2>
@@ -168,31 +223,60 @@ export default async function ManagerDetailPage({
         {manager.bestDraftPicks.length === 0 ? (
           <p className="text-sm text-ivory">No graded draft picks available yet.</p>
         ) : (
+          <DraftPickTable picks={manager.bestDraftPicks} caption="Best draft picks" />
+        )}
+      </section>
+
+      {/* Worst draft picks */}
+      <section className="flex flex-col gap-3">
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Worst Draft Picks</h2>
+        {manager.worstDraftPicks.length === 0 ? (
+          <p className="text-sm text-ivory">No graded draft picks available yet.</p>
+        ) : (
+          <DraftPickTable picks={manager.worstDraftPicks} caption="Worst draft picks" />
+        )}
+      </section>
+
+      {/* Rivalries */}
+      <section className="flex flex-col gap-3">
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Rivalries</h2>
+        <p className="max-w-2xl text-xs text-ivory/60">
+          Regular season only, excluding the 2023 founding season — same scope as{" "}
+          <Link href="/h2h" className="underline underline-offset-2 hover:text-amber">
+            the head-to-head page
+          </Link>
+          .
+        </p>
+        {manager.rivalries.length === 0 ? (
+          <p className="text-sm text-ivory">No regular-season matchups recorded yet.</p>
+        ) : (
           <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
-            <caption className="sr-only">Best draft picks</caption>
+            <caption className="sr-only">Rivalries by games played</caption>
             <thead>
               <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-                <th scope="col" className="px-4 py-3 font-medium">Player</th>
-                <th scope="col" className="px-4 py-3 font-medium">Year</th>
-                <th scope="col" className="px-4 py-3 font-medium">Pick</th>
-                <th scope="col" className="px-4 py-3 font-medium">Season Points</th>
-                <th scope="col" className="px-4 py-3 font-medium">VOE</th>
-                <th scope="col" className="px-4 py-3 font-medium">Regrade</th>
-                <th scope="col" className="px-4 py-3 font-medium">Draft Night Grade</th>
+                <th scope="col" className="px-4 py-3 font-medium">Opponent</th>
+                <th scope="col" className="px-4 py-3 font-medium">Record</th>
+                <th scope="col" className="px-4 py-3 font-medium">Points For</th>
+                <th scope="col" className="px-4 py-3 font-medium">Points Against</th>
               </tr>
             </thead>
             <tbody>
-              {manager.bestDraftPicks.map((p, i) => (
-                <tr key={`${p.playerId}-${p.year}-${i}`} className="border-b border-charcoal-600 last:border-0">
-                  <th scope="row" className="px-4 py-3 text-left font-medium">{p.playerName ?? "Unknown"}</th>
-                  <td className="px-4 py-3 text-ivory/75">{p.year}</td>
+              {manager.rivalries.map((r) => (
+                <tr key={r.opponentFranchiseId} className="border-b border-charcoal-600 last:border-0">
+                  <th scope="row" className="px-4 py-3 text-left font-medium">
+                    <Link
+                      href={`/managers/${r.opponentFranchiseId}`}
+                      className="underline underline-offset-2 hover:text-amber"
+                    >
+                      {r.opponentName}
+                    </Link>
+                  </th>
                   <td className="px-4 py-3 text-ivory/75">
-                    Rd {p.round} (#{p.overallPick})
+                    {r.wins}-{r.losses}
+                    {r.ties ? `-${r.ties}` : ""}
                   </td>
-                  <td className="px-4 py-3">{fmt(p.seasonPoints, 1)}</td>
-                  <td className="px-4 py-3">{p.voe != null ? (p.voe > 0 ? "+" : "") + fmt(p.voe, 1) : "—"}</td>
-                  <td className="px-4 py-3 font-medium text-gold-400">{p.regradeGrade ?? "—"}</td>
-                  <td className="px-4 py-3 text-ivory/75">{p.draftNightGrade ?? "—"}</td>
+                  <td className="px-4 py-3">{fmt(r.pointsFor, 1)}</td>
+                  <td className="px-4 py-3">{fmt(r.pointsAgainst, 1)}</td>
                 </tr>
               ))}
             </tbody>

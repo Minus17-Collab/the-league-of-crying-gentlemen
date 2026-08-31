@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "All-time manager roster and career records.",
 };
 
-function ManagerRow({
+function ManagerBanner({
   manager,
   championshipCount,
 }: {
@@ -26,30 +26,28 @@ function ManagerRow({
     .toUpperCase();
 
   return (
-    <tr className="border-b border-charcoal-600 last:border-0">
-      <th scope="row" className="px-4 py-3 text-left font-medium capitalize">
-        <Link
-          href={`/managers/${manager.franchiseId}`}
-          className="flex items-center gap-3 text-ivory underline underline-offset-2 hover:text-amber"
-        >
-          <ManagerPhoto src={`/manager-photos/${photoSlug}.jpg`} alt={manager.name} initials={initials} />
-          <span>{manager.name}</span>
-          <TrophyBadge count={championshipCount} />
-        </Link>
-      </th>
-      <td className="px-4 py-3 text-ivory/75">{manager.seasonsActive.join(", ")}</td>
-      <td className="px-4 py-3">
-        {manager.inferredRetiredAfterSeason ? (
-          <span className="text-ivory/60">Left after {manager.inferredRetiredAfterSeason}</span>
-        ) : (
-          <span className="font-medium text-gold-400">Active</span>
-        )}
-      </td>
-    </tr>
+    <Link
+      href={`/managers/${manager.franchiseId}`}
+      className="group flex w-full flex-col items-center gap-3 rounded-lg border-2 border-gold-500 bg-burgundy-800 p-5 text-center transition hover:border-gold-300 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+    >
+      <ManagerPhoto src={`/manager-photos/${photoSlug}.jpg`} alt={manager.name} initials={initials} />
+      <span className="flex items-center gap-2 rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-3 py-1 text-sm font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
+        {manager.name}
+        <TrophyBadge count={championshipCount} />
+      </span>
+      <span className="text-xs text-ivory/75">
+        Seasons: {manager.seasonsActive.join(", ")}
+      </span>
+      {manager.inferredRetiredAfterSeason ? (
+        <span className="text-xs text-ivory/60">Left after {manager.inferredRetiredAfterSeason}</span>
+      ) : (
+        <span className="text-xs font-medium text-gold-400">Active</span>
+      )}
+    </Link>
   );
 }
 
-function ManagerTable({
+function ManagerGrid({
   managers,
   championshipCounts,
 }: {
@@ -57,25 +55,15 @@ function ManagerTable({
   championshipCounts: Map<string, number>;
 }) {
   return (
-    <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
-      <caption className="sr-only">Managers</caption>
-      <thead>
-        <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-          <th scope="col" className="px-4 py-3 font-medium">Manager</th>
-          <th scope="col" className="px-4 py-3 font-medium">Seasons Active</th>
-          <th scope="col" className="px-4 py-3 font-medium">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {managers.map((manager) => (
-          <ManagerRow
-            key={manager.franchiseId}
-            manager={manager}
-            championshipCount={championshipCounts.get(manager.franchiseId) ?? 0}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className="flex flex-wrap justify-center gap-6">
+      {managers.map((manager) => (
+        <ManagerBanner
+          key={manager.franchiseId}
+          manager={manager}
+          championshipCount={championshipCounts.get(manager.franchiseId) ?? 0}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -99,13 +87,13 @@ export default async function ManagersPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="font-subheading text-lg text-gold-300">Active</h2>
-        <ManagerTable managers={active} championshipCounts={championshipCounts} />
+        <ManagerGrid managers={active} championshipCounts={championshipCounts} />
       </section>
 
       {retired.length > 0 && (
         <section className="flex flex-col gap-3">
           <h2 className="font-subheading text-lg text-ivory/75">Retired</h2>
-          <ManagerTable managers={retired} championshipCounts={championshipCounts} />
+          <ManagerGrid managers={retired} championshipCounts={championshipCounts} />
         </section>
       )}
     </div>

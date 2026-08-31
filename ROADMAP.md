@@ -20,7 +20,9 @@ default deny; public read on `leagues`, `seasons`, `teams`, `franchises`,
 `matchups`; authenticated read elsewhere; writes service-role only for now.
 - Status: migration files written (`supabase/migrations/`), including
   manager-lifecycle fields on `franchises` and the grading tables from
-  Phase 3.5. Not yet applied — no Supabase project exists yet to link.
+  Phase 3.5. **Applied** — the Supabase project is linked
+  (`supabase/.temp/linked-project.json`) and the live site reads from it
+  at build time via `src/lib/data/`.
 - Done when: migrations apply cleanly to a fresh database and `pnpm db:types` emits valid types.
 
 **0.3 Seed data**
@@ -63,6 +65,9 @@ cookie auth (`SWID`, `espn_s2`). Zod-validate all responses.
 **2.2 Player identity resolution**
 Map ESPN player IDs into `players` + `player_external_ids`. Handle name
 collisions and mid-season team changes without creating duplicate players.
+- Status: implemented in `scripts/sync-espn.mjs` (resolves via
+  `player_external_ids` before creating a new `players` row; creates
+  placeholder players for drafted players not present on current rosters).
 - Done when: syncing twice produces zero duplicate player rows.
 
 **2.3 Sync jobs**
@@ -71,10 +76,12 @@ Pages, which has no server runtime for a route handler/cron). Full sync
 (daily), live sync (every 5 min during game windows) would need a
 different host if ever required. Every run writes a `sync_runs` row.
 Failures are logged and retried, never silent.
-- Status: skeleton script at `scripts/sync-espn.mjs`, run weekly by
-  `.github/workflows/sync.yml` (Tuesdays). Checks ESPN credentials and
-  logs to `sync_runs`; does not yet upsert gameplay data (depends on 2.2).
-- Done when: a scheduled run populates a week of data end to end and is visible in `sync_runs`.
+- Status: **complete.** `scripts/sync-espn.mjs`, run by
+  `.github/workflows/sync.yml`, ingests teams, matchups, rosters/lineup
+  entries, player identity, stat lines (when ESPN publishes them),
+  transactions, and draft picks, then recomputes team records. Every run
+  writes a `sync_runs` row on success or failure.
+- Done when: a scheduled run populates a week of data end to end and is visible in `sync_runs`. ✅
 
 ---
 
@@ -219,9 +226,9 @@ open items are marked accordingly.
 
 ## Infra setup (blocks Phase 0.2 apply / Phase 2 testing)
 
-- Supabase account + project: not yet created. **Still blocking** —
-  nothing in `data/history/` has been inserted into a database yet.
-- GitHub repo: not yet created (local git repo exists, not yet pushed).
+- Supabase account + project: created and linked. Historical data has
+  been ingested and the live site reads from it at build time.
+- GitHub repo: created and pushed; CI/deploy workflows are live.
 - `ESPN_SWID` / `ESPN_S2`: obtained and verified working 2026-08-15 for
   all 4 seasons (2023-2026). See `RUNBOOK.md` for refresh instructions —
   cookie export showed a short (~6 day) expiry window.

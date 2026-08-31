@@ -94,7 +94,27 @@ export interface ManagerDetail {
   numberOneOverallPicks: number;
   topScorers: ManagerTopScorer[];
   bestDraftPicks: ManagerDraftPick[];
+  worstDraftPicks: ManagerDraftPick[];
   favoritePlayer: { playerId: string; name: string; position: string; starts: number; seasons: number[] } | null;
+  rivalries: ManagerRivalry[];
+  seasonTrend: ManagerSeasonPoint[];
+}
+
+export interface ManagerSeasonPoint {
+  year: number;
+  pointsFor: number;
+  finalRank: number | null;
+}
+
+export interface ManagerRivalry {
+  opponentFranchiseId: string;
+  opponentName: string;
+  wins: number;
+  losses: number;
+  ties: number;
+  pointsFor: number;
+  pointsAgainst: number;
+  games: number;
 }
 
 async function getSeasonId(year: number): Promise<string | null> {
@@ -170,6 +190,42 @@ export async function getManagers(): Promise<Manager[]> {
       inferredRetiredAfterSeason: f.retired_season,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** League-average regular-season points-for per year, for the manager
+ * season-trend chart's reference line. Reads only stored `points_for`. */
+export async function getLeagueAveragePointsForBySeason(
+  years: number[],
+): Promise<Map<number, number>> {
+  const supabase = createClient();
+  const { data: seasons, error: seasonsErr } = await supabase
+    .from("seasons")
+    .select("id, year")
+    .in("year", years.length > 0 ? years : [-1]);
+  if (seasonsErr) throw seasonsErr;
+  const seasonIds = (seasons ?? []).map((s) => s.id);
+  const yearBySeasonId = new Map((seasons ?? []).map((s) => [s.id, s.year]));
+
+  const { data: teams, error: teamsErr } = await supabase
+    .from("teams")
+    .select("season_id, points_for")
+    .in("season_id", seasonIds.length > 0 ? seasonIds : [""]);
+  if (teamsErr) throw teamsErr;
+
+  const sumBySeasonId = new Map<string, { sum: number; count: number }>();
+  for (const t of teams ?? []) {
+    const acc = sumBySeasonId.get(t.season_id) ?? { sum: 0, count: 0 };
+    acc.sum += t.points_for ?? 0;
+    acc.count += 1;
+    sumBySeasonId.set(t.season_id, acc);
+  }
+
+  const result = new Map<number, number>();
+  for (const [seasonId, { sum, count }] of sumBySeasonId) {
+    const year = yearBySeasonId.get(seasonId);
+    if (year != null && count > 0) result.set(year, sum / count);
+  }
+  return result;
 }
 
 export async function getStandings(year: number): Promise<TeamSeasonRecord[]> {
@@ -417,7 +473,7 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
 
   const { data: teams, error: teamsErr } = await supabase
     .from("teams")
-    .select("id, season_id, wins, losses, ties, final_rank, playoff_seed")
+    .select("id, season_id, wins, losses, ties, final_rank, playoff_seed, points_for")
     .eq("franchise_id", franchiseId);
   if (teamsErr) throw teamsErr;
   if (!teams || teams.length === 0) {
@@ -439,7 +495,10 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
       numberOneOverallPicks: 0,
       topScorers: [],
       bestDraftPicks: [],
+      worstDraftPicks: [],
       favoritePlayer: null,
+      rivalries: [],
+      seasonTrend: [],
     };
   }
 
@@ -494,6 +553,15 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     .in("draft_pick_id", draftPickIds.length > 0 ? draftPickIds : [""]);
   if (gradesErr) throw gradesErr;
   const gradeByPickId = new Map((grades ?? []).map((g) => [g.draft_pick_id, g]));
+
+  const seasonTrend: ManagerSeasonPoint[] = teams
+    .map((t) => ({
+      year: yearBySeasonId.get(t.season_id) ?? 0,
+      pointsFor: t.points_for ?? 0,
+      finalRank: t.final_rank,
+    }))
+    .filter((p) => p.year !== 0)
+    .sort((a, b) => a.year - b.year);
 
   // Career record + finish stats
   const careerRecord = teams.reduce(
@@ -624,6 +692,48 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     .sort((a, b) => (b.voe ?? 0) - (a.voe ?? 0))
     .slice(0, 5);
 
+  const draftPicksWithGrades: ManagerDraftPick[] = (draftPicks ?? []).map((pick) => {
+    const grade = gradeByPickId.get(pick.id);
+    const player = pick.player_id ? playerById.get(pick.player_id) : null;
+    return {
+      playerId: pick.player_id,
+      playerName: player?.full_name ?? null,
+      year: yearBySeasonId.get(pick.season_id) ?? 0,
+      round: pick.round,
+      overallPick: pick.overall_pick,
+      seasonPoints: grade?.season_points ?? null,
+      voe: grade?.voe ?? null,
+      regradeGrade: grade?.regrade_grade ?? null,
+      adpAtPick: grade?.adp_at_pick ?? null,
+      reachValue: grade?.reach_value ?? null,
+      draftNightGrade: grade?.draft_night_grade ?? null,
+    };
+  });
+  const worstDraftPicks: ManagerDraftPick[] = draftPicksWithGrades
+    .filter((p) => p.voe != null)
+    .sort((a, b) => (a.voe ?? 0) - (b.voe ?? 0))
+    .slice(0, 5);
+
+  // Rivalries: reuses the same regular-season, non-2023 matchup data as
+  // /h2h (getHeadToHead), scoped down to this one franchise's opponents,
+  // sorted by games played (most-played rivalry first).
+  const h2h = await getHeadToHead();
+  const myRow = h2h.find((r) => r.franchiseId === franchiseId);
+  const rivalries: ManagerRivalry[] = myRow
+    ? [...myRow.cells.entries()]
+        .map(([opponentFranchiseId, cell]) => ({
+          opponentFranchiseId,
+          opponentName: h2h.find((r) => r.franchiseId === opponentFranchiseId)?.managerName ?? "Unknown",
+          wins: cell.wins,
+          losses: cell.losses,
+          ties: cell.ties,
+          pointsFor: cell.pointsFor,
+          pointsAgainst: cell.pointsAgainst,
+          games: cell.wins + cell.losses + cell.ties,
+        }))
+        .sort((a, b) => b.games - a.games)
+    : [];
+
   return {
     franchiseId: franchise.id,
     name: franchise.display_name,
@@ -644,7 +754,10 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     numberOneOverallPicks,
     topScorers,
     bestDraftPicks,
+    worstDraftPicks,
     favoritePlayer,
+    rivalries,
+    seasonTrend,
   };
 }
 
