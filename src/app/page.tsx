@@ -4,6 +4,7 @@ import { getSeasons, getStandings, getManagers, getChampions } from "@/lib/data/
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { ChampionshipBanners } from "@/components/ChampionshipBanners";
 import { TrophyBadge } from "@/components/TrophyBadge";
+import { LaurelWreath } from "@/components/LaurelWreath";
 
 function photoSlug(name: string): string {
   return name.trim().split(/\s+/)[0].toLowerCase();
@@ -70,6 +71,7 @@ export default async function Home() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-burgundy-950/70 via-transparent to-transparent mix-blend-multiply"
               />
+              <LaurelWreath className="absolute -inset-5 h-40 w-40" />
               <ManagerPhoto
                 src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
                 alt={reigningChampionManager.name}
