@@ -232,6 +232,9 @@ function toughestSchedule(games, regularSeasonTotals) {
 function toughestScheduleAllTime(list) {
   return tiedBest(list, (t) => t.opponentPointsSum, "max", (t) => ({ franchiseId: t.franchiseId, context: { seasonYear: t.seasonYear } }));
 }
+function easiestScheduleAllTime(list) {
+  return tiedBest(list, (t) => t.opponentPointsSum, "min", (t) => ({ franchiseId: t.franchiseId, context: { seasonYear: t.seasonYear } }));
+}
 
 // ---- record_definitions registry ----
 // Metadata only (title/description/scope/direction) -- no scores or
@@ -253,6 +256,7 @@ const DEFINITIONS = [
   { key: "alltime_unluckiest_season", title: "Unluckiest Season", description: "Scored well enough to win a lot more games than they actually did, based on comparing every week's score to the whole league. Regular season only.", scope: "alltime", direction: "asc" },
   { key: "alltime_luckiest_season", title: "Luckiest Season", description: "Won more real games than their scores really deserved, based on comparing every week's score to the whole league. Regular season only.", scope: "alltime", direction: "desc" },
   { key: "alltime_toughest_schedule", title: "Toughest Schedule Faced", description: "Highest sum of opponents' season-total regular-season points.", scope: "alltime", direction: "desc" },
+  { key: "alltime_easiest_schedule", title: "Easiest Schedule Faced", description: "Lowest sum of opponents' season-total regular-season points.", scope: "alltime", direction: "asc" },
 
   { key: "season_high_score", title: "Season High Score (Single Week)", description: "Highest single-week score that season, regular season and playoffs computed separately (see is_playoff in context).", scope: "season", direction: "desc" },
   { key: "season_low_score", title: "Season Low Score (Single Week)", description: "Lowest single-week score that season, regular season and playoffs computed separately (see is_playoff in context).", scope: "season", direction: "asc" },
@@ -415,6 +419,7 @@ async function computeAndStoreAllTime(defIds, allGames) {
     ["alltime_unluckiest_season", holdersToRows(defIds.get("alltime_unluckiest_season"), unluckiestSeason(luck), "alltime", null, false)],
     ["alltime_luckiest_season", holdersToRows(defIds.get("alltime_luckiest_season"), luckiestSeason(luck), "alltime", null, false)],
     ["alltime_toughest_schedule", holdersToRows(defIds.get("alltime_toughest_schedule"), toughestScheduleAllTime(schedules), "alltime", null, false)],
+    ["alltime_easiest_schedule", holdersToRows(defIds.get("alltime_easiest_schedule"), easiestScheduleAllTime(schedules), "alltime", null, false)],
   ];
 
   for (const [key, rows] of jobs) {

@@ -125,6 +125,7 @@ const ALL_TIME_KEYS = [
   "alltime_unluckiest_season",
   "alltime_luckiest_season",
   "alltime_toughest_schedule",
+  "alltime_easiest_schedule",
 ];
 
 /** Every all-time record, in the fixed display order above. Empty

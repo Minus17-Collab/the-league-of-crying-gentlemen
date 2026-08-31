@@ -46,7 +46,9 @@ export default async function RecordsPage() {
   const margins = allTime.filter((e) => e.definition.key.includes("margin"));
   const streaks = allTime.filter((e) => e.definition.key.includes("streak"));
   const luck = allTime.filter((e) => e.definition.key.includes("luck"));
-  const otherRegular = allTime.filter((e) => e.definition.key === "alltime_toughest_schedule");
+  const otherRegular = allTime.filter((e) =>
+    ["alltime_toughest_schedule", "alltime_easiest_schedule"].includes(e.definition.key),
+  );
   const otherPlayoff = allTime.filter((e) => e.definition.key === "alltime_highest_scoring_playoff_run");
 
   return (
