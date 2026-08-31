@@ -438,6 +438,64 @@ async function syncStatLines(seasonId, year, weeks) {
   }
 }
 
+async function syncDraftPicks(seasonId, year, teamIdByExternal) {
+  const league = await espn(year, ["mDraftDetail"], false);
+  await archive(year, "draft-detail", league);
+
+  const picks = (league.draftDetail?.picks ?? []).filter((p) => p.playerId > 0);
+  if (picks.length === 0) {
+    console.log(`No draft picks found for ${year}.`);
+    return;
+  }
+
+  const externalPlayerIds = [...new Set(picks.map((p) => String(p.playerId)))];
+  const { data: existingIds, error: idErr } = await supabase
+    .from("player_external_ids")
+    .select("player_id, external_id")
+    .eq("provider", "espn")
+    .in("external_id", externalPlayerIds);
+  if (idErr) throw idErr;
+  const playerByExternal = new Map((existingIds ?? []).map((r) => [r.external_id, r.player_id]));
+
+  const missingIds = externalPlayerIds.filter((id) => !playerByExternal.has(id));
+  if (missingIds.length > 0) {
+    const { data: insertedPlayers, error: insertErr } = await supabase
+      .from("players")
+      .insert(missingIds.map(() => ({ full_name: "Unknown", position: "UNKNOWN", nfl_team: null })))
+      .select("id");
+    if (insertErr) throw insertErr;
+    const extInserts = (insertedPlayers ?? []).map((p, i) => ({
+      player_id: p.id,
+      provider: "espn",
+      external_id: missingIds[i],
+    }));
+    const { error: extInsertErr } = await supabase.from("player_external_ids").insert(extInserts);
+    if (extInsertErr) throw extInsertErr;
+    for (let i = 0; i < (insertedPlayers ?? []).length; i++) {
+      playerByExternal.set(missingIds[i], insertedPlayers[i].id);
+    }
+    console.warn(`Created ${missingIds.length} placeholder players for drafted players not on current rosters.`);
+  }
+
+  const inserts = picks.map((p) => ({
+    season_id: seasonId,
+    round: p.roundId,
+    pick_in_round: p.roundPickNumber,
+    overall_pick: p.overallPickNumber,
+    team_id: teamIdByExternal.get(String(p.teamId)) ?? null,
+    player_id: playerByExternal.get(String(p.playerId)) ?? null,
+    keeper: p.keeper ?? false,
+    auction_cost: p.bidAmount && p.bidAmount > 0 ? p.bidAmount : null,
+  }));
+
+  const { error: deleteErr } = await supabase.from("draft_picks").delete().eq("season_id", seasonId);
+  if (deleteErr) throw deleteErr;
+
+  const { error: insertErr } = await supabase.from("draft_picks").insert(inserts);
+  if (insertErr) throw insertErr;
+  console.log(`Ingested ${inserts.length} draft picks for ${year}.`);
+}
+
 function mapTransactionType(transaction) {
   if (transaction.type === "DRAFT") return null;
   const itemTypes = (transaction.items ?? []).map((i) => (i.type ?? "").toUpperCase());
@@ -690,6 +748,7 @@ async function main() {
       message: `Ingested ${upsertedTeams?.length ?? 0} teams and ${matchupInserts.length} matchups for weeks ${weeks.join(", ")}.`,
     });
 
+    await syncDraftPicks(seasonId, year, teamIdByExternal);
     await syncRosters(seasonId, year, weeks, teamIdByExternal);
     await syncStatLines(seasonId, year, weeks);
     await syncTransactions(seasonId, year, teamIdByExternal);
