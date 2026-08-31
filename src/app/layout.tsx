@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Geist_Mono,
   Cinzel_Decorative,
@@ -9,6 +8,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { getLastSuccessfulSyncAt } from "@/lib/data/league";
+import { NavLink } from "@/components/NavLink";
 
 const SITE_URL = "https://www.thecryinggents.org";
 
@@ -96,13 +96,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             </span>
             <div className="flex gap-4 text-sm text-ivory/80">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-amber"
-                >
+                <NavLink key={link.href} href={link.href}>
                   {link.label}
-                </Link>
+                </NavLink>
               ))}
             </div>
           </nav>

@@ -118,18 +118,19 @@ export default async function ManagerDetailPage({
           <p className="text-sm text-ivory">No lineup data available yet.</p>
         ) : (
           <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+            <caption className="sr-only">Top scorers ever rostered</caption>
             <thead>
               <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-                <th className="px-4 py-3 font-medium">Player</th>
-                <th className="px-4 py-3 font-medium">Position</th>
-                <th className="px-4 py-3 font-medium">Seasons</th>
-                <th className="px-4 py-3 font-medium">Total Points</th>
+                <th scope="col" className="px-4 py-3 font-medium">Player</th>
+                <th scope="col" className="px-4 py-3 font-medium">Position</th>
+                <th scope="col" className="px-4 py-3 font-medium">Seasons</th>
+                <th scope="col" className="px-4 py-3 font-medium">Total Points</th>
               </tr>
             </thead>
             <tbody>
               {manager.topScorers.map((p) => (
                 <tr key={p.playerId} className="border-b border-charcoal-600 last:border-0">
-                  <td className="px-4 py-3 font-medium">{p.name}</td>
+                  <th scope="row" className="px-4 py-3 text-left font-medium">{p.name}</th>
                   <td className="px-4 py-3 text-ivory/75">{p.position}</td>
                   <td className="px-4 py-3 text-ivory/75">{p.seasons.join(", ")}</td>
                   <td className="px-4 py-3">{fmt(p.totalPoints, 1)}</td>
@@ -157,21 +158,22 @@ export default async function ManagerDetailPage({
           <p className="text-sm text-ivory">No graded draft picks available yet.</p>
         ) : (
           <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+            <caption className="sr-only">Best draft picks</caption>
             <thead>
               <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-                <th className="px-4 py-3 font-medium">Player</th>
-                <th className="px-4 py-3 font-medium">Year</th>
-                <th className="px-4 py-3 font-medium">Pick</th>
-                <th className="px-4 py-3 font-medium">Season Points</th>
-                <th className="px-4 py-3 font-medium">VOE</th>
-                <th className="px-4 py-3 font-medium">Regrade</th>
-                <th className="px-4 py-3 font-medium">Draft Night Grade</th>
+                <th scope="col" className="px-4 py-3 font-medium">Player</th>
+                <th scope="col" className="px-4 py-3 font-medium">Year</th>
+                <th scope="col" className="px-4 py-3 font-medium">Pick</th>
+                <th scope="col" className="px-4 py-3 font-medium">Season Points</th>
+                <th scope="col" className="px-4 py-3 font-medium">VOE</th>
+                <th scope="col" className="px-4 py-3 font-medium">Regrade</th>
+                <th scope="col" className="px-4 py-3 font-medium">Draft Night Grade</th>
               </tr>
             </thead>
             <tbody>
               {manager.bestDraftPicks.map((p, i) => (
                 <tr key={`${p.playerId}-${p.year}-${i}`} className="border-b border-charcoal-600 last:border-0">
-                  <td className="px-4 py-3 font-medium">{p.playerName ?? "Unknown"}</td>
+                  <th scope="row" className="px-4 py-3 text-left font-medium">{p.playerName ?? "Unknown"}</th>
                   <td className="px-4 py-3 text-ivory/75">{p.year}</td>
                   <td className="px-4 py-3 text-ivory/75">
                     Rd {p.round} (#{p.overallPick})

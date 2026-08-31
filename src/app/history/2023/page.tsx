@@ -51,6 +51,7 @@ export default async function FoundingSeasonPage() {
       <section className="flex flex-col gap-3">
         <h2 className="font-subheading text-lg text-gold-400">Final Standings</h2>
         <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+          <caption className="sr-only">Final standings</caption>
           <thead>
             <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
               <th scope="col" className="px-4 py-3 font-medium">Rank</th>

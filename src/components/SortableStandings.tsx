@@ -86,13 +86,13 @@ export function SortableStandings({ standings }: Props) {
       <tbody>
         {sorted.map((team) => (
           <tr key={team.teamId} className="border-b border-charcoal-600 last:border-0">
-            <td className="px-4 py-3 font-medium">
+            <th scope="row" className="px-4 py-3 text-left font-medium">
               {team.finalRank === 1 ? (
                 <span className="text-gold-400">{team.finalRank}</span>
               ) : (
                 team.finalRank
               )}
-            </td>
+            </th>
             <td className="px-4 py-3">{team.name.trim()}</td>
             <td className="px-4 py-3">
               <Link

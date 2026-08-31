@@ -131,6 +131,7 @@ export function DraftBoardTabs({ picks, years }: Props) {
 function PickTable({ picks }: { picks: DraftBoardPick[] }) {
   return (
     <table className="w-full border-collapse text-sm text-ivory">
+      <caption className="sr-only">Draft picks</caption>
       <thead>
         <tr className="border-b border-gold-500/30 text-left text-ivory/75">
           <th scope="col" className="py-2 pr-4 font-medium">

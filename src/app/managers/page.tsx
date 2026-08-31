@@ -27,7 +27,7 @@ function ManagerRow({
 
   return (
     <tr className="border-b border-charcoal-600 last:border-0">
-      <td className="px-4 py-3 font-medium capitalize">
+      <th scope="row" className="px-4 py-3 text-left font-medium capitalize">
         <Link
           href={`/managers/${manager.franchiseId}`}
           className="flex items-center gap-3 text-ivory underline underline-offset-2 hover:text-amber"
@@ -36,7 +36,7 @@ function ManagerRow({
           <span>{manager.name}</span>
           <TrophyBadge count={championshipCount} />
         </Link>
-      </td>
+      </th>
       <td className="px-4 py-3 text-ivory/75">{manager.seasonsActive.join(", ")}</td>
       <td className="px-4 py-3">
         {manager.inferredRetiredAfterSeason ? (
@@ -58,11 +58,12 @@ function ManagerTable({
 }) {
   return (
     <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
+      <caption className="sr-only">Managers</caption>
       <thead>
         <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-          <th className="px-4 py-3 font-medium">Manager</th>
-          <th className="px-4 py-3 font-medium">Seasons Active</th>
-          <th className="px-4 py-3 font-medium">Status</th>
+          <th scope="col" className="px-4 py-3 font-medium">Manager</th>
+          <th scope="col" className="px-4 py-3 font-medium">Seasons Active</th>
+          <th scope="col" className="px-4 py-3 font-medium">Status</th>
         </tr>
       </thead>
       <tbody>
