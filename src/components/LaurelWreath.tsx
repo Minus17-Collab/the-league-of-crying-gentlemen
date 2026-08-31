@@ -12,8 +12,11 @@ export function LaurelWreath({ className }: { className?: string }) {
           <stop offset="0%" stopColor="#c9a227" />
           <stop offset="100%" stopColor="#8a6530" />
         </linearGradient>
+        <clipPath id="laurel-bottom">
+          <rect x="0" y="45" width="100" height="55" />
+        </clipPath>
       </defs>
-      <g fill="none" stroke="url(#laurel)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <g clipPath="url(#laurel-bottom)" fill="none" stroke="url(#laurel)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         {/* Left branch */}
         <path d="M48 8 C35 15, 22 28, 18 45" />
         <path d="M17 40 L14 46" />
