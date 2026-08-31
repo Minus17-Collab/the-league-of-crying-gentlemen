@@ -52,11 +52,11 @@ export default async function RecordsPage() {
       <div>
         <h1 className="font-heading text-2xl tracking-wide text-gold-400">League Records</h1>
         <p className="mt-2 max-w-2xl text-sm text-ivory">
-          All-time records cover the {years.slice().reverse().join(" and ")} seasons only — the
-          league&apos;s first season used materially different scoring rules and team count and is
-          excluded from every comparison below. Playoff records count only winners-bracket games;
-          placement/consolation games are excluded entirely. Ties are never broken: every
-          co-record-holder is listed.
+          All-time records cover the {years.slice().reverse().join(" and ")} seasons only. The
+          league&apos;s inaugural 2023 season used different scoring rules before the league moved to
+          standard PPR and is excluded from every all-time comparison below. Playoff records count
+          only winners-bracket games; placement/consolation games are excluded entirely. Ties are
+          never broken: every co-record-holder is listed.
         </p>
         <div className="mt-3 flex gap-3 text-sm">
           {years.map((year) => (
