@@ -21,7 +21,11 @@ export function ManagerPhoto({
 
   if (errored) {
     return (
-      <div className="flex h-28 w-28 items-center justify-center rounded-full border-2 border-gold-500 bg-burgundy-800 text-xl font-semibold text-gold-300">
+      <div
+        role="img"
+        aria-label={alt}
+        className="flex h-28 w-28 items-center justify-center rounded-full border-2 border-gold-500 bg-burgundy-800 text-xl font-semibold text-gold-300"
+      >
         {initials}
       </div>
     );

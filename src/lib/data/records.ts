@@ -64,8 +64,9 @@ export interface SeasonRecordEntry {
 /** Mirrors EXCLUDED_SEASON_YEARS in scripts/compute-records.mjs --
  * keep the two in sync. Season 1 (2023) had materially different
  * scoring rules and team count and is permanently excluded from
- * every record category (see data/history/SUMMARY.md). */
-const EXCLUDED_SEASON_YEARS = [2023];
+ * every record category (see data/history/SUMMARY.md).
+ * Season 4 (2026) is live and is temporarily excluded until it ends. */
+const EXCLUDED_SEASON_YEARS = [2023, 2026];
 
 /** Every season year that records were computed for -- i.e. every
  * season minus EXCLUDED_SEASON_YEARS, not "the N most recent" (see
@@ -124,6 +125,10 @@ const ALL_TIME_KEYS = [
   "alltime_unluckiest_season",
   "alltime_luckiest_season",
   "alltime_toughest_schedule",
+  "alltime_easiest_schedule",
+  "alltime_most_regular_season_wins",
+  "alltime_most_regular_season_losses",
+  "alltime_best_win_percentage",
 ];
 
 /** Every all-time record, in the fixed display order above. Empty

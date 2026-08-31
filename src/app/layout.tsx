@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Geist_Mono,
   Cinzel_Decorative,
@@ -8,6 +7,10 @@ import {
   Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
+import { getLastSuccessfulSyncAt } from "@/lib/data/league";
+import { NavLink } from "@/components/NavLink";
+
+const SITE_URL = "https://www.thecryinggents.org";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -37,18 +40,49 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "The League of Crying Gentlemen",
-  description: "League history and records for The League of Crying Gentlemen fantasy football league.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "The League of Crying Gentlemen",
+    template: "%s — LCG",
+  },
+  description: "League history, records, and champions since 2023.",
+  openGraph: {
+    title: "The League of Crying Gentlemen",
+    description: "Fantasy Football Record Book",
+    images: ["/og/default.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The League of Crying Gentlemen",
+    description: "Fantasy Football Record Book",
+    images: ["/og/default.png"],
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/history", label: "History" },
+  { href: "/h2h", label: "H2H" },
   { href: "/managers", label: "Managers" },
   { href: "/records", label: "Records" },
+  { href: "/draft", label: "Draft" },
+  { href: "/hall-of-fame", label: "Hall of Fame" },
 ];
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const lastSync = await getLastSuccessfulSyncAt();
+  const lastUpdated = (lastSync ?? new Date()).toISOString().slice(0, 10);
+
   return (
     <html
       lang="en"
@@ -62,13 +96,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </span>
             <div className="flex gap-4 text-sm text-ivory/80">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-amber"
-                >
+                <NavLink key={link.href} href={link.href}>
                   {link.label}
-                </Link>
+                </NavLink>
               ))}
             </div>
           </nav>
@@ -77,7 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <footer className="border-t border-gold-700 bg-bronze py-6 text-center text-xs text-gold-100">
-          Data sourced from ESPN Fantasy Football. Interim build — not yet backed by a database.
+          League records compiled from ESPN Fantasy Football. Last updated {lastUpdated}.
         </footer>
       </body>
     </html>

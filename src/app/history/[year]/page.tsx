@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getSeasons,
@@ -7,10 +8,23 @@ import {
   getPlayoffBracket,
   type PlayoffMatchup,
 } from "@/lib/data/league";
+import { SortableStandings } from "@/components/SortableStandings";
 
 export async function generateStaticParams() {
   const seasons = await getSeasons();
   return seasons.map((year) => ({ year: String(year) }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}): Promise<Metadata> {
+  const { year } = await params;
+  return {
+    title: `${year} Season`,
+    description: `Full ${year} standings, results, and playoff bracket.`,
+  };
 }
 
 // The winners bracket is a clean single-elimination tree (no consolation
@@ -89,6 +103,7 @@ export default async function SeasonHistory({
 
   const winnersRounds = groupByWeek(bracket.winners);
   const consolationRounds = groupByWeek(bracket.consolation);
+  const winnersConsolationRounds = groupByWeek(bracket.winnersConsolation);
 
   return (
     <div className="flex flex-col gap-6">
@@ -108,41 +123,7 @@ export default async function SeasonHistory({
         </p>
       )}
 
-      <table className="w-full border-collapse overflow-hidden rounded-lg border border-gold-500/30 bg-charcoal-700 text-sm text-ivory">
-        <thead>
-          <tr className="border-b border-gold-500/30 bg-charcoal-600 text-left text-ivory/75">
-            <th className="px-4 py-3 font-medium">Rank</th>
-            <th className="px-4 py-3 font-medium">Team</th>
-            <th className="px-4 py-3 font-medium">Manager</th>
-            <th className="px-4 py-3 font-medium">Record</th>
-            <th className="px-4 py-3 font-medium">Points For</th>
-            <th className="px-4 py-3 font-medium">Points Against</th>
-            <th className="px-4 py-3 font-medium">Playoff Seed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {standings.map((team) => (
-            <tr key={team.teamId} className="border-b border-charcoal-600 last:border-0">
-              <td className="px-4 py-3 font-medium">
-                {team.finalRank === 1 ? (
-                  <span className="text-gold-400">{team.finalRank}</span>
-                ) : (
-                  team.finalRank
-                )}
-              </td>
-              <td className="px-4 py-3">{team.name.trim()}</td>
-              <td className="px-4 py-3 text-ivory/75">{team.managerName}</td>
-              <td className="px-4 py-3">
-                {team.wins}-{team.losses}
-                {team.ties ? `-${team.ties}` : ""}
-              </td>
-              <td className="px-4 py-3">{team.pointsFor.toFixed(1)}</td>
-              <td className="px-4 py-3">{team.pointsAgainst.toFixed(1)}</td>
-              <td className="px-4 py-3">{team.playoffSeed}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <SortableStandings standings={standings} />
 
       {winnersRounds.length > 0 && (
         <div className="flex flex-col gap-3">
@@ -169,6 +150,21 @@ export default async function SeasonHistory({
           <h2 className="font-subheading text-lg text-gold-400">{year} Consolation Bracket</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {consolationRounds.map((round) => (
+              <div key={round[0].week} className="flex flex-col gap-3">
+                {round.map((matchup, j) => (
+                  <MatchupCard key={j} matchup={matchup} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {winnersConsolationRounds.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <h2 className="font-subheading text-lg text-gold-400">{year} Winners Consolation Ladder</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {winnersConsolationRounds.map((round) => (
               <div key={round[0].week} className="flex flex-col gap-3">
                 {round.map((matchup, j) => (
                   <MatchupCard key={j} matchup={matchup} />

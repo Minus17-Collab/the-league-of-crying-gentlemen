@@ -1,18 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getIncludedSeasonYears,
   getSeasonRecords,
   type SeasonLeaderboard,
 } from "@/lib/data/records";
+import { formatRecordValue } from "@/lib/records/format";
+import { RecordCard } from "@/components/RecordCard";
 
 export async function generateStaticParams() {
   const years = await getIncludedSeasonYears();
   return years.map((year) => ({ year: String(year) }));
 }
 
-function fmt(value: number, digits = 2): string {
-  return value.toFixed(digits);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ year: string }>;
+}): Promise<Metadata> {
+  const { year } = await params;
+  return {
+    title: `${year} Records`,
+    description: `Season records for ${year}.`,
+  };
 }
 
 function LeaderboardTable({ leaderboard }: { leaderboard: SeasonLeaderboard }) {
@@ -23,16 +34,32 @@ function LeaderboardTable({ leaderboard }: { leaderboard: SeasonLeaderboard }) {
         <p className="mt-1 text-xs text-ivory/60">{leaderboard.definition.description}</p>
       )}
       <table className="mt-3 w-full border-collapse text-sm text-ivory">
+        <caption className="sr-only">{leaderboard.definition.title} by manager</caption>
+        <thead>
+          <tr className="border-b border-gold-500/30 text-left text-ivory/75">
+            <th scope="col" className="py-2 pr-3 font-medium">
+              #
+            </th>
+            <th scope="col" className="py-2 pr-4 font-medium">
+              Manager
+            </th>
+            <th scope="col" className="py-2 text-right font-medium">
+              Value
+            </th>
+          </tr>
+        </thead>
         <tbody>
           {leaderboard.rows.map((row, i) => (
             <tr key={row.franchiseId} className="border-b border-charcoal-600 last:border-0">
               <td className="py-2 pr-3 text-ivory/60">{i + 1}</td>
-              <td className="py-2 pr-4">
+              <th scope="row" className="py-2 pr-4 text-left font-normal">
                 <Link href={`/managers/${row.franchiseId}`} className="underline underline-offset-2 hover:text-amber">
                   {row.managerName}
                 </Link>
+              </th>
+              <td className="py-2 text-right font-medium tabular-nums">
+                {formatRecordValue(leaderboard.definition.key, row.value)}
               </td>
-              <td className="py-2 text-right font-medium">{fmt(row.value)}</td>
             </tr>
           ))}
         </tbody>
@@ -71,36 +98,14 @@ export default async function SeasonRecordsPage({
         <h2 className="font-subheading text-lg tracking-wide text-gold-400">Single Week Extremes</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {[...regularExtremes, ...playoffExtremes].map((entry) => (
-            <div key={`${entry.definition.key}-${entry.isPlayoff}`} className="flex flex-col gap-3 rounded-lg border border-gold-500/30 bg-charcoal-700 p-5">
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-subheading text-base text-gold-400">
-                  {entry.definition.title} {entry.isPlayoff ? "(Playoffs)" : "(Regular Season)"}
-                </h3>
-                <span className="text-xl font-semibold text-gold-300">{fmt(entry.value)}</span>
-              </div>
-              {entry.holders.length === 0 ? (
-                <p className="text-sm text-ivory/60">Not yet computed.</p>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {entry.holders.map((holder, i) => (
-                    <Link
-                      key={`${holder.franchiseId}-${i}`}
-                      href={`/managers/${holder.franchiseId}`}
-                      className="flex items-center justify-between gap-3 rounded-md border border-gold-500/40 bg-gold-500/10 px-3 py-2 transition-colors hover:border-amber hover:bg-gold-500/20"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span aria-hidden="true">🏆</span>
-                        <span className="text-base font-semibold text-amber">{holder.managerName}</span>
-                      </span>
-                      <span className="text-right text-xs text-ivory/70">
-                        {typeof holder.context.week === "number" ? `Wk ${holder.context.week}` : ""}
-                        {typeof holder.context.opponentManagerName === "string" ? ` vs ${holder.context.opponentManagerName}` : ""}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <RecordCard
+              key={`${entry.definition.key}-${entry.isPlayoff}`}
+              title={entry.definition.title}
+              scope={entry.isPlayoff ? "Playoffs" : "Regular season"}
+              value={formatRecordValue(entry.definition.key, entry.value)}
+              description={entry.definition.description}
+              holders={entry.holders}
+            />
           ))}
         </div>
       </section>

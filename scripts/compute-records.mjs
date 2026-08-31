@@ -45,7 +45,7 @@ function warn(...args) {
   console.warn("[compute-records warn]", ...args);
 }
 
-const EXCLUDED_SEASON_YEARS = [2023];
+const EXCLUDED_SEASON_YEARS = [2023, 2026];
 
 // ---- mirrors src/lib/records/engine.ts — keep in sync ----
 
@@ -232,6 +232,37 @@ function toughestSchedule(games, regularSeasonTotals) {
 function toughestScheduleAllTime(list) {
   return tiedBest(list, (t) => t.opponentPointsSum, "max", (t) => ({ franchiseId: t.franchiseId, context: { seasonYear: t.seasonYear } }));
 }
+function easiestScheduleAllTime(list) {
+  return tiedBest(list, (t) => t.opponentPointsSum, "min", (t) => ({ franchiseId: t.franchiseId, context: { seasonYear: t.seasonYear } }));
+}
+
+function careerRecords(allGames) {
+  const regular = allGames.filter((g) => !g.isPlayoff);
+  const byFranchise = new Map();
+  for (const g of regular) {
+    const acc = byFranchise.get(g.franchiseId) ?? { wins: 0, losses: 0, ties: 0, games: 0 };
+    if (g.points > g.opponentPoints) acc.wins += 1;
+    else if (g.points < g.opponentPoints) acc.losses += 1;
+    else acc.ties += 1;
+    acc.games += 1;
+    byFranchise.set(g.franchiseId, acc);
+  }
+  return [...byFranchise.entries()].map(([franchiseId, acc]) => ({
+    franchiseId,
+    ...acc,
+    winPct: acc.games > 0 ? (acc.wins + acc.ties * 0.5) / acc.games : 0,
+  }));
+}
+function mostRegularSeasonWins(records) {
+  return tiedBest(records, (r) => r.wins, "max", (r) => ({ franchiseId: r.franchiseId, context: { games: r.games } }));
+}
+function mostRegularSeasonLosses(records) {
+  return tiedBest(records, (r) => r.losses, "max", (r) => ({ franchiseId: r.franchiseId, context: { games: r.games } }));
+}
+function bestWinPercentage(records) {
+  const qualified = records.filter((r) => r.games >= 14);
+  return tiedBest(qualified, (r) => r.winPct, "max", (r) => ({ franchiseId: r.franchiseId, context: { wins: r.wins, losses: r.losses, ties: r.ties, games: r.games } }));
+}
 
 // ---- record_definitions registry ----
 // Metadata only (title/description/scope/direction) -- no scores or
@@ -253,6 +284,10 @@ const DEFINITIONS = [
   { key: "alltime_unluckiest_season", title: "Unluckiest Season", description: "Scored well enough to win a lot more games than they actually did, based on comparing every week's score to the whole league. Regular season only.", scope: "alltime", direction: "asc" },
   { key: "alltime_luckiest_season", title: "Luckiest Season", description: "Won more real games than their scores really deserved, based on comparing every week's score to the whole league. Regular season only.", scope: "alltime", direction: "desc" },
   { key: "alltime_toughest_schedule", title: "Toughest Schedule Faced", description: "Highest sum of opponents' season-total regular-season points.", scope: "alltime", direction: "desc" },
+  { key: "alltime_easiest_schedule", title: "Easiest Schedule Faced", description: "Lowest sum of opponents' season-total regular-season points.", scope: "alltime", direction: "asc" },
+  { key: "alltime_most_regular_season_wins", title: "Most Regular-Season Wins", description: "Most career regular-season wins across all included seasons.", scope: "alltime", direction: "desc" },
+  { key: "alltime_most_regular_season_losses", title: "Most Regular-Season Losses", description: "Most career regular-season losses across all included seasons.", scope: "alltime", direction: "desc" },
+  { key: "alltime_best_win_percentage", title: "Best All-Time Win Percentage", description: "Best career regular-season win percentage (minimum one full 14-game season).", scope: "alltime", direction: "desc" },
 
   { key: "season_high_score", title: "Season High Score (Single Week)", description: "Highest single-week score that season, regular season and playoffs computed separately (see is_playoff in context).", scope: "season", direction: "desc" },
   { key: "season_low_score", title: "Season Low Score (Single Week)", description: "Lowest single-week score that season, regular season and playoffs computed separately (see is_playoff in context).", scope: "season", direction: "asc" },
@@ -399,6 +434,7 @@ async function computeAndStoreAllTime(defIds, allGames) {
   const margins = seasonMargins(regular);
   const luck = seasonAllPlayLuck(regular);
   const schedules = toughestSchedule(regular, regularTotals);
+  const records = careerRecords(allGames);
 
   const jobs = [
     ["alltime_highest_scoring_season", holdersToRows(defIds.get("alltime_highest_scoring_season"), highestScoringSeason(regularTotals), "alltime", null, false)],
@@ -415,6 +451,10 @@ async function computeAndStoreAllTime(defIds, allGames) {
     ["alltime_unluckiest_season", holdersToRows(defIds.get("alltime_unluckiest_season"), unluckiestSeason(luck), "alltime", null, false)],
     ["alltime_luckiest_season", holdersToRows(defIds.get("alltime_luckiest_season"), luckiestSeason(luck), "alltime", null, false)],
     ["alltime_toughest_schedule", holdersToRows(defIds.get("alltime_toughest_schedule"), toughestScheduleAllTime(schedules), "alltime", null, false)],
+    ["alltime_easiest_schedule", holdersToRows(defIds.get("alltime_easiest_schedule"), easiestScheduleAllTime(schedules), "alltime", null, false)],
+    ["alltime_most_regular_season_wins", holdersToRows(defIds.get("alltime_most_regular_season_wins"), mostRegularSeasonWins(records), "alltime", null, false)],
+    ["alltime_most_regular_season_losses", holdersToRows(defIds.get("alltime_most_regular_season_losses"), mostRegularSeasonLosses(records), "alltime", null, false)],
+    ["alltime_best_win_percentage", holdersToRows(defIds.get("alltime_best_win_percentage"), bestWinPercentage(records), "alltime", null, false)],
   ];
 
   for (const [key, rows] of jobs) {

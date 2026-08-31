@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSeasons, getStandings, getManagers, getChampions } from "@/lib/data/league";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
+import { ChampionshipBanners } from "@/components/ChampionshipBanners";
+import { TrophyBadge } from "@/components/TrophyBadge";
+import { LaurelWreath } from "@/components/LaurelWreath";
 
 function photoSlug(name: string): string {
   return name.trim().split(/\s+/)[0].toLowerCase();
@@ -35,46 +38,64 @@ export default async function Home() {
     ? activeManagers.filter((m) => m.franchiseId !== reigningChampionManager.franchiseId)
     : activeManagers;
 
+  const championshipCounts = new Map<string, number>();
+  for (const c of champions) {
+    championshipCounts.set(c.franchiseId, (championshipCounts.get(c.franchiseId) ?? 0) + 1);
+  }
+
   return (
     <div className="flex flex-col gap-12">
       <section className="flex flex-col items-center gap-3 text-center">
-        <h1 className="font-heading text-3xl tracking-wide text-gold-400">
-          The League of Crying Gentlemen
-        </h1>
+        <h1 className="sr-only">The League of Crying Gentlemen</h1>
         <Image
           src="/league-logo.png"
           alt="The League of Crying Gentlemen logo"
           width={416}
           height={416}
-          className="h-auto w-[333px] sm:w-[416px]"
+          className="h-auto w-[280px] sm:w-[333px]"
           priority
         />
-        <p className="max-w-2xl text-ivory">
-          Welcome to The League of Crying Gentlemen! Where we are all friends
-          who bitch and cry about each other cheating while staying friends
-          and realizing we only want to win a trophy! This is the historical
-          site for all of our mediocrity and record keeping.
-        </p>
       </section>
 
-      {reigningChampionManager && (
-        <section className="flex flex-col items-center gap-4 rounded-lg border-2 border-gold-300 bg-gradient-to-b from-gold-500/20 to-transparent p-6">
-          <span className="rounded-full bg-gold-500 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-charcoal-900 shadow">
-            Reigning Champion
+      {reigningChampion && reigningChampionManager && (
+        <section className="flex flex-col items-center gap-4 rounded-lg border-2 border-gold-300 bg-gradient-to-b from-gold-500/25 via-gold-500/5 to-transparent px-6 py-10">
+          <span className="font-heading text-sm tracking-[0.3em] text-gold-300">
+            {reigningChampion.year} CHAMPION
           </span>
           <Link
             href={`/managers/${reigningChampionManager.franchiseId}`}
-            className="group flex flex-col items-center gap-3"
+            className="group flex flex-col items-center gap-4"
           >
-            <ManagerPhoto
-              src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
-              alt={reigningChampionManager.name}
-              initials={initials(reigningChampionManager.name)}
-            />
-            <span className="rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-4 py-1.5 text-center text-base font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
-              {reigningChampionManager.name}
-            </span>
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-burgundy-950/70 via-transparent to-transparent mix-blend-multiply"
+              />
+              <LaurelWreath className="absolute -inset-5 h-40 w-40" />
+              <ManagerPhoto
+                src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
+                alt={reigningChampionManager.name}
+                initials={initials(reigningChampionManager.name)}
+              />
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="font-heading text-2xl tracking-wide capitalize text-gold-200">
+                {reigningChampion.teamName.trim()}
+              </span>
+              <span className="rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-4 py-1 text-center text-sm font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
+                {reigningChampionManager.name}
+              </span>
+            </div>
           </Link>
+        </section>
+      )}
+
+      {champions.length > 0 && (
+        <section className="flex flex-col items-center gap-4">
+          <h2 className="font-subheading text-sm uppercase tracking-widest text-ivory/50">
+            Championship Banners
+          </h2>
+          <ChampionshipBanners champions={champions} />
         </section>
       )}
 
@@ -100,9 +121,10 @@ export default async function Home() {
                 alt={manager.name}
                 initials={initials(manager.name)}
               />
-              <span className="rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-3 py-1 text-center text-sm font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
+              <span className="flex items-center gap-2 rounded bg-gradient-to-r from-gold-700 via-gold-500 to-gold-700 px-3 py-1 text-center text-sm font-semibold capitalize text-charcoal-900 shadow group-hover:from-gold-600 group-hover:via-gold-400 group-hover:to-gold-600">
                 {manager.name}
               </span>
+              <TrophyBadge count={championshipCounts.get(manager.franchiseId) ?? 0} />
             </Link>
           ))}
         </div>
@@ -161,13 +183,26 @@ export default async function Home() {
               </div>
               <Link
                 href={`/managers/${champion.franchiseId}`}
-                className="text-ivory/75 underline underline-offset-2 hover:text-amber"
+                className="flex items-center gap-2 text-ivory/75 underline underline-offset-2 hover:text-amber"
               >
                 {champion.managerName}
+                <TrophyBadge count={championshipCounts.get(champion.franchiseId) ?? 0} />
               </Link>
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="flex flex-col items-center gap-2 rounded-lg border border-gold-500/20 bg-charcoal-700/50 p-6 text-center">
+        <h2 className="font-subheading text-sm uppercase tracking-widest text-ivory/50">
+          About this league
+        </h2>
+        <p className="max-w-2xl text-sm text-ivory/80">
+          Welcome to The League of Crying Gentlemen! Where we are all friends
+          who bitch and cry about each other cheating while staying friends
+          and realizing we only want to win a trophy! This is the historical
+          site for all of our mediocrity and record keeping.
+        </p>
       </section>
     </div>
   );

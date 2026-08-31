@@ -984,7 +984,12 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_sync_status: {
+        Row: {
+          last_successful_sync_at: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

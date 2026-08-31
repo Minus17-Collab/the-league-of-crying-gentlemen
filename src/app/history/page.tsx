@@ -1,5 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getSeasons, getFormat, getStandings } from "@/lib/data/league";
+
+export const metadata: Metadata = {
+  title: "Season History",
+  description: "Final standings and results for every season.",
+};
 
 export default async function HistoryIndex() {
   const seasons = await getSeasons();

@@ -1,0 +1,9 @@
+# Live sync archive payloads. These are written by scripts/sync-espn.mjs
+# on every run and can be very large; they are stored locally for replay
+# and debugging, not in the repository. The settings.json from
+# scripts/seed-2026.mjs is the exception and is committed.
+*-*-*-team-matchup.json
+*-*-*-rosters-week-*.json
+*-*-*-boxscore.json
+*-*-*-transactions.json
+*-*-*-draft-detail.json
