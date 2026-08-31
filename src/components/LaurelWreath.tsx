@@ -20,52 +20,54 @@ export function LaurelWreath({ className }: { className?: string }) {
         />
       </defs>
 
-      {/* Left branch stem */}
+      {/* Stems */}
       <path
-        d="M55 96 C48 86, 38 70, 30 52 C24 38, 18 24, 16 16"
+        d="M50 96 C32 96, 14 78, 12 52 C10 30, 25 10, 48 8"
+        fill="none"
+        stroke="url(#laurel)"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M50 96 C68 96, 86 78, 88 52 C90 30, 75 10, 52 8"
         fill="none"
         stroke="url(#laurel)"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
 
-      {/* Right branch stem */}
+      {/* Cross at bottom */}
       <path
-        d="M45 96 C52 86, 62 70, 70 52 C76 38, 82 24, 84 16"
+        d="M42 96 C46 92, 54 92, 58 96 M42 100 C46 96, 54 96, 58 100"
         fill="none"
         stroke="url(#laurel)"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
 
-      {/* Cross at the bottom */}
-      <path
-        d="M42 98 C46 94, 54 94, 58 98 M44 100 C48 96, 52 96, 56 100"
-        fill="none"
-        stroke="url(#laurel)"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
+      {/* Left leaves (bottom to top) */}
+      <use href="#laurel-leaf" x="50" y="95" transform="rotate(90, 50, 95)" />
+      <use href="#laurel-leaf" x="31" y="88" transform="rotate(120, 31, 88)" />
+      <use href="#laurel-leaf" x="17" y="73" transform="rotate(150, 17, 73)" />
+      <use href="#laurel-leaf" x="12" y="52" transform="rotate(180, 12, 52)" />
+      <use href="#laurel-leaf" x="17" y="31" transform="rotate(-150, 17, 31)" />
+      <use href="#laurel-leaf" x="31" y="16" transform="rotate(-120, 31, 16)" />
+      <use href="#laurel-leaf" x="48" y="8" transform="rotate(-95, 48, 8)" />
 
-      {/* Left leaves */}
-      <use href="#laurel-leaf" x="14" y="18" transform="rotate(170, 14, 18) scale(1.1)" />
-      <use href="#laurel-leaf" x="18" y="28" transform="rotate(155, 18, 28)" />
-      <use href="#laurel-leaf" x="22" y="38" transform="rotate(145, 22, 38)" />
-      <use href="#laurel-leaf" x="27" y="48" transform="rotate(135, 27, 48)" />
-      <use href="#laurel-leaf" x="32" y="58" transform="rotate(125, 32, 58)" />
-      <use href="#laurel-leaf" x="37" y="68" transform="rotate(115, 37, 68)" />
-      <use href="#laurel-leaf" x="42" y="78" transform="rotate(105, 42, 78)" />
-      <use href="#laurel-leaf" x="47" y="87" transform="rotate(100, 47, 87)" />
+      {/* Right leaves (bottom to top) */}
+      <use href="#laurel-leaf" x="50" y="95" transform="rotate(90, 50, 95)" />
+      <use href="#laurel-leaf" x="69" y="88" transform="rotate(60, 69, 88)" />
+      <use href="#laurel-leaf" x="83" y="73" transform="rotate(30, 83, 73)" />
+      <use href="#laurel-leaf" x="88" y="52" transform="rotate(0, 88, 52)" />
+      <use href="#laurel-leaf" x="83" y="31" transform="rotate(-30, 83, 31)" />
+      <use href="#laurel-leaf" x="69" y="16" transform="rotate(-60, 69, 16)" />
+      <use href="#laurel-leaf" x="52" y="8" transform="rotate(-85, 52, 8)" />
 
-      {/* Right leaves */}
-      <use href="#laurel-leaf" x="86" y="18" transform="rotate(10, 86, 18) scale(1.1)" />
-      <use href="#laurel-leaf" x="82" y="28" transform="rotate(25, 82, 28)" />
-      <use href="#laurel-leaf" x="78" y="38" transform="rotate(35, 78, 38)" />
-      <use href="#laurel-leaf" x="73" y="48" transform="rotate(45, 73, 48)" />
-      <use href="#laurel-leaf" x="68" y="58" transform="rotate(55, 68, 58)" />
-      <use href="#laurel-leaf" x="63" y="68" transform="rotate(65, 63, 68)" />
-      <use href="#laurel-leaf" x="58" y="78" transform="rotate(75, 58, 78)" />
-      <use href="#laurel-leaf" x="53" y="87" transform="rotate(80, 53, 87)" />
+      {/* Extra leaves to fill gaps */}
+      <use href="#laurel-leaf" x="24" y="62" transform="rotate(135, 24, 62)" />
+      <use href="#laurel-leaf" x="76" y="62" transform="rotate(45, 76, 62)" />
+      <use href="#laurel-leaf" x="25" y="42" transform="rotate(-135, 25, 42)" />
+      <use href="#laurel-leaf" x="75" y="42" transform="rotate(-45, 75, 42)" />
     </svg>
   );
 }
