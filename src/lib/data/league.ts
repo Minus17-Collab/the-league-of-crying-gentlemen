@@ -94,6 +94,7 @@ export interface ManagerDetail {
   numberOneOverallPicks: number;
   topScorers: ManagerTopScorer[];
   bestDraftPicks: ManagerDraftPick[];
+  favoritePlayer: { playerId: string; name: string; position: string; starts: number; seasons: number[] } | null;
 }
 
 async function getSeasonId(year: number): Promise<string | null> {
@@ -431,6 +432,7 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
       numberOneOverallPicks: 0,
       topScorers: [],
       bestDraftPicks: [],
+      favoritePlayer: null,
     };
   }
 
@@ -446,7 +448,7 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     supabase.from("seasons").select("id, year").in("id", seasonIds),
     supabase
       .from("lineup_entries")
-      .select("player_id, team_id, points")
+      .select("player_id, team_id, points, is_starter")
       .in("team_id", teamIds),
     supabase
       .from("matchups")
@@ -560,6 +562,34 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     .sort((a, b) => b.totalPoints - a.totalPoints)
     .slice(0, 5);
 
+  const startsByPlayer = new Map<string, number>();
+  const seasonsStartedByPlayer = new Map<string, Set<number>>();
+  for (const entry of lineupEntries ?? []) {
+    if (!entry.is_starter) continue;
+    startsByPlayer.set(entry.player_id, (startsByPlayer.get(entry.player_id) ?? 0) + 1);
+    const year = yearBySeasonId.get(teams.find((t) => t.id === entry.team_id)?.season_id ?? "");
+    if (year != null) {
+      const set = seasonsStartedByPlayer.get(entry.player_id) ?? new Set<number>();
+      set.add(year);
+      seasonsStartedByPlayer.set(entry.player_id, set);
+    }
+  }
+  const favoritePlayerEntry = [...startsByPlayer.entries()]
+    .sort((a, b) => b[1] - a[1])[0];
+  const favoritePlayer = favoritePlayerEntry
+    ? (() => {
+        const [playerId, starts] = favoritePlayerEntry;
+        const player = playerById.get(playerId);
+        return {
+          playerId,
+          name: player?.full_name ?? "Unknown",
+          position: player?.position ?? "Unknown",
+          starts,
+          seasons: [...(seasonsStartedByPlayer.get(playerId) ?? [])].sort((a, b) => a - b),
+        };
+      })()
+    : null;
+
   // #1 overall picks
   const numberOneOverallPicks = (draftPicks ?? []).filter((p) => p.overall_pick === 1).length;
 
@@ -607,6 +637,7 @@ export async function getManagerDetail(franchiseId: string): Promise<ManagerDeta
     numberOneOverallPicks,
     topScorers,
     bestDraftPicks,
+    favoritePlayer,
   };
 }
 

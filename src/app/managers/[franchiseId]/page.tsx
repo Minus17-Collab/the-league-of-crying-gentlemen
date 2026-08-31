@@ -101,6 +101,17 @@ export default async function ManagerDetailPage({
           <StatCard label="Playoff Wins" value={String(manager.playoffWins)} />
           <StatCard label="Players Rostered" value={String(manager.uniquePlayersRostered)} />
           <StatCard label="#1 Overall Picks" value={String(manager.numberOneOverallPicks)} />
+          {manager.favoritePlayer && (
+            <StatCard
+              label="Favorite Player"
+              value={manager.favoritePlayer.name}
+              sub={`${manager.favoritePlayer.position} · ${manager.favoritePlayer.starts} starts${
+                manager.favoritePlayer.seasons.length > 1
+                  ? ` across ${manager.favoritePlayer.seasons.join(" & ")}`
+                  : ""
+              }`}
+            />
+          )}
         </div>
         {manager.strongestPosition && (
           <p className="text-sm text-ivory">
@@ -192,11 +203,12 @@ export default async function ManagerDetailPage({
   );
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
+function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
     <div className="rounded-lg border border-gold-500/30 bg-charcoal-700 p-4">
       <div className="text-xs text-ivory/75">{label}</div>
       <div className="text-xl font-semibold tracking-tight text-gold-300">{value}</div>
+      {sub && <div className="text-xs text-ivory/60">{sub}</div>}
     </div>
   );
 }
