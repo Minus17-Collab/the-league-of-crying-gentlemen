@@ -37,15 +37,17 @@ export default async function RecordsPage() {
   const regularSeasonScoring = allTime.filter((e) =>
     ["alltime_highest_scoring_season", "alltime_lowest_scoring_season"].includes(e.definition.key),
   );
-  const singleWeek = allTime.filter((e) => e.definition.key.includes("single_week"));
+  const singleWeekRegular = allTime.filter(
+    (e) => e.definition.key.includes("single_week") && !e.isPlayoff,
+  );
+  const singleWeekPlayoff = allTime.filter(
+    (e) => e.definition.key.includes("single_week") && e.isPlayoff,
+  );
   const margins = allTime.filter((e) => e.definition.key.includes("margin"));
   const streaks = allTime.filter((e) => e.definition.key.includes("streak"));
   const luck = allTime.filter((e) => e.definition.key.includes("luck"));
-  const other = allTime.filter(
-    (e) =>
-      e.definition.key === "alltime_highest_scoring_playoff_run" ||
-      e.definition.key === "alltime_toughest_schedule",
-  );
+  const otherRegular = allTime.filter((e) => e.definition.key === "alltime_toughest_schedule");
+  const otherPlayoff = allTime.filter((e) => e.definition.key === "alltime_highest_scoring_playoff_run");
 
   return (
     <div className="flex flex-col gap-10">
@@ -68,7 +70,8 @@ export default async function RecordsPage() {
       </div>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Season Scoring</h2>
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Regular Season Records</h2>
+
         <div className="grid gap-4 sm:grid-cols-2">
           {regularSeasonScoring.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
@@ -77,19 +80,18 @@ export default async function RecordsPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Single Week Scoring</h2>
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Single Week Scoring</h3>
         <div className="grid gap-4 sm:grid-cols-2">
-          {singleWeek.map((e) => (
+          {singleWeekRegular.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
           ))}
         </div>
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Margins</h2>
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Margins</h3>
         <p className="max-w-2xl text-xs text-ivory/60">
-          Regular season only — margin of victory is averaged over wins only, margin of defeat over
-          losses only.
+          Margin of victory is averaged over wins only, margin of defeat over losses only.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           {margins.map((e) => (
@@ -99,10 +101,10 @@ export default async function RecordsPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Streaks</h2>
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Streaks</h3>
         <p className="max-w-2xl text-xs text-ivory/60">
-          Regular season only. A streak may cross the season boundary for a manager who played both
-          included seasons — labeled &quot;cross-season&quot; when it does.
+          A streak may cross the season boundary for a manager who played both included seasons —
+          labeled &quot;cross-season&quot; when it does.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           {streaks.map((e) => (
@@ -112,7 +114,7 @@ export default async function RecordsPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Luck</h2>
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Luck</h3>
         <p className="max-w-2xl text-sm text-ivory">
           Compares each manager&apos;s weekly score against the entire league to find how many
           wins their scoring actually earned.
@@ -141,9 +143,28 @@ export default async function RecordsPage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Other</h2>
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Schedule</h3>
         <div className="grid gap-4 sm:grid-cols-2">
-          {other.map((e) => (
+          {otherRegular.map((e) => (
+            <RecordCard key={e.definition.key} entry={e} />
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="font-subheading text-lg tracking-wide text-gold-400">Playoff Records</h2>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {otherPlayoff.map((e) => (
+            <RecordCard key={e.definition.key} entry={e} />
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h3 className="font-subheading text-base tracking-wide text-gold-300">Single Week Scoring</h3>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {singleWeekPlayoff.map((e) => (
             <RecordCard key={e.definition.key} entry={e} />
           ))}
         </div>
