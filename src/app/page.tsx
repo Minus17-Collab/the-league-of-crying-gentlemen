@@ -4,7 +4,6 @@ import { getSeasons, getStandings, getManagers, getChampions } from "@/lib/data/
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { ChampionshipBanners } from "@/components/ChampionshipBanners";
 import { TrophyBadge } from "@/components/TrophyBadge";
-import { LaurelWreath } from "@/components/LaurelWreath";
 
 function photoSlug(name: string): string {
   return name.trim().split(/\s+/)[0].toLowerCase();
@@ -66,18 +65,11 @@ export default async function Home() {
             href={`/managers/${reigningChampionManager.franchiseId}`}
             className="group flex flex-col items-center gap-4"
           >
-            <div className="relative">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-burgundy-950/70 via-transparent to-transparent mix-blend-multiply"
-              />
-              <LaurelWreath className="absolute -inset-5 h-40 w-40" />
-              <ManagerPhoto
-                src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
-                alt={reigningChampionManager.name}
-                initials={initials(reigningChampionManager.name)}
-              />
-            </div>
+            <ManagerPhoto
+              src={`/manager-photos/${photoSlug(reigningChampionManager.name)}.jpg`}
+              alt={reigningChampionManager.name}
+              initials={initials(reigningChampionManager.name)}
+            />
             <div className="flex flex-col items-center gap-1">
               <span className="font-heading text-2xl tracking-wide capitalize text-gold-200">
                 {reigningChampion.teamName.trim()}
