@@ -28,8 +28,8 @@ produces a site pointed at `""`.
 
 - `vars`: `NEXT_PUBLIC_SUPABASE_URL`, `ESPN_LEAGUE_ID`
 - `secrets`: `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
-  `ESPN_SWID`, `ESPN_S2`, `DISCORD_WEBHOOK_URL` (optional, `sync.yml` only —
-  see requirement 8)
+  `ESPN_SWID`, `ESPN_S2`, `DISCORD_UPDATES` (optional, `sync.yml` only — a
+  Discord webhook URL despite the name; see requirement 8)
 
 When you move a value between the two contexts, update **all three** workflows
 *and* the "GitHub Pages + Actions" section of `RUNBOOK.md` in the same commit.
@@ -49,14 +49,15 @@ a clean checkout (i.e. every CI run) has no such types until typegen runs.
 Never "simplify" this script back to a bare `tsc --noEmit`.
 
 ### 4. Cron is UTC and ignores DST — use the dual-schedule + guard pattern
-From `5dd17a0`. GitHub Actions cron has no timezone support, so a fixed UTC
-time drifts an hour twice a year against the US Eastern convention this project
-uses for NFL scheduling.
+From `5dd17a0`, revised after 3 weeks of an hour-based version of this guard
+(see below) silently dropping every single scheduled run. GitHub Actions cron
+has no timezone support, so a fixed UTC time drifts an hour twice a year
+against the US Eastern convention this project uses for NFL scheduling.
 
-The pattern: register both UTC offsets per target time, then no-op the runs
-that land on the wrong offset. `sync.yml` currently targets three ET
-slots/week (Fri 6am, Mon 1am, Tue 1am), so it's six cron lines guarded by one
-day+hour check:
+The pattern: register both UTC offsets per target time, then no-op the entry
+for whichever offset isn't currently active. `sync.yml` currently targets
+three ET slots/week (Fri 6am, Mon 1am, Tue 1am), so it's six cron lines
+guarded by one step:
 
 ```yaml
 on:
@@ -69,24 +70,44 @@ on:
     - cron: "0 6 * * 2"   # 1am EST Tue (UTC-5)
 ```
 
+**Do not guard by comparing the current hour to the target hour.** The first
+version of this guard did exactly that (`[ "$hour" = "06" ]`), and it failed
+on all 12+ scheduled runs across 3 weeks — GitHub Actions started every one of
+them 4-7+ hours late (a run scheduled for 10:00 UTC actually started around
+14:56 UTC), so the current hour never matched the target and `SKIP=true` fired
+every time. Multi-hour scheduling delay is apparently normal for this
+workflow, not a fluke — don't reintroduce an hour-exact check.
+
+Instead, identify which cron *entry* fired via `github.event.schedule` (the
+literal cron string), and compare only whether the currently-active DST zone
+(`TZ=America/New_York date +%Z`, i.e. `EDT` or `EST`) matches the zone that
+entry was written for. This is immune to start-time delay because it doesn't
+care what hour it actually is, only which DST period we're in — which changes
+twice a year, not by a multi-hour queueing delay:
+
 ```yaml
-- name: Skip if not a scheduled Eastern time
+- name: Skip the inactive DST offset
   if: github.event_name == 'schedule'
   run: |
-    day="$(TZ=America/New_York date +%u)"
-    hour="$(TZ=America/New_York date +%H)"
-    run=false
-    [ "$day" = "5" ] && [ "$hour" = "06" ] && run=true
-    [ "$day" = "1" ] && [ "$hour" = "01" ] && run=true
-    [ "$day" = "2" ] && [ "$hour" = "01" ] && run=true
-    if [ "$run" != "true" ]; then echo "SKIP=true" >> "$GITHUB_ENV"; fi
+    zone="$(TZ=America/New_York date +%Z)"
+    case "${{ github.event.schedule }}" in
+      "0 10 * * 5") expected=EDT ;;
+      "0 11 * * 5") expected=EST ;;
+      "0 5 * * 1")  expected=EDT ;;
+      "0 6 * * 1")  expected=EST ;;
+      "0 5 * * 2")  expected=EDT ;;
+      "0 6 * * 2")  expected=EST ;;
+      *) expected="$zone" ;;  # unrecognized -- run rather than silently drop a sync
+    esac
+    if [ "$zone" != "$expected" ]; then echo "SKIP=true" >> "$GITHUB_ENV"; fi
 ```
 
 Every subsequent step needs `if: env.SKIP != 'true'`. Adding a step and
 forgetting that guard means it runs on every cron firing instead of just the
 intended slots. The `workflow_dispatch` path deliberately skips the check.
 Adding or moving a target time means adding both UTC-offset cron lines *and*
-a `day`/`hour` branch in the guard — the two must stay in sync.
+a `case` branch in the guard mapping each cron string to its DST zone — the
+two must stay in sync.
 
 ### 5. `ci.yml` and `deploy.yml` duplicate the build job — keep them in sync
 `ci.yml` exists so branch protection has a real status check on PRs. It is a
@@ -108,13 +129,16 @@ See AGENTS.md "Never do this".
 ### 8. GitHub's own notification settings can't be set from a workflow
 There is no API to toggle a user's "email me on Actions failure" preference
 (Settings → Notifications is web-UI-only) — don't try to script it. Instead,
-`sync.yml`'s last two steps post to `secrets.DISCORD_WEBHOOK_URL` — one on
-`success()`, one on `failure()` — whenever that secret is set, and no-op (not
-a failure) if it isn't. The failure step fires regardless of which prior step
-failed — credential check, `pnpm install`, or `sync-espn.mjs` itself exiting
-non-zero — because it's gated on `failure()`, not `env.SKIP`. The success step
-additionally checks `env.SKIP != 'true'` so the benign DST-offset run that did
-nothing doesn't post a "succeeded" message for a sync that never ran.
+`sync.yml`'s last two steps post to `secrets.DISCORD_UPDATES` (a Discord
+channel webhook URL, despite the generic-sounding secret name — name it that
+way if you ever recreate it, or update the workflow to match if you rename
+it) — one on `success()`, one on `failure()` — whenever that secret is set,
+and no-op (not a failure) if it isn't. The failure step fires regardless of
+which prior step failed — credential check, `pnpm install`, or
+`sync-espn.mjs` itself exiting non-zero — because it's gated on `failure()`,
+not `env.SKIP`. The success step additionally checks `env.SKIP != 'true'` so
+the inactive-DST-offset run that did nothing doesn't post a "succeeded"
+message for a sync that never ran.
 
 ## Enforcement
 - Open a throwaway PR after any workflow edit; `ci.yml` only runs on

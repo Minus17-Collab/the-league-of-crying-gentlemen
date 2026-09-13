@@ -36,14 +36,17 @@ plan and current phase status.
    - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` three times a
      week — Fridays 6:00 AM, Mondays 1:00 AM, and Tuesdays 1:00 AM, all US
      Eastern. Actions cron is UTC-only and DST-blind, so each target time
-     registers both UTC offsets and the job no-ops on whichever run isn't
-     actually at one of those three Eastern times.
-   - Optional: set a **Secrets** tab `DISCORD_WEBHOOK_URL` (a Discord
-     channel's Integrations → Webhooks URL) to get a message there whenever
-     a sync run succeeds or fails — the credential check, a dependency
-     install, or the sync script itself. This is independent of GitHub's
-     own per-account notification settings, which can't be configured from
-     a workflow. Without this secret set, failures are silent except in the
+     registers both UTC offsets; the job identifies which one is currently
+     active by checking `TZ=America/New_York date +%Z` (EDT vs EST) against
+     `github.event.schedule`, not the current hour — GitHub has been
+     observed starting these runs 4-7+ hours late, which broke an earlier
+     hour-based check on every single run.
+   - Optional: set a **Secrets** tab `DISCORD_UPDATES` (a Discord channel's
+     Integrations → Webhooks URL) to get a message there whenever a sync
+     run succeeds or fails — the credential check, a dependency install, or
+     the sync script itself. This is independent of GitHub's own
+     per-account notification settings, which can't be configured from a
+     workflow. Without this secret set, results are silent except in the
      Actions tab and `sync_runs`.
    - `.github/workflows/ci.yml` runs typecheck/lint/test/build on pull
      requests to `main` — set it as the required status check in branch
