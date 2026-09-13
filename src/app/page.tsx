@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSeasons, getStandings, getManagers, getChampions } from "@/lib/data/league";
+import {
+  getStandings,
+  getManagers,
+  getChampions,
+  getMostRecentCompletedSeason,
+} from "@/lib/data/league";
 import { ManagerPhoto } from "@/components/ManagerPhoto";
 import { ChampionshipBanners } from "@/components/ChampionshipBanners";
 import { TrophyBadge } from "@/components/TrophyBadge";
@@ -18,10 +23,14 @@ function initials(name: string): string {
 }
 
 export default async function Home() {
-  const seasons = await getSeasons();
-  const latestSeason = seasons[0];
+  // "Top finishers" is final-standings framing (#1/#2/#3), which is
+  // meaningless mid-season -- use the newest *completed* (is_locked)
+  // season, not just the newest season row, so this section
+  // automatically stops pointing at a live, still-changing season and
+  // resumes pointing at real final standings once that season locks.
+  const latestCompletedSeason = await getMostRecentCompletedSeason();
   const [standings, managers, champions] = await Promise.all([
-    getStandings(latestSeason),
+    latestCompletedSeason ? getStandings(latestCompletedSeason) : Promise.resolve([]),
     getManagers(),
     getChampions(),
   ]);
@@ -122,44 +131,46 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-3">
-        <div className="flex items-center justify-between">
-          <h2 className="font-subheading text-lg text-gold-400">{latestSeason} top finishers</h2>
-          <Link
-            href={`/history/${latestSeason}`}
-            className="text-sm text-gold-400 underline underline-offset-2 hover:text-amber"
-          >
-            Full standings
-          </Link>
-        </div>
-        <ol className="flex flex-col divide-y divide-gold-500/20 rounded-lg border border-gold-500/30 bg-charcoal-700">
-          {latestStandings.map((team) => (
-            <li
-              key={team.teamId}
-              className="flex items-center justify-between px-4 py-3 text-sm text-ivory"
+      {latestCompletedSeason && latestStandings.length > 0 && (
+        <section className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <h2 className="font-subheading text-lg text-gold-400">{latestCompletedSeason} top finishers</h2>
+            <Link
+              href={`/history/${latestCompletedSeason}`}
+              className="text-sm text-gold-400 underline underline-offset-2 hover:text-amber"
             >
-              <div>
-                <span className="font-medium">#{team.finalRank}</span>{" "}
-                {team.name.trim()}{" "}
-                <span className="text-ivory/60">
-                  (
-                  <Link
-                    href={`/managers/${team.franchiseId}`}
-                    className="underline underline-offset-2 hover:text-amber"
-                  >
-                    {team.managerName}
-                  </Link>
-                  )
-                </span>
-              </div>
-              <div className="text-ivory/75">
-                {team.wins}-{team.losses}
-                {team.ties ? `-${team.ties}` : ""}
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
+              Full standings
+            </Link>
+          </div>
+          <ol className="flex flex-col divide-y divide-gold-500/20 rounded-lg border border-gold-500/30 bg-charcoal-700">
+            {latestStandings.map((team) => (
+              <li
+                key={team.teamId}
+                className="flex items-center justify-between px-4 py-3 text-sm text-ivory"
+              >
+                <div>
+                  <span className="font-medium">#{team.finalRank}</span>{" "}
+                  {team.name.trim()}{" "}
+                  <span className="text-ivory/60">
+                    (
+                    <Link
+                      href={`/managers/${team.franchiseId}`}
+                      className="underline underline-offset-2 hover:text-amber"
+                    >
+                      {team.managerName}
+                    </Link>
+                    )
+                  </span>
+                </div>
+                <div className="text-ivory/75">
+                  {team.wins}-{team.losses}
+                  {team.ties ? `-${team.ties}` : ""}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
 
       <section className="flex flex-col gap-3">
         <h2 className="font-subheading text-lg text-gold-400">Previous Champions</h2>
