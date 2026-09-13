@@ -10,8 +10,15 @@ name: ESPN sync
 # pull after Thursday/Monday/Sunday-night games finish scoring and one
 # ahead of the weekend slate. GitHub Actions cron is UTC-only and doesn't
 # observe DST, so each target time is scheduled twice (EDT and EST UTC
-# offsets); the "Skip if not a scheduled Eastern time" step below no-ops
-# whichever run doesn't actually land on one of the three ET slots.
+# offsets); the "Skip the inactive DST offset" step below no-ops whichever
+# entry isn't the one for the currently-active US Eastern offset.
+#
+# That guard identifies itself by `github.event.schedule` (the exact cron
+# string that fired), NOT by checking the current wall-clock hour — GitHub
+# Actions scheduled runs have been observed starting 4-7+ hours late (see
+# the "ESPN sync" run history), which made an hour-exact check fail on
+# every single scheduled run. DST-zone matching only cares whether it's
+# currently EDT or EST, which a multi-hour start delay doesn't change.
 
 on:
   schedule:
@@ -29,17 +36,21 @@ jobs:
     env:
       SKIP: 'false'
     steps:
-      - name: Skip if not a scheduled Eastern time
+      - name: Skip the inactive DST offset
         if: github.event_name == 'schedule'
         run: |
-          day="$(TZ=America/New_York date +%u)"   # 1=Mon .. 5=Fri .. 7=Sun
-          hour="$(TZ=America/New_York date +%H)"
-          run=false
-          [ "$day" = "5" ] && [ "$hour" = "06" ] && run=true  # Fri 6am ET
-          [ "$day" = "1" ] && [ "$hour" = "01" ] && run=true  # Mon 1am ET
-          [ "$day" = "2" ] && [ "$hour" = "01" ] && run=true  # Tue 1am ET
-          if [ "$run" != "true" ]; then
-            echo "Current Eastern time is day $day hour $hour, not a scheduled slot — skipping (this is the other DST offset's run)."
+          zone="$(TZ=America/New_York date +%Z)"  # EDT or EST, whatever time this actually runs at
+          case "${{ github.event.schedule }}" in
+            "0 10 * * 5") expected=EDT ;;  # 6am EDT Fri
+            "0 11 * * 5") expected=EST ;;  # 6am EST Fri
+            "0 5 * * 1")  expected=EDT ;;  # 1am EDT Mon
+            "0 6 * * 1")  expected=EST ;;  # 1am EST Mon
+            "0 5 * * 2")  expected=EDT ;;  # 1am EDT Tue
+            "0 6 * * 2")  expected=EST ;;  # 1am EST Tue
+            *) expected="$zone" ;;  # unrecognized cron string -- run rather than silently drop a sync
+          esac
+          if [ "$zone" != "$expected" ]; then
+            echo "Currently $zone; schedule '${{ github.event.schedule }}' is the $expected entry — skipping (this is the other DST offset's entry)."
             echo "SKIP=true" >> "$GITHUB_ENV"
           fi
 
@@ -77,23 +88,24 @@ jobs:
       # can't both be true) and independent of GitHub's personal
       # notification settings, so together they're the reliable way to
       # know whether a scheduled sync went through. Both no-op (silently
-      # skipped, not a failure) if DISCORD_WEBHOOK_URL isn't configured as
-      # a repo secret. The success one also skips on the benign
-      # DST-offset run (env.SKIP == 'true') that did nothing — only the
-      # failure one should ever fire for that case, and even then only if
-      # something upstream (e.g. the Skip step itself) errored.
+      # skipped, not a failure) if the DISCORD_UPDATES repo secret (a
+      # Discord channel webhook URL) isn't configured. The success one
+      # also skips on the inactive-DST-offset run (env.SKIP == 'true')
+      # that did nothing — only the failure one should ever fire for that
+      # case, and even then only if something upstream (e.g. the Skip
+      # step itself) errored.
       - name: Notify Discord on success
         if: success() && env.SKIP != 'true'
         run: |
           if [ -z "$DISCORD_WEBHOOK_URL" ]; then
-            echo "DISCORD_WEBHOOK_URL not set — skipping Discord notification."
+            echo "DISCORD_UPDATES secret not set — skipping Discord notification."
             exit 0
           fi
           run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           payload=$(jq -n --arg content "✅ **ESPN sync succeeded** — $run_url" '{content: $content}')
           curl -sf -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL"
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_UPDATES }}
 
       # Fires on any prior step failure (credential check, install, or the
       # sync script itself exiting non-zero).
@@ -101,11 +113,11 @@ jobs:
         if: failure()
         run: |
           if [ -z "$DISCORD_WEBHOOK_URL" ]; then
-            echo "DISCORD_WEBHOOK_URL not set — skipping Discord notification."
+            echo "DISCORD_UPDATES secret not set — skipping Discord notification."
             exit 0
           fi
           run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           payload=$(jq -n --arg content "⚠️ **ESPN sync failed** — $run_url" '{content: $content}')
           curl -sf -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL"
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_UPDATES }}
