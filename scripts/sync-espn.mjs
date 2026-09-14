@@ -548,7 +548,7 @@ async function syncTransactions(seasonId, year, teamIdByExternal) {
 async function updateTeamRecords(seasonId) {
   const { data: matchups, error } = await supabase
     .from("matchups")
-    .select("home_team_id, away_team_id, home_score, away_score")
+    .select("home_team_id, away_team_id, home_score, away_score, is_final")
     .eq("season_id", seasonId)
     .eq("is_playoff", false);
   if (error) throw error;
@@ -561,8 +561,12 @@ async function updateTeamRecords(seasonId) {
     return stats.get(teamId);
   }
 
+  // ESPN reports an in-progress week as `0-0`, not null, until it locks
+  // -- without the is_final check, every un-played matchup in the
+  // current week reads as a played 0-0 tie for both teams, every sync,
+  // until the season ends.
   for (const m of matchups ?? []) {
-    if (m.home_score == null || m.away_score == null) continue;
+    if (!m.is_final || m.home_score == null || m.away_score == null) continue;
     const home = ensure(m.home_team_id);
     const away = ensure(m.away_team_id);
 

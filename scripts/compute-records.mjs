@@ -350,7 +350,10 @@ async function loadTeamWeekResults(seasons) {
       skippedConsolation += 1;
       continue;
     }
-    if (m.home_score == null || m.away_score == null) {
+    // ESPN reports an in-progress week as `0-0`, not null, until it
+    // locks -- the is_final check is required, not redundant with the
+    // null check, or an unfinished week reads as a played 0-0 tie.
+    if (!m.is_final || m.home_score == null || m.away_score == null) {
       skippedIncomplete += 1;
       continue;
     }

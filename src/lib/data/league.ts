@@ -161,6 +161,25 @@ export async function getSeasons(): Promise<number[]> {
   return (data ?? []).map((s) => s.year);
 }
 
+/** The newest season whose `is_locked` flag is true, i.e. the newest
+ * season that has actually finished. Used anywhere the site shows
+ * "final standings"/"top finishers" framing, which is meaningless for
+ * the current in-progress season (see the home page's "20XX top
+ * finishers" section, which must not show a live, still-changing
+ * season). Falls back to `null` if no season has been locked yet. */
+export async function getMostRecentCompletedSeason(): Promise<number | null> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("seasons")
+    .select("year")
+    .eq("is_locked", true)
+    .order("year", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (error) throw error;
+  return data?.year ?? null;
+}
+
 export async function getManagers(): Promise<Manager[]> {
   const supabase = createClient();
   const [franchisesRes, teamsRes, seasonsRes] = await Promise.all([
@@ -784,9 +803,12 @@ export interface HeadToHeadRow {
 
 /** Cross-season regular-season matchup matrix. Computes only from stored
  * `matchups` rows, treating each game where a franchise was the home or away
- * team as one row of data. A tie is any game where both scores are non-null
- * and equal; wins/losses are determined by the higher score. Games missing
- * one or both scores are ignored. */
+ * team as one row of data. A tie is any *final* game where both scores are
+ * equal; wins/losses are determined by the higher score. Games that
+ * haven't finished yet are ignored entirely, not just games missing a
+ * score -- ESPN reports an in-progress week as `0-0` (not null) until it
+ * locks, and without the `is_final` check that reads as a played tie for
+ * every matchup in the current week, every week, until the season ends. */
 export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
   const supabase = createClient();
   const [
@@ -797,7 +819,7 @@ export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
   ] = await Promise.all([
     supabase
       .from("matchups")
-      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, season_id")
+      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, is_final, season_id")
       .eq("is_playoff", false),
     supabase.from("teams").select("id, franchise_id, season_id"),
     supabase.from("seasons").select("id, year"),
@@ -850,7 +872,7 @@ export async function getHeadToHead(): Promise<HeadToHeadRow[]> {
     const homeId = franchiseByTeamId.get(m.home_team_id);
     const awayId = franchiseByTeamId.get(m.away_team_id);
     if (!homeId || !awayId || homeId === awayId) continue;
-    if (m.home_score == null || m.away_score == null) continue;
+    if (!m.is_final || m.home_score == null || m.away_score == null) continue;
 
     const homeRow = ensureRow(homeId);
     const awayRow = ensureRow(awayId);
@@ -1069,7 +1091,7 @@ export async function getWeekRecap(year: number, week: number): Promise<WeekReca
   ] = await Promise.all([
     supabase
       .from("matchups")
-      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, playoff_bracket")
+      .select("home_team_id, away_team_id, home_score, away_score, is_playoff, playoff_bracket, is_final")
       .eq("season_id", seasonId)
       .eq("week", week)
       .order("id"),
@@ -1090,8 +1112,11 @@ export async function getWeekRecap(year: number, week: number): Promise<WeekReca
     return teamNameById.get(teamId) ?? "Unknown";
   }
 
+  // ESPN reports an in-progress week as `0-0`, not null, until it locks
+  // -- without the is_final check, a still-live week reads as every
+  // game being a played, tied 0-0 blowout/nailbiter.
   const normalized: WeekRecapMatchup[] = (matchups ?? [])
-    .filter((m) => m.home_team_id && m.away_team_id)
+    .filter((m) => m.home_team_id && m.away_team_id && m.is_final)
     .map((m) => {
       const homeScore = Number(m.home_score ?? 0);
       const awayScore = Number(m.away_score ?? 0);
@@ -1142,17 +1167,29 @@ export async function getWeekRecap(year: number, week: number): Promise<WeekReca
   };
 }
 
+/** Weeks with a recap worth generating -- i.e. every matchup in that
+ * week is final. A week with any still-live (`is_final = false`)
+ * matchup is excluded entirely rather than partially recapped, since
+ * ESPN reports an in-progress game as `0-0`, not null. */
 export async function getSeasonWeeks(year: number): Promise<number[]> {
   const seasonId = await getSeasonId(year);
   if (!seasonId) return [];
   const supabase = createClient();
   const { data, error } = await supabase
     .from("matchups")
-    .select("week")
+    .select("week, is_final")
     .eq("season_id", seasonId)
     .order("week");
   if (error) throw error;
-  return [...new Set((data ?? []).map((m) => m.week))].sort((a, b) => a - b);
+
+  const finalByWeek = new Map<number, boolean>();
+  for (const m of data ?? []) {
+    finalByWeek.set(m.week, (finalByWeek.get(m.week) ?? true) && m.is_final);
+  }
+  return [...finalByWeek.entries()]
+    .filter(([, allFinal]) => allFinal)
+    .map(([week]) => week)
+    .sort((a, b) => a - b);
 }
 
 /** 2023 founding season, deliberately isolated from all-time records.
