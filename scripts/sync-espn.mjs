@@ -23,8 +23,35 @@ const S2 = process.env.ESPN_S2;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+// Both ESPN and Supabase occasionally return a bare gateway timeout (502/503/504)
+// under load. Neither is a code bug, but a single blip shouldn't fail the whole
+// run -- retry a few times with backoff before giving up.
+const RETRYABLE_STATUSES = new Set([502, 503, 504]);
+const MAX_FETCH_ATTEMPTS = 4;
+
+async function fetchWithRetry(url, options) {
+  let lastErr;
+  for (let attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(url, options);
+      if (!RETRYABLE_STATUSES.has(res.status) || attempt === MAX_FETCH_ATTEMPTS) {
+        return res;
+      }
+      lastErr = new Error(`Retryable status ${res.status} ${res.statusText}`);
+    } catch (err) {
+      lastErr = err;
+      if (attempt === MAX_FETCH_ATTEMPTS) throw err;
+    }
+    const delayMs = 500 * 2 ** (attempt - 1);
+    console.warn(`Fetch attempt ${attempt} for ${url} failed (${lastErr.message}), retrying in ${delayMs}ms.`);
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+  }
+  throw lastErr;
+}
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
   auth: { autoRefreshToken: false, persistSession: false },
+  global: { fetch: fetchWithRetry },
 });
 
 const BASE_URL = "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl";
@@ -145,9 +172,9 @@ async function espn(year, views, preferHistorical = false) {
   const first = preferHistorical ? historical : current;
   const second = preferHistorical ? current : historical;
 
-  let res = await fetch(first, { headers: headers() });
+  let res = await fetchWithRetry(first, { headers: headers() });
   if (!res.ok) {
-    res = await fetch(second, { headers: headers() });
+    res = await fetchWithRetry(second, { headers: headers() });
   }
   if (!res.ok) {
     throw new Error(`ESPN fetch failed: ${res.status} ${res.statusText}`);
@@ -222,7 +249,7 @@ function fmtIso() {
 
 async function espnForWeek(year, week, view) {
   const url = `${BASE_URL}/seasons/${year}/segments/0/leagues/${LEAGUE_ID}?scoringPeriodId=${week}&view=${view}`;
-  const res = await fetch(url, { headers: headers() });
+  const res = await fetchWithRetry(url, { headers: headers() });
   if (!res.ok) throw new Error(`ESPN fetch failed: ${res.status} ${res.statusText}`);
   return res.json();
 }
