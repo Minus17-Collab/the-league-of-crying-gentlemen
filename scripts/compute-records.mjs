@@ -16,11 +16,26 @@
 //
 // Season scope / playoff scope decisions (see ROADMAP.md and the
 // records feature plan for the full reasoning):
-// - EXCLUDED_SEASON_YEARS below is season 1 (2023): materially
-//   different scoring rules and team count, would skew every
-//   comparison. This is an explicit exclusion list, not "most recent
-//   N seasons", so a future season 4 is automatically included
+// - PERMANENTLY_EXCLUDED_SEASON_YEARS below is season 1 (2023):
+//   materially different scoring rules and team count, would skew
+//   every comparison. This is an explicit exclusion list, not "most
+//   recent N seasons", so a future season is automatically included
 //   without touching this file.
+// - Separately, a season that hasn't locked yet (`seasons.is_locked
+//   = false`, i.e. still in progress) is excluded from every
+//   SEASON-TOTAL-shaped category (season point totals, margins,
+//   streaks, luck, schedule strength, career win/loss/pct, and every
+//   per-season leaderboard) because those are only meaningful once
+//   final -- a "season total" from week 4 of 14 isn't a real record,
+//   it's just wherever the season happens to be right now.
+// - The SINGLE-WEEK categories (highest/lowest score in one week,
+//   both all-time and per-season) are the exception: an individual
+//   week is either final or it isn't (`matchups.is_final`), so an
+//   in-progress season's already-played weeks are real, complete
+//   data points and are included in those categories only. This is
+//   why someone can set an outright record mid-season and see it
+//   reflected on /records immediately, without the season needing to
+//   finish first.
 // - "Playoff" = `matchups.playoff_bracket = 'winners'` ONLY. Games in
 //   `winners_consolation` (placement games among playoff teams) or
 //   `losers_consolation` (bottom teams that missed the playoffs) are
@@ -45,7 +60,7 @@ function warn(...args) {
   console.warn("[compute-records warn]", ...args);
 }
 
-const EXCLUDED_SEASON_YEARS = [2023, 2026];
+const PERMANENTLY_EXCLUDED_SEASON_YEARS = [2023];
 
 // ---- mirrors src/lib/records/engine.ts — keep in sync ----
 
@@ -273,10 +288,10 @@ const DEFINITIONS = [
   { key: "alltime_highest_scoring_season", title: "Highest Scoring Season", description: "Most total regular-season points in a single season.", scope: "alltime", direction: "desc" },
   { key: "alltime_highest_scoring_playoff_run", title: "Highest Scoring Playoff Run", description: "Most total points across the winners-bracket playoff run in a single season.", scope: "alltime", direction: "desc" },
   { key: "alltime_lowest_scoring_season", title: "Lowest Scoring Season", description: "Fewest total regular-season points in a single season.", scope: "alltime", direction: "asc" },
-  { key: "alltime_highest_single_week_regular", title: "Highest Single Week Score (Regular Season)", description: "Most points scored in a single regular-season week.", scope: "alltime", direction: "desc" },
-  { key: "alltime_highest_single_week_playoff", title: "Highest Single Week Score (Playoffs)", description: "Most points scored in a single winners-bracket playoff week.", scope: "alltime", direction: "desc" },
-  { key: "alltime_lowest_single_week_regular", title: "Lowest Single Week Score (Regular Season)", description: "Fewest points scored in a single regular-season week.", scope: "alltime", direction: "asc" },
-  { key: "alltime_lowest_single_week_playoff", title: "Lowest Single Week Score (Playoffs)", description: "Fewest points scored in a single winners-bracket playoff week.", scope: "alltime", direction: "asc" },
+  { key: "alltime_highest_single_week_regular", title: "Highest Single Week Score (Regular Season)", description: "Most points scored in a single regular-season week. Updates live, including already-played weeks of a season still in progress.", scope: "alltime", direction: "desc" },
+  { key: "alltime_highest_single_week_playoff", title: "Highest Single Week Score (Playoffs)", description: "Most points scored in a single winners-bracket playoff week. Updates live, including already-played weeks of a season still in progress.", scope: "alltime", direction: "desc" },
+  { key: "alltime_lowest_single_week_regular", title: "Lowest Single Week Score (Regular Season)", description: "Fewest points scored in a single regular-season week. Updates live, including already-played weeks of a season still in progress.", scope: "alltime", direction: "asc" },
+  { key: "alltime_lowest_single_week_playoff", title: "Lowest Single Week Score (Playoffs)", description: "Fewest points scored in a single winners-bracket playoff week. Updates live, including already-played weeks of a season still in progress.", scope: "alltime", direction: "asc" },
   { key: "alltime_best_avg_margin_of_victory", title: "Best Season Average Margin of Victory", description: "Highest average margin of victory across a regular season (wins only).", scope: "alltime", direction: "desc" },
   { key: "alltime_worst_avg_margin_of_defeat", title: "Worst Season Average Margin of Defeat", description: "Highest average margin of defeat across a regular season (losses only).", scope: "alltime", direction: "desc" },
   { key: "alltime_longest_win_streak", title: "Longest Win Streak", description: "Longest regular-season win streak; may cross the 2024→2025 season boundary (labeled crossSeason in context).", scope: "alltime", direction: "desc" },
@@ -311,15 +326,33 @@ async function loadLeagueId() {
   return data[0].id;
 }
 
+/** Returns { weeklyEligible, completed }:
+ *  - weeklyEligible: every season except PERMANENTLY_EXCLUDED_SEASON_YEARS
+ *    (2023), locked or not. Feeds single-week categories only --
+ *    loadTeamWeekResults already drops any individual week that isn't
+ *    `is_final` yet, so an in-progress season only contributes its
+ *    already-played weeks here.
+ *  - completed: weeklyEligible further filtered to `is_locked = true`.
+ *    Feeds every season-total-shaped category (and all per-season
+ *    pages/leaderboards) -- see header comment for why those can't use
+ *    an in-progress season. */
 async function loadIncludedSeasons() {
-  const { data, error } = await supabase.from("seasons").select("id, year");
+  const { data, error } = await supabase.from("seasons").select("id, year, is_locked");
   if (error) throw error;
-  const included = (data ?? []).filter((s) => !EXCLUDED_SEASON_YEARS.includes(s.year));
-  const excluded = (data ?? []).filter((s) => EXCLUDED_SEASON_YEARS.includes(s.year));
-  if (excluded.length > 0) {
-    log("excluding season(s):", excluded.map((s) => s.year).join(", "));
+  const weeklyEligible = (data ?? []).filter((s) => !PERMANENTLY_EXCLUDED_SEASON_YEARS.includes(s.year));
+  const permanentlyExcluded = (data ?? []).filter((s) => PERMANENTLY_EXCLUDED_SEASON_YEARS.includes(s.year));
+  const completed = weeklyEligible.filter((s) => s.is_locked);
+  const inProgress = weeklyEligible.filter((s) => !s.is_locked);
+  if (permanentlyExcluded.length > 0) {
+    log("permanently excluding season(s):", permanentlyExcluded.map((s) => s.year).join(", "));
   }
-  return included;
+  if (inProgress.length > 0) {
+    log(
+      "season(s) in progress (included in single-week categories only, via already-final weeks):",
+      inProgress.map((s) => s.year).join(", "),
+    );
+  }
+  return { weeklyEligible, completed };
 }
 
 /** Builds the TeamWeekResult[] (see engine.ts) for the included
@@ -429,24 +462,31 @@ function leaderboardToRows(definitionId, entries, scope, seasonYear, isPlayoff, 
   }));
 }
 
-async function computeAndStoreAllTime(defIds, allGames) {
-  const regular = allGames.filter((g) => !g.isPlayoff);
-  const playoff = allGames.filter((g) => g.isPlayoff);
+/** completedGames feeds every season-total-shaped category below;
+ * weeklyGames (a superset that also includes already-final weeks from
+ * any in-progress season -- see loadIncludedSeasons) feeds ONLY the
+ * four single-week categories, so a record-setting week counts the
+ * moment it's final rather than waiting for its season to lock. */
+async function computeAndStoreAllTime(defIds, completedGames, weeklyGames) {
+  const regular = completedGames.filter((g) => !g.isPlayoff);
+  const playoff = completedGames.filter((g) => g.isPlayoff);
+  const weeklyRegular = weeklyGames.filter((g) => !g.isPlayoff);
+  const weeklyPlayoff = weeklyGames.filter((g) => g.isPlayoff);
   const regularTotals = seasonTotals(regular);
   const playoffTotals = seasonTotals(playoff);
   const margins = seasonMargins(regular);
   const luck = seasonAllPlayLuck(regular);
   const schedules = toughestSchedule(regular, regularTotals);
-  const records = careerRecords(allGames);
+  const records = careerRecords(completedGames);
 
   const jobs = [
     ["alltime_highest_scoring_season", holdersToRows(defIds.get("alltime_highest_scoring_season"), highestScoringSeason(regularTotals), "alltime", null, false)],
     ["alltime_highest_scoring_playoff_run", holdersToRows(defIds.get("alltime_highest_scoring_playoff_run"), highestScoringSeason(playoffTotals), "alltime", null, true)],
     ["alltime_lowest_scoring_season", holdersToRows(defIds.get("alltime_lowest_scoring_season"), lowestScoringSeason(regularTotals), "alltime", null, false)],
-    ["alltime_highest_single_week_regular", holdersToRows(defIds.get("alltime_highest_single_week_regular"), highestSingleWeek(regular), "alltime", null, false)],
-    ["alltime_highest_single_week_playoff", holdersToRows(defIds.get("alltime_highest_single_week_playoff"), highestSingleWeek(playoff), "alltime", null, true)],
-    ["alltime_lowest_single_week_regular", holdersToRows(defIds.get("alltime_lowest_single_week_regular"), lowestSingleWeek(regular), "alltime", null, false)],
-    ["alltime_lowest_single_week_playoff", holdersToRows(defIds.get("alltime_lowest_single_week_playoff"), lowestSingleWeek(playoff), "alltime", null, true)],
+    ["alltime_highest_single_week_regular", holdersToRows(defIds.get("alltime_highest_single_week_regular"), highestSingleWeek(weeklyRegular), "alltime", null, false)],
+    ["alltime_highest_single_week_playoff", holdersToRows(defIds.get("alltime_highest_single_week_playoff"), highestSingleWeek(weeklyPlayoff), "alltime", null, true)],
+    ["alltime_lowest_single_week_regular", holdersToRows(defIds.get("alltime_lowest_single_week_regular"), lowestSingleWeek(weeklyRegular), "alltime", null, false)],
+    ["alltime_lowest_single_week_playoff", holdersToRows(defIds.get("alltime_lowest_single_week_playoff"), lowestSingleWeek(weeklyPlayoff), "alltime", null, true)],
     ["alltime_best_avg_margin_of_victory", holdersToRows(defIds.get("alltime_best_avg_margin_of_victory"), bestAvgMarginOfVictory(margins), "alltime", null, false)],
     ["alltime_worst_avg_margin_of_defeat", holdersToRows(defIds.get("alltime_worst_avg_margin_of_defeat"), worstAvgMarginOfDefeat(margins), "alltime", null, false)],
     ["alltime_longest_win_streak", holdersToRows(defIds.get("alltime_longest_win_streak"), longestWinStreak(regular), "alltime", null, false)],
@@ -641,25 +681,28 @@ async function main() {
   const defIds = await upsertDefinitions(leagueId);
   log(`registered ${defIds.size} record_definitions`);
 
-  const seasons = await loadIncludedSeasons();
-  if (seasons.length === 0) {
+  const { weeklyEligible, completed } = await loadIncludedSeasons();
+  if (weeklyEligible.length === 0) {
     warn("no included seasons found — nothing to compute");
     return;
   }
-  const years = seasons.map((s) => s.year).sort((a, b) => a - b);
-  log("included seasons:", years.join(", "));
+  const years = completed.map((s) => s.year).sort((a, b) => a - b);
+  log("completed seasons (season-total categories, per-season pages):", years.join(", ") || "(none)");
 
-  const allGames = await loadTeamWeekResults(seasons);
+  const completedGames = await loadTeamWeekResults(completed);
+  const weeklyGames = completed.length === weeklyEligible.length
+    ? completedGames
+    : await loadTeamWeekResults(weeklyEligible);
 
   log("computing all-time records...");
-  await computeAndStoreAllTime(defIds, allGames);
+  await computeAndStoreAllTime(defIds, completedGames, weeklyGames);
 
   log("computing per-season records...");
-  await computeAndStorePerSeason(defIds, allGames, years);
+  await computeAndStorePerSeason(defIds, completedGames, years);
 
   log("computing franchise records...");
-  await computeTransactionActivity(defIds, seasons);
-  await computeInjuryApproximation(defIds, seasons);
+  await computeTransactionActivity(defIds, completed);
+  await computeInjuryApproximation(defIds, completed);
 
   log("done");
 }

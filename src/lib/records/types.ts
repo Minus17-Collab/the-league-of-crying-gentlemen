@@ -10,13 +10,14 @@
  * Exactly one row per franchise per matchup (so a single matchup
  * produces two `TeamWeekResult`s, one per side).
  *
- * Only games that should ever count toward ANY record are represented
- * here at all -- the excluded season (see EXCLUDED_SEASON_YEARS) and
- * both consolation brackets (`playoff_bracket` in
- * `winners_consolation` / `losers_consolation`) are filtered out
- * before this list is built, never inside these functions. That keeps
- * every function below a plain aggregation with no scope-filtering
- * logic to get wrong twice.
+ * Only games that should ever count toward the record category being
+ * computed are represented here at all -- season exclusions (see
+ * PERMANENTLY_EXCLUDED_SEASON_YEARS / the completed-vs-weekly-eligible
+ * season split in scripts/compute-records.mjs) and both consolation
+ * brackets (`playoff_bracket` in `winners_consolation` /
+ * `losers_consolation`) are filtered out before this list is built,
+ * never inside these functions. That keeps every function below a
+ * plain aggregation with no scope-filtering logic to get wrong twice.
  */
 export interface TeamWeekResult {
   franchiseId: string;
