@@ -61,21 +61,30 @@ export interface SeasonRecordEntry {
   holders: RecordHolderDisplay[];
 }
 
-/** Mirrors EXCLUDED_SEASON_YEARS in scripts/compute-records.mjs --
- * keep the two in sync. Season 1 (2023) had materially different
- * scoring rules and team count and is permanently excluded from
- * every record category (see data/history/SUMMARY.md).
- * Season 4 (2026) is live and is temporarily excluded until it ends. */
-const EXCLUDED_SEASON_YEARS = [2023, 2026];
+/** Years with a dedicated /records/[year] page and per-season
+ * leaderboards -- i.e. every COMPLETED season except season 1 (2023,
+ * materially different scoring rules and team count; see
+ * data/history/SUMMARY.md), mirroring the `completed` season set in
+ * scripts/compute-records.mjs's main() (keep the two in sync). An
+ * in-progress season has no season-total/streak/luck numbers to show
+ * yet, so it gets no per-season page -- but it DOES still contribute
+ * its already-played weeks to the all-time single-week high/low
+ * categories on the main /records page; see getAllTimeRecords, which
+ * has no season filtering of its own and just reflects whatever
+ * compute-records.mjs wrote. */
+const PERMANENTLY_EXCLUDED_SEASON_YEARS = [2023];
 
-/** Every season year that records were computed for -- i.e. every
- * season minus EXCLUDED_SEASON_YEARS, not "the N most recent" (see
- * compute-records.mjs header comment for why). */
+/** Every completed season year with a per-season page, newest first. */
 export async function getIncludedSeasonYears(): Promise<number[]> {
   const supabase = createClient();
-  const { data, error } = await supabase.from("seasons").select("year").order("year", { ascending: false });
+  const { data, error } = await supabase
+    .from("seasons")
+    .select("year, is_locked")
+    .order("year", { ascending: false });
   if (error) throw error;
-  return (data ?? []).map((s) => s.year).filter((year) => !EXCLUDED_SEASON_YEARS.includes(year));
+  return (data ?? [])
+    .filter((s) => s.is_locked && !PERMANENTLY_EXCLUDED_SEASON_YEARS.includes(s.year))
+    .map((s) => s.year);
 }
 
 /** Some context blobs carry an `opponentFranchiseId` (single-week
