@@ -121,6 +121,14 @@ not exist at runtime — `src/app/api/cron/sync/route.ts` was deleted in
 `d38101e` and replaced by `scripts/sync-espn.mjs` run from Actions. Anything
 needing a server is a script invoked by a workflow, not a route.
 
+**Corollary that bit us for weeks: writing to Supabase does not update the
+live site.** `sync.yml` ran successfully, Supabase had current data, and
+thecryinggents.org still showed pre-season content, because `deploy.yml`
+only runs on `push` to `main` or manual dispatch — a DB write is neither.
+Fixed by having `sync.yml` end with `gh workflow run deploy.yml --ref main`
+on success (see requirement 9). Any future job that mutates Supabase data the
+public site reads needs the same trigger, or it'll have this exact bug.
+
 ### 7. Never put `SUPABASE_SERVICE_ROLE_KEY` in a build step
 It belongs only to `sync.yml`. `ci.yml` and `deploy.yml` build client-facing
 output; a service-role key reaching a `NEXT_PUBLIC_`-adjacent build is a leak.
@@ -139,6 +147,19 @@ which prior step failed — credential check, `pnpm install`, or
 not `env.SKIP`. The success step additionally checks `env.SKIP != 'true'` so
 the inactive-DST-offset run that did nothing doesn't post a "succeeded"
 message for a sync that never ran.
+
+### 9. Triggering another workflow from a workflow needs explicit `actions: write`
+This repo's default `GITHUB_TOKEN` permission is **read** (Settings → Actions
+→ General → Workflow permissions), so `gh workflow run <other>.yml` 403s
+unless the calling workflow declares `permissions: actions: write` itself —
+an explicit `permissions:` block in the workflow file overrides the repo
+default, it isn't capped by it. `sync.yml` sets this at the workflow level
+(not job level) to call `gh workflow run deploy.yml --ref main` after a
+successful sync, with `GH_TOKEN: ${{ github.token }}` in that step's `env`
+(the `gh` CLI doesn't read `GITHUB_TOKEN` automatically). Don't lower this to
+job-level `contents: read` only, and don't change the repo's actions-wide
+default permission to "read and write" instead — keep the escalation scoped
+to the one workflow that needs it.
 
 ## Enforcement
 - Open a throwaway PR after any workflow edit; `ci.yml` only runs on

@@ -3,7 +3,9 @@ name: ESPN sync
 # Credential-check + sync job for data, scoring, and matchups (see
 # AGENTS.md and ROADMAP.md Phase 2.3). Runs here instead of a Vercel Cron
 # Route Handler because the site is a static export with no server
-# runtime — see scripts/sync-espn.mjs.
+# runtime — see scripts/sync-espn.mjs. Also triggers deploy.yml afterward
+# so the static site actually picks up the new data -- see "Trigger site
+# rebuild" below.
 #
 # Target: Fridays 6:00 AM, Mondays 1:00 AM, and Tuesdays 1:00 AM, all US
 # Eastern (per AGENTS.md's US Eastern / NFL scheduling convention) — one
@@ -29,6 +31,10 @@ on:
     - cron: "0 5 * * 2"   # 1am EDT Tue (UTC-4) -> 05:00 UTC Tue
     - cron: "0 6 * * 2"   # 1am EST Tue (UTC-5) -> 06:00 UTC Tue
   workflow_dispatch: {}
+
+permissions:
+  contents: read
+  actions: write  # needed to trigger deploy.yml (site rebuild) below
 
 jobs:
   sync:
@@ -84,6 +90,19 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
+      # The site is a static export (next.config.ts `output: "export"`) --
+      # new Supabase data from the steps above does NOT appear on
+      # thecryinggents.org until something rebuilds and republishes it.
+      # deploy.yml only runs on `push` to main or manual dispatch; a DB
+      # sync is neither, so without this step the live site would stay
+      # frozen at whatever it looked like on the last push to main
+      # (e.g. pre-season) no matter how often this job ran.
+      - name: Trigger site rebuild
+        if: env.SKIP != 'true' && success()
+        run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       # These two are mutually exclusive per run (success() and failure()
       # can't both be true) and independent of GitHub's personal
       # notification settings, so together they're the reliable way to
@@ -102,7 +121,7 @@ jobs:
             exit 0
           fi
           run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          payload=$(jq -n --arg content "✅ **ESPN sync succeeded** — $run_url" '{content: $content}')
+          payload=$(jq -n --arg content "✅ **ESPN sync succeeded, site rebuild triggered** — $run_url" '{content: $content}')
           curl -sf -X POST -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_UPDATES }}
