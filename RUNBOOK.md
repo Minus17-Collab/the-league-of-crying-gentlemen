@@ -32,7 +32,11 @@ plan and current phase status.
      - **Secrets** tab: `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
        `SUPABASE_SERVICE_ROLE_KEY`, `ESPN_SWID`, `ESPN_S2`
    - `.github/workflows/deploy.yml` builds the static export and
-     publishes it to Pages on every push to `main`.
+     publishes it to Pages on every push to `main` (or manual dispatch).
+     **The site only updates when this runs** — it's a static export
+     (`output: "export"` in `next.config.ts`), so new rows in Supabase are
+     invisible on thecryinggents.org until something rebuilds and
+     republishes the HTML.
    - `.github/workflows/sync.yml` runs `scripts/sync-espn.mjs` three times a
      week — Fridays 6:00 AM, Mondays 1:00 AM, and Tuesdays 1:00 AM, all US
      Eastern. Actions cron is UTC-only and DST-blind, so each target time
@@ -40,7 +44,14 @@ plan and current phase status.
      active by checking `TZ=America/New_York date +%Z` (EDT vs EST) against
      `github.event.schedule`, not the current hour — GitHub has been
      observed starting these runs 4-7+ hours late, which broke an earlier
-     hour-based check on every single run.
+     hour-based check on every single run. After a successful sync (and
+     `scripts/compute-records.mjs`), it triggers `deploy.yml` itself via
+     `gh workflow run deploy.yml` — without this, the sync would keep
+     Supabase current but the live site would stay frozen at whatever it
+     looked like on the last push to `main`. Needs `permissions:
+     actions: write` on the workflow (already set) because this repo's
+     default `GITHUB_TOKEN` permission is read-only
+     (Settings → Actions → General → Workflow permissions).
    - Optional: set a **Secrets** tab `DISCORD_UPDATES` (a Discord channel's
      Integrations → Webhooks URL) to get a message there whenever a sync
      run succeeds or fails — the credential check, a dependency install, or
